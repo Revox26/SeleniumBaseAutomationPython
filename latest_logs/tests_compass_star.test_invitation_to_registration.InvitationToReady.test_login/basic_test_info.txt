@@ -1,0 +1,25 @@
+tests_compass_star/test_invitation_to_registration.py::InvitationToReady::test_login
+--------------------------------------------------------------------
+Last Page: data:,
+ Duration: 0.15s
+  Browser: Chrome 117.0.5938.92
+   Driver: chromedriver 117.0.5938.92
+Timestamp: 1695912042  (Unix Timestamp)
+     Date: Thursday, 28 September 2023
+     Time: 10:40:42 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration.py", line 31, in test_login
+    self.open_compass_star_page()
+  File "C:\SeleniumPython\pages_compass_star\login_page.py", line 30, in open_compass_star_page
+    self.open(Readconfig.get_qa_csl_url())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\configuration_files\config_reader.py", line 43, in get_qa_csl_url
+    csl_qa_url = config.get("url", "qa_csl_url")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pythonProject2\Lib\configparser.py", line 797, in get
+    d = self._unify_values(section, vars)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pythonProject2\Lib\configparser.py", line 1168, in _unify_values
+    raise NoSectionError(section) from None
+Exception: No section: 'url'
