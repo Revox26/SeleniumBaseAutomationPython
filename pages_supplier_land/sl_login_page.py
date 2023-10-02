@@ -23,7 +23,6 @@ class SupplierLandLoginPage(BaseCase):
         }
         self.open(environmental_staging.get(instance, Readconfig.get_qa_sl_url()))
 
-
     def login(self, username, password):
         self.type(self.__username, username)
         self.type(self.__password, password)
@@ -48,5 +47,3 @@ class SupplierLandLoginPage(BaseCase):
         self.click("a[type='button']")
         self.type(self.__password, Readconfig.get_director_password())
         self.click(self.__login_button)
-
-

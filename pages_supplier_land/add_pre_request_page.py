@@ -10,7 +10,9 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
     _logo = "//img[@alt='SupplierLand - Transforming Supply Chain Management']"
 
     _client = "//input[@placeholder='Please select a client']"
+    _client_value = "(//span[@class='vs__selected']//div)[1]"
     _industry = "//input[@placeholder='Please select industry']"
+    _industry_value = "(//span[@class='vs__selected']//div)[2]"
     _number_of_suppliers = "//input[@name='number_of_pre_request']"
     _pay_type = "//input[@placeholder='Pay Type']"
     _contract_start_date = "//input[@placeholder='DD-MM-YYYY']"
@@ -39,6 +41,16 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         self.type(self._client, random.choice(client_list) + "\n")
 
         self.type(self._industry, "Transport\n")
+
+        _client_text = self.get_text_content(self._client_value)
+        _industry_text = self.get_text_content(self._industry_value)
+
+        # save the text of first name and last name
+        with open("intermediary.txt", "w") as file:
+            file.write(_client_text)
+        with open("industry.txt", "w") as file:
+            file.write(_industry_text)
+        print("\n Client Name: ", _client_text, "\n Industry Name: ", _industry_text)
 
         if self.is_element_present(self._number_of_suppliers):
             self.type(self._number_of_suppliers, "3")

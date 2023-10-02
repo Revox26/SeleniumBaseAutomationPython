@@ -25,7 +25,8 @@ class PytestRunnerApp:
 
         self.create_label("Select Staging Environment:")
         self.staging_dropdown_var = self.create_dropdown(
-            ["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Echo Instance"])
+            ["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Echo Instance",
+             "Replica Instance"])
 
         self.create_label("Select Browser:")
         self.select_browser_dropdown_var = self.create_dropdown(["Chrome", "Edge", "Firefox"])
@@ -170,7 +171,9 @@ class PytestRunnerApp:
             "--data=v2": "V2 Instance",
             "--data=v3": "V3 Instance",
             "--data=v4": "V4 Instance",
-            "--data=echo": "Echo Instance"
+            "--data=echo": "Echo Instance",
+            "--data=replica": "Replica Instance"
+
         }
         pytest_command.extend([key for key, value in staging_options.items() if value == additional_args])
 
