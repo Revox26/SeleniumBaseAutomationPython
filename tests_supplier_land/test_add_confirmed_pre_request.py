@@ -16,3 +16,4 @@ class AddConfirmedPreRequest(
 
     def test_pre_request_fields(self):
         self.add_pre_request_fields()
+        self.submit_pre_request()

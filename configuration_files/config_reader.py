@@ -79,6 +79,16 @@ class Readconfig:
         return echo_url
 
     @staticmethod
+    def get_delta_csl_url():
+        delta_url = config.get("url", "delta_csl_url")
+        return delta_url
+
+    @staticmethod
+    def get_delta_sl_url():
+        delta_url = config.get("url", "delta_sl_url")
+        return delta_url
+
+    @staticmethod
     def get_it_dev_username():
         it_username = config.get("accounts", "it_dev_user_name")
         return it_username
@@ -96,7 +106,7 @@ class Readconfig:
     @staticmethod
     def get_intermediary_username():
         it_username = config.get("accounts", "intermediary_username")
-        return it_username
+        return it_username #
 
 
     @staticmethod

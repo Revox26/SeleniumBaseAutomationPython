@@ -19,6 +19,7 @@ class SupplierLandLoginPage(BaseCase):
             "v4": Readconfig.get_v4_sl_url(),
             "replica": Readconfig.get_replica_sl_url(),
             "echo": Readconfig.get_echo_sl_url(),
+            "delta": Readconfig.get_delta_sl_url(),
         }
         self.open(environmental_staging.get(instance, Readconfig.get_qa_sl_url()))
 

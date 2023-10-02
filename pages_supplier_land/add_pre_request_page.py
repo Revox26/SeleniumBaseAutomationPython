@@ -38,7 +38,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
         self.type(self._client, random.choice(client_list) + "\n")
 
-        self.type(self._industry, "Administration\n")
+        self.type(self._industry, "Transport\n")
 
         if self.is_element_present(self._number_of_suppliers):
             self.type(self._number_of_suppliers, "3")
@@ -72,3 +72,4 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         self.wait_for_element_visible(self._pre_request_checkbox, timeout=60)
         self.click(self._pre_request_checkbox)
         self.click(self._submit_button)
+        self.sleep(10)
