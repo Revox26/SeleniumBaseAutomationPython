@@ -1,10 +1,12 @@
 from pages_supplier_land.add_pre_request_page import SupplierLandAddNewPreRequestPage
+from pages_supplier_land.offerings_page import SupplierLandOfferingsPage
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 
 
 class AddProvisionalPreRequest(
     SupplierLandLoginPage,
-    SupplierLandAddNewPreRequestPage
+    SupplierLandAddNewPreRequestPage,
+    SupplierLandOfferingsPage,
 ):
 
     def test_login(self):
@@ -18,4 +20,6 @@ class AddProvisionalPreRequest(
         self.add_pre_request_fields()
         self.submit_pre_request()
 
-
+    def test_search_company_in_offerings(self):
+        self.navigate_to_offerings()
+        self.search_company_in_offerings()

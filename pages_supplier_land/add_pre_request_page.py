@@ -42,13 +42,14 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
         self.type(self._industry, "Transport\n")
 
+
         _client_text = self.get_text_content(self._client_value)
         _industry_text = self.get_text_content(self._industry_value)
 
         # save the text of first name and last name
-        with open("intermediary.txt", "w") as file:
+        with open("..//configuration_files//intermediary.txt", "w") as file:
             file.write(_client_text)
-        with open("industry.txt", "w") as file:
+        with open("..//configuration_files//industry.txt", "w") as file:
             file.write(_industry_text)
         print("\n Client Name: ", _client_text, "\n Industry Name: ", _industry_text)
 

@@ -89,6 +89,11 @@ class Readconfig:
         return delta_url
 
     @staticmethod
+    def get_bsc_uat_url():
+        uat_link = config.get("url", "bsc_uat_link")
+        return uat_link
+
+    @staticmethod
     def get_it_dev_username():
         it_username = config.get("accounts", "it_dev_user_name")
         return it_username
@@ -106,8 +111,7 @@ class Readconfig:
     @staticmethod
     def get_intermediary_username():
         it_username = config.get("accounts", "intermediary_username")
-        return it_username #
-
+        return it_username  #
 
     @staticmethod
     def get_password():
@@ -118,3 +122,13 @@ class Readconfig:
     def get_director_password():
         director_password = config.get("accounts", "director_password")
         return director_password
+
+    @staticmethod
+    def get_jdc_email_bsc():
+        jdc_email = config.get("accounts", "jdc_supplier_email")
+        return jdc_email
+
+    @staticmethod
+    def get_jdc_password():
+        jdc_password = config.get("accounts", "jdc_password")
+        return jdc_password

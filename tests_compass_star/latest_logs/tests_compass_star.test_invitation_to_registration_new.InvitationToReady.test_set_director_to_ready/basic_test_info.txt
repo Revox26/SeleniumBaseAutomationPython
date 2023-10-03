@@ -1,0 +1,48 @@
+test_invitation_to_registration_new.py::InvitationToReady::test_set_director_to_ready
+--------------------------------------------------------------------
+Last Page: [WARNING! Browser Not Open!]
+ Duration: 56.96s
+  Browser: Chrome 117.0.5938.132
+   Driver: chromedriver 117.0.5938.92
+Timestamp: 1696345580  (Unix Timestamp)
+     Date: Tuesday, 3 October 2023
+     Time: 11:06:20 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration_new.py", line 106, in test_set_director_to_ready
+    self.set_supplier_status_to_ready()
+  File "C:\SeleniumPython\pages_compass_star\suppliers_page.py", line 19, in set_supplier_status_to_ready
+    self.click(self.search_suppliers_button)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 638, in click
+    if self.driver.current_url != pre_action_url:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 434, in current_url
+    return self.execute(Command.GET_CURRENT_URL)["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 344, in execute
+    self.error_handler.check_response(response)
+  File "C:\SeleniumPython\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+Exception: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=117.0.5938.132)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6B2597892+54818]
+	(No symbol) [0x00007FF6B2506AC2]
+	(No symbol) [0x00007FF6B23BDA3B]
+	(No symbol) [0x00007FF6B239DEE8]
+	(No symbol) [0x00007FF6B2423237]
+	(No symbol) [0x00007FF6B2436C6F]
+	(No symbol) [0x00007FF6B241E883]
+	(No symbol) [0x00007FF6B23F3691]
+	(No symbol) [0x00007FF6B23F48D4]
+	GetHandleVerifier [0x00007FF6B28FB992+3610402]
+	GetHandleVerifier [0x00007FF6B2951860+3962352]
+	GetHandleVerifier [0x00007FF6B2949D4F+3930847]
+	GetHandleVerifier [0x00007FF6B2633646+693206]
+	(No symbol) [0x00007FF6B2511628]
+	(No symbol) [0x00007FF6B250D934]
+	(No symbol) [0x00007FF6B250DA62]
+	(No symbol) [0x00007FF6B24FE113]
+	BaseThreadInitThunk [0x00007FFF4D80257D+29]
+	RtlUserThreadStart [0x00007FFF4F32AA68+40]
