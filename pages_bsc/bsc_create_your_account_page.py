@@ -12,11 +12,11 @@ class BscCreateYOurAccountPage(BaseCase):
     bsc_proceed_button = "button[type='submit']"
 
     def create_your_bsc_account(self):
-        with open("first_name.txt", "r") as file:
+        with open("..//data//first_name.txt", "r") as file:
             input_bsc_acc_first_name = file.read().strip()
-        with open("last_name.txt", "r") as file:
+        with open("..//data//last_name.txt", "r") as file:
             input_bsc_acc_last_name = file.read().strip()
-        with open("email.txt", "r") as file:
+        with open("..//data//email.txt", "r") as file:
             input_bsc_acc_email = file.read().strip()
 
         self.type(self._bsc_acc_first_name, input_bsc_acc_first_name)
@@ -30,19 +30,18 @@ class BscCreateYOurAccountPage(BaseCase):
         self.sleep(5)
 
     def create_account_after_redeem(self):
-        with open("first_name.txt", "r") as file:
+        with open("..//data//first_name.txt", "r") as file:
             random_name = file.read().strip()
 
-        with open("last_name.txt", "r") as file:
+        with open("..//data//last_name.txt", "r") as file:
             random_last_name = file.read().strip()
 
-        with open("email.txt", "r") as file:
+        with open("..//data//email.txt", "r") as file:
             random_email = file.read().strip()
 
         self.type(self._bsc_acc_first_name, random_name)
         self.type(self._bsc_acc_last_name, random_last_name)
         self.type(self.bsc_acc_email, random_email)
-
         self.type(self.bsc_acc_password, Readconfig.get_director_password())
         self.type(self.bsc_acc_confirm_password, Readconfig.get_director_password())
         self.js_click(self.i_agree_to_the_terms)

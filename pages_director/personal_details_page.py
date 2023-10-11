@@ -28,42 +28,24 @@ class DirectorPersonalDetailsPage(BaseCase):
         fake = Faker()
 
         self.assert_element(self.personal_details_label)
-
         self.click(self.title)
-
         if self.is_element_present(self.nationality_dropdown):
             self.select_option_by_text(self.nationality_dropdown, "Filipino")
         else:
             self.type(self.nationality, "Filipino")
-
         self.type(self.occupation, fake.job())
-
         self.click(self.professional_interest)
-
         self.click(self.select_transport)
-
         self.click(self.title)
-
         self.type(self.date_of_birth, "1999-04-08 \n")
-
         self.type(self.mobile_number, '9' + fake.random_int(min=100000000, max=999999999).__str__())
-
         self.type(self.address, fake.address())
-
         self.type(self.town_city, fake.city())
-
         self.type(self.province, fake.state())
-
         self.select_option_by_text(self.country, "Philippines")
-
         self.type(self.zip_code, "4120")
-
         self.click(self.same_address)
-
         self.click(self.smart_phone)
-
         self.click(self.android_phone)
-
         self.click(self.mobile_close_button)
-
         self.click(self.continue_button)

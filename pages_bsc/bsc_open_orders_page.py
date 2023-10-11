@@ -40,9 +40,9 @@ class BscOpenOrdersPage(BaseCase):
         self.click(self.item, timeout=60)
 
     def transfer_company_tab(self):
-        with open("first_name.txt", "r") as file:
+        with open("..//data//first_name.txt", "r") as file:
             random_name = file.read().strip()
-        with open("email.txt", "r") as file:
+        with open("..//data//email.txt", "r") as file:
             random_email = file.read().strip()
 
         self.click(self.transfer_company_page, timeout=60)

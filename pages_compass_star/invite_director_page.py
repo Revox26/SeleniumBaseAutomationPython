@@ -3,6 +3,7 @@ from seleniumbase import config as sb_config
 import pytest
 from faker import Faker
 
+
 class CompassStarInviteDirectorPage(BaseCase):
     invite_director_button = "//a[.='Invite Director']"
     first_name = "//input[@name='first_name']"
@@ -20,16 +21,16 @@ class CompassStarInviteDirectorPage(BaseCase):
         return random_name, random_last_name
 
     def invite_director_page(self):
-
         random_name, random_last_name = self.generate_random_name()
+
         self.type(self.first_name, random_name)
         self.type(self.last_name, random_last_name)
         self.click(self.generate_invitation_link)
 
         # save the text of first name and last name
-        with open("first_name.txt", "w") as file:
+        with open("..//data//first_name.txt", "w") as file:
             file.write(random_name)
-        with open("last_name.txt", "w") as file:
+        with open("..//data//last_name.txt", "w") as file:
             file.write(random_last_name)
         print("\n First Name: ", random_name, "\n Last Name: ", random_last_name)
 

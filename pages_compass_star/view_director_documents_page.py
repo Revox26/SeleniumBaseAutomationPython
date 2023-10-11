@@ -12,17 +12,12 @@ class CompassStarViewDocumentsPage(BaseCase):
 
     def accept_id_and_set_to_accepted(self):
         self.assert_element(self.company_name_label)
-
         self.click(self.accept_id)
         self.click(self.yes_accept_id)
-
         self.click(self.accept_id)
         self.click(self.yes_accept_id)
-
         self.click(self.set_to_accepted)
-
         self.click(self.update_application)
-
         self.click(self.yes_accept_to_certified)
 
 

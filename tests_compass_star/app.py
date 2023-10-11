@@ -1,10 +1,13 @@
 import subprocess
 import tkinter as tk
 from tkinter import ttk
+from art import *
 
 
 class PytestRunnerApp:
     def __init__(self, master):
+        ascii_art = text2art(" Welcome to \n Automation", "slant")
+        print(ascii_art)
         self.master = master
         master.title("QA-Team Automation Test Runner")
 
@@ -47,7 +50,7 @@ class PytestRunnerApp:
                                                            "Slow down and visually see test actions as they occur.")
 
         self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Slow Mode",
-                                                           "Slow down the automation. Faster than using Demo Mode.")
+                                                           "Slow down the automation.")
 
         self.report_checkbox_var = self.create_checkbox(checkbox_frame, "Generate Report",
                                                         "Creates a detailed pytest-html report after tests finish.")
@@ -127,25 +130,27 @@ class PytestRunnerApp:
 
     def run_pytest(self):
 
+
+
         additional_text = self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
         test_commands = {
             "Registration To Ready": ["pytest",
-                                      "/SeleniumPython/tests_compass_star/test_invitation_to_registration.py --rs -x -v -s",
+                                      "/SeleniumPython/tests_compass_star/test_invitation_to_registration.py --rs -x -q -s",
                                       additional_text],
             "New Registration To Ready": ["pytest",
-                                          "/SeleniumPython/tests_compass_star/test_invitation_to_registration_new.py --rs -x -v -s",
+                                          "/SeleniumPython/tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s",
                                           additional_text],
             "Add Provisional Pre Request": ["pytest",
-                                            "/SeleniumPython/tests_supplier_land/test_add_provisional_pre_request.py --rs -x -v -s",
+                                            "/SeleniumPython/tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",
                                             additional_text],
             "Add Confirmed Pre Request": ["pytest",
-                                          "/SeleniumPython/tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -v -s",
+                                          "/SeleniumPython/tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s",
                                           additional_text],
-            "BSC Order Package": ["pytest", "/SeleniumPython/tests_bsc/test_bsc_redeem_package.py --rs -x -v -s",
+            "BSC Order Package": ["pytest", "/SeleniumPython/tests_bsc/test_bsc_redeem_package.py --rs -x -q -s",
                                   additional_text],
-            "Practice Page": ["pytest", "/SeleniumPython/test_runner/practice.py --rs -x -v -s", additional_text]
+            "Practice Page": ["pytest", "/SeleniumPython/test_runner/practice.py --rs -x -q -s", additional_text]
         }
 
         if selected_test in test_commands:

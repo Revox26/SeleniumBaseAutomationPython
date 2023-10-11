@@ -16,9 +16,9 @@ class CompassStarAssignDirectorsPage(BaseCase):
     search_certified = "//button[.='Search ']"
 
     def navigate_to_assign_directors_tab(self):
-        with open("first_name.txt", "r") as file:
+        with open("..//data//first_name.txt", "r") as file:
             first_name = file.read().strip()
-        with open("last_name.txt", "r") as file:
+        with open("..//data//last_name.txt", "r") as file:
             last_name = file.read().strip()
         self.click(self.companies_tab)
         self.click(self.assign_directors_tab)
@@ -39,5 +39,5 @@ class CompassStarAssignDirectorsPage(BaseCase):
 
         get_company_name_text = self.get_text_content(self.company_name_text)
 
-        with open("director_company.txt", "w") as file:
+        with open("..//data//director_company.txt", "w") as file:
             file.write(get_company_name_text)

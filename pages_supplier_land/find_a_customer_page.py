@@ -12,10 +12,11 @@ class SupplierLandFindCustomerPage(BaseCase):
 
     def i_want_to_be_a_supplier_and_interested(self):
         process = self.var1
-        if process != "old":
-            self.clear(self._director_preferred_value)
-            self.type(self._director_preferred_value, process)
-            self.click(self._find_customer_proceed)
+        if self.is_element_present(self._director_preferred_value):
+            if not process == "old":
+                self.clear(self._director_preferred_value)
+                self.type(self._director_preferred_value, process)
+                self.click(self._find_customer_proceed)
         else:
             self.click(self._find_customer_proceed)
 

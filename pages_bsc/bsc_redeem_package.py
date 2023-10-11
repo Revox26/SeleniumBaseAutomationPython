@@ -22,12 +22,12 @@ class BscRedeemPackagePage(BaseCase):
         random_name = fake.first_name()
         random_last_name = fake.last_name()
 
-        with open("first_name.txt", "w") as file:
+        with open("..//data//first_name.txt", "w") as file:
             file.write(random_name)
-        with open("last_name.txt", "w") as file:
+        with open("..//data//last_name.txt", "w") as file:
             file.write(random_last_name)
         random_email = random_name + random_last_name + "@bsc.com"
-        with open("email.txt", "w") as file:
+        with open("..//data//email.txt", "w") as file:
             file.write(random_email)
 
         print("\n Name: ", random_name, "\n Last Name: ", random_last_name, "\n Email: ", random_email)

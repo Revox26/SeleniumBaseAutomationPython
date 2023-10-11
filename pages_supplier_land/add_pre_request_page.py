@@ -31,6 +31,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
     def navigate_to_pre_request(self):
         self.click(self._new_suppliers)
+        self.sleep(1)
         self.hover(self._pre_request)
         self.click(self._add_pre_request)
         self.assert_element(self._add_pre_request_heading, timeout=60)
@@ -40,16 +41,15 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
         self.type(self._client, random.choice(client_list) + "\n")
 
-        self.type(self._industry, "Transport\n")
-
+        self.type(self._industry, "Engineering\n")
 
         _client_text = self.get_text_content(self._client_value)
         _industry_text = self.get_text_content(self._industry_value)
 
         # save the text of first name and last name
-        with open("..//configuration_files//intermediary.txt", "w") as file:
+        with open("..//data//intermediary.txt", "w") as file:
             file.write(_client_text)
-        with open("..//configuration_files//industry.txt", "w") as file:
+        with open("..//data//industry.txt", "w") as file:
             file.write(_industry_text)
         print("\n Client Name: ", _client_text, "\n Industry Name: ", _industry_text)
 
@@ -57,14 +57,13 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
             self.type(self._number_of_suppliers, "3")
 
         self.type(self._pay_type, "Umbrella\n")
-
         self.click(self._contract_start_date)
         self.click(self._select_contract_start_date)
 
         if self.is_element_present(self._contract_value):
-            self.type(self._contract_value, "55000")
+            self.type(self._contract_value, "2000000")
         else:
-            self.type(self._yearly_contract_value, "1000000")
+            self.type(self._yearly_contract_value, "2000000")
 
         if self.is_element_present(self._number_of_contractors_per_supplier):
             self.type(self._number_of_contractors_per_supplier, "3")

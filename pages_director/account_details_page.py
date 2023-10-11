@@ -15,11 +15,11 @@ class DirectorAccountDetailsPage(BaseCase):
     yes_continue_button = "//button[@id='is-duplicate-yes']"
 
     def director_account_details(self):
-        with open("first_name.txt", "r") as file:
+        with open("..//data//first_name.txt", "r") as file:
             email = file.read().strip()
             random_number = random.randint(100, 999)
             result = str(random_number) + "@automation.com"
-        with open("email.txt", "w") as file:
+        with open("..//data//email.txt", "w") as file:
             file.write(email + result)
 
         self.type(self.email_account, email + result)

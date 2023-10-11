@@ -18,5 +18,5 @@ class DirectorCompanyDetailsPage(BaseCase):
         self.click(self.company_details)
 
         store_company_text = self.get_text_content(self.get_company_text)
-        with open("director_company.txt", "w") as file:
+        with open("..//data//director_company.txt", "w") as file:
             file.write(store_company_text)

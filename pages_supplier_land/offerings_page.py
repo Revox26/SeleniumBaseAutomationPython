@@ -11,10 +11,10 @@ class SupplierLandOfferingsPage(BaseCase):
         self.click(self._offerings)
 
     def search_company_in_offerings(self):
-        with open("..//configuration_files//intermediary.txt", "r") as file:
+        with open("..//data//intermediary.txt", "r") as file:
             _get_intermediary = file.read().strip()
 
-        with open("..//configuration_files//industry.txt", "r") as file:
+        with open("..//data//industry.txt", "r") as file:
             _get_industry = file.read().strip()
 
         self.type(self._offerings_client, _get_intermediary + "\n")

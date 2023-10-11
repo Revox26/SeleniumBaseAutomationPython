@@ -48,7 +48,7 @@ class CompassStarLoginPage(BaseCase):
         self.sleep(5)
 
     def compass_star_login_director(self):
-        with open("email.txt", "r") as file:
+        with open("..//data//email.txt", "r") as file:
             email = file.read().strip()
         self.type(self.username, email)
         self.type(self.password, Readconfig.get_director_password())

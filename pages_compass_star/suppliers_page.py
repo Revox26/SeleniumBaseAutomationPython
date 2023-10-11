@@ -10,7 +10,7 @@ class CompassStarSuppliersTabPage(BaseCase):
     growl_successfully_set_to_ready = "//div[@class='col-sm-12  text-center']//div//strong"
 
     def set_supplier_status_to_ready(self):
-        with open("director_company.txt", "r") as file:
+        with open("..//data//director_company.txt", "r") as file:
             director_company = file.read().strip()
 
         self.click(self.suppliers_tab)
@@ -19,3 +19,5 @@ class CompassStarSuppliersTabPage(BaseCase):
         self.click(self.search_suppliers_button)
         self.select_option_by_text(self.supplier_status, "Ready")
         self.assert_element(self.growl_successfully_set_to_ready)
+
+

@@ -7,7 +7,7 @@ class CompassStarDirectorPage(BaseCase):
     view_director_documents = "//i[@title='View Documents']"
 
     def view_documents(self):
-        with open("email.txt", "r") as file:
+        with open("..//data//email.txt", "r") as file:
             email = file.read().strip()
 
         self.type(self.search_textbox, email)

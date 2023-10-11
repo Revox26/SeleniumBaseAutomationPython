@@ -22,41 +22,31 @@ class CompleteWithBscPage(BaseCase):
     bsc_checkout = "(//button[contains(@data-testid,'checkout-button')])[2]"
 
     def input_bsc_personal_information(self):
-        with open("first_name.txt", "r") as file:
+        with open("..//data//first_name.txt", "r") as file:
             first_name = file.read().strip()
             print("First Name: ", first_name)
-        with open("email.txt", "r") as file:
+        with open("..//data//email.txt", "r") as file:
             generated_email = file.read().strip()
             print("Email : ", generated_email)
-        with open("director_company.txt", "r") as file:
+        with open("..//data//director_company.txt", "r") as file:
             company_name = file.read().strip()
             print("Company Name : ", company_name)
 
         self.click(self.i_accept_bsc)
         self.click(self.next_button)
-
         self.type(self.bsc_first_name, first_name)
         self.type(self.bsc_email_address, generated_email)
         self.type(self.bsc_company_name, company_name)
-
         self.scroll_into_view(self.csl_consulting)
         self.js_click(self.i_agree_csl_consulting)
-
         self.scroll_into_view(self.sovereign)
         self.js_click(self.i_agree_sovereign)
-
         self.scroll_into_view(self.supplier_land)
         self.js_click(self.i_agree_supplier_land)
-
         self.scroll_into_view(self.trilogy_banking)
         self.js_click(self.i_agree_trilogy_banking)
-
         self.click(self.my_company_is_not_vat_registered)
-
         self.click(self.my_company_is_registered_for_flat_rate_vat)
-
         self.click(self.my_company_is_registered_for_standard_vat)
-
         self.js_click(self.bsc_i_agree_5)
-
         self.click(self.bsc_checkout)
