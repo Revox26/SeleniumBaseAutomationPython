@@ -22,7 +22,7 @@ class PytestRunnerApp:
 
         self.create_label("Select a Test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
-            ["Registration To Ready", "New Registration To Ready", "Add Provisional Pre Request",
+            ["Registration To Ready", "New Registration To Ready", "Transfer a Supplier", "Add Provisional Pre Request",
              "Add Confirmed Pre Request", "BSC Order Package",
              "Practice Page"])
 
@@ -137,20 +137,23 @@ class PytestRunnerApp:
 
         test_commands = {
             "Registration To Ready": ["pytest",
-                                      "/SeleniumPython/tests_compass_star/test_invitation_to_registration.py --rs -x -q -s",
+                                      "..//tests_compass_star/test_invitation_to_registration.py --rs -x -q -s",
                                       additional_text],
             "New Registration To Ready": ["pytest",
-                                          "/SeleniumPython/tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s",
+                                          "..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s",
+                                          additional_text],
+            "Transfer a Supplier": ["pytest",
+                                          "..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s",
                                           additional_text],
             "Add Provisional Pre Request": ["pytest",
-                                            "/SeleniumPython/tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",
+                                            "..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",
                                             additional_text],
             "Add Confirmed Pre Request": ["pytest",
-                                          "/SeleniumPython/tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s",
+                                          "..//tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s",
                                           additional_text],
-            "BSC Order Package": ["pytest", "/SeleniumPython/tests_bsc/test_bsc_redeem_package.py --rs -x -q -s",
+            "BSC Order Package": ["pytest", "..//tests_bsc/test_bsc_redeem_package.py --rs -x -q -s",
                                   additional_text],
-            "Practice Page": ["pytest", "/SeleniumPython/test_runner/practice.py --rs -x -q -s", additional_text]
+            "Practice Page": ["pytest", "..//test_runner/practice.py --rs -x -q -s", additional_text]
         }
 
         if selected_test in test_commands:

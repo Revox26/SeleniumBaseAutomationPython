@@ -6,8 +6,14 @@ class CompassStarSuppliersTabPage(BaseCase):
     search_suppliers_textbox = "input[placeholder='Search']"
     search_suppliers_button = "//button[contains(.,'Search')]"
     director_appointed = "//input[@name='director_appointed']"
+    _amend = "//input[@name='amend']"
+    _verify = "//input[@name='verify']"
     supplier_status = "//select[@name='status']"
     growl_successfully_set_to_ready = "//div[@class='col-sm-12  text-center']//div//strong"
+    company_details = "//a[contains(.,'Ltd')]"
+
+    def navigate_to_suppliers_tab(self):
+        self.click(self.suppliers_tab)
 
     def set_supplier_status_to_ready(self):
         with open("..//data//director_company.txt", "r") as file:
@@ -20,4 +26,10 @@ class CompassStarSuppliersTabPage(BaseCase):
         self.select_option_by_text(self.supplier_status, "Ready")
         self.assert_element(self.growl_successfully_set_to_ready)
 
-
+    def search_supplier_name_in_suppliers_tab(self):
+        company_name_var = self.var1
+        self.type(self.search_suppliers_textbox, company_name_var)
+        self.click(self._amend)
+        self.click(self._verify)
+        self.click(self.search_suppliers_button)
+        self.click(self.company_details)

@@ -1,3 +1,5 @@
+import time
+
 from seleniumbase import BaseCase
 
 
@@ -14,6 +16,15 @@ class CompassStarAssignDirectorsPage(BaseCase):
     yes_confirm_assign_director = "//button[contains(.,'Yes')]"
     company_name_text = "//h3[contains(.,'Company name:')]//strong"
     search_certified = "//button[.='Search ']"
+    _confirm_pre_request_link = "//a[contains(@id,'confirmed-transfer-modal')]"
+    _pre_request_search_box = "//input[@id='keyword']"
+    _pre_request_search_button = "//span[contains(.,'Search')]"
+    _pre_request_checkbox = "//input[contains(@name,'check_me')]"
+    _transfer_button = "//button[contains(.,'Transfer')]"
+    _status_dropdown_in_transfer_modal = "//select[@id='company_status']"
+    _proceed_transfer_button = "//button[contains(.,'Proceed')]"
+    _transfer_confirmation = "//strong[@class='selected-company-name']"
+    _growl_successful_transferred = "//div[.='Transfer Supplier(s) Successful, Communications and Post Shop Packs will be sent to the director(s).']"
 
     def navigate_to_assign_directors_tab(self):
         with open("..//data//first_name.txt", "r") as file:
@@ -41,3 +52,20 @@ class CompassStarAssignDirectorsPage(BaseCase):
 
         with open("..//data//director_company.txt", "w") as file:
             file.write(get_company_name_text)
+
+    def navigate_to_assign_directors(self):
+        self.click(self.companies_tab)
+        self.click(self.assign_directors_tab)
+
+    def select_confirmed_pre_request_for_transfer(self):
+        self.click(self._confirm_pre_request_link)
+        self.type(self._pre_request_search_box, self.var1)
+        self.click(self._pre_request_search_button)
+        self.click(self._pre_request_checkbox)
+        self.click(self._transfer_button)
+        self.wait_for_element_clickable(self._proceed_transfer_button, timeout=60)
+        self.select_option_by_text(self._status_dropdown_in_transfer_modal, "Initial Due Diligence", timeout=60)
+        self.click(self._proceed_transfer_button)
+        self.assert_element(self._transfer_confirmation)
+        self.click(self._proceed_transfer_button)
+        self.assert_element(self._growl_successful_transferred)
