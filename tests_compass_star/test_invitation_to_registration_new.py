@@ -43,6 +43,7 @@ class InvitationToReady(
 
     @pytest.mark.run(order=1)
     def test_login(self):
+        print("Running Login Test")
         self.open_compass_star_page()
         self.compass_star_login_admin()
 
