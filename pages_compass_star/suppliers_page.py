@@ -10,7 +10,7 @@ class CompassStarSuppliersTabPage(BaseCase):
     _verify = "//input[@name='verify']"
     supplier_status = "//select[@name='status']"
     growl_successfully_set_to_ready = "//div[@class='col-sm-12  text-center']//div//strong"
-    company_details = "//a[contains(.,'Ltd')]"
+    _company_details = "//a[contains(.,'Ltd')]"
 
     def navigate_to_suppliers_tab(self):
         self.click(self.suppliers_tab)
@@ -32,4 +32,4 @@ class CompassStarSuppliersTabPage(BaseCase):
         self.click(self._amend)
         self.click(self._verify)
         self.click(self.search_suppliers_button)
-        self.click(self.company_details)
+        self.click(self._company_details)

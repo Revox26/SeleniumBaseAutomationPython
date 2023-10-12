@@ -130,9 +130,7 @@ class PytestRunnerApp:
 
     def run_pytest(self):
 
-
-
-        additional_text = self.additional_text_var.get()
+        additional_text = "--var1=" + self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
         test_commands = {
@@ -143,8 +141,8 @@ class PytestRunnerApp:
                                           "..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s",
                                           additional_text],
             "Transfer a Supplier": ["pytest",
-                                          "..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s",
-                                          additional_text],
+                                    "..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s",
+                                    additional_text],
             "Add Provisional Pre Request": ["pytest",
                                             "..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",
                                             additional_text],
