@@ -21,29 +21,29 @@ from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 
 
 class InvitationToReady(
+    BscCreateYOurAccountPage,
+    BscPaymentDetailsPage,
     CompassStarLoginPage,
     CompassStarInviteDirectorPage,
+    CompassStarDirectorPage,
+    CompassStarViewDocumentsPage,
+    CompassStarAssignDirectorsPage,
+    CompassStarSuppliersTabPage,
+    CompleteWithBscPage,
+    DirectorCompanyDetailsPage,
     DirectorVideoPage,
     DirectorPersonalDetailsPage,
     DirectorAccountDetailsPage,
     DirectorDocumentationPage,
     DirectorConfirmationPage,
-    CompassStarDirectorPage,
-    CompassStarViewDocumentsPage,
-    CompleteWithBscPage,
     DirectorMyApplicationTabPage,
-    CompassStarAssignDirectorsPage,
-    BscCreateYOurAccountPage,
-    BscPaymentDetailsPage,
     SupplierLandFindCustomerPage,
-    SupplierLandLoginPage,
-    CompassStarSuppliersTabPage,
-    DirectorCompanyDetailsPage
+    SupplierLandLoginPage
+
 ):
 
     @pytest.mark.run(order=1)
     def test_login(self):
-        print("Running Login Test")
         self.open_compass_star_page()
         self.compass_star_login_admin()
 

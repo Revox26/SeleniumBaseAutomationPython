@@ -132,3 +132,10 @@ class Readconfig:
     def get_jdc_password():
         jdc_password = config.get("accounts", "jdc_password")
         return jdc_password
+
+    @staticmethod
+    def get_bsc_uat_redeem_link():
+        jdc_password = config.get("url", "bsc_uat_redeem_link")
+        return jdc_password
+
+

@@ -1,6 +1,8 @@
 import random
 from seleniumbase import BaseCase
 
+from configuration_files.config_reader import Readconfig
+
 
 class SupplierLandAddNewPreRequestPage(BaseCase):
     _new_suppliers = "//a[contains(.,'New Suppliers')]"
@@ -37,11 +39,19 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         self.assert_element(self._add_pre_request_heading, timeout=60)
 
     def add_pre_request_fields(self):
-        client_list = ['Apollo', '321 Pay Ltd', '4th Option Ltd', 'Adelta Staffing Ltd']
+        client_dropdown_list = ['Apollo', '321 Pay Ltd', '4th Option Ltd', 'Adelta Staffing Ltd']
+        industry_dropdown_list = ['Accounts', 'Administration', 'Advertising', 'Boarding or care of animals',
+                                  "Call Centre", "Cleaning"]
+        random_list = self.var1
 
-        self.type(self._client, random.choice(client_list) + "\n")
-
-        self.type(self._industry, "Engineering\n")
+        if random_list == "random":
+            self.type(self._client, random.choice(client_dropdown_list) + "\n")
+            self.type(self._industry, random.choice(industry_dropdown_list))
+            self.press_keys(self._industry, "\ue015\ue007")
+        else:
+            self.type(self._client, "Apollo \n")
+            self.type(self._industry, "transport")
+            self.press_keys(self._industry, "\ue015\ue007")
 
         _client_text = self.get_text_content(self._client_value)
         _industry_text = self.get_text_content(self._industry_value)
@@ -76,8 +86,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         self.sleep(3)
 
         if self.is_element_present(self._link_placeholder):
-            self.type(self._link_placeholder,
-                      "https://uat-web-tbsc.azurewebsites.net/packages/redeem?code=d88-P-220302-071903")
+            self.type(self._link_placeholder, Readconfig.get_bsc_uat_redeem_link())
             self.click(self._continue_button)
 
     def submit_pre_request(self):
