@@ -10,7 +10,6 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
     _add_pre_request = "//a[.='Add Pre-Request']"
     _add_pre_request_heading = "//h4[.='Add Pre-Request']"
     _logo = "//img[@alt='SupplierLand - Transforming Supply Chain Management']"
-
     _client = "//input[@placeholder='Please select a client']"
     _client_value = "(//span[@class='vs__selected']//div)[1]"
     _industry = "//input[@placeholder='Please select industry']"
@@ -25,7 +24,6 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
     _priority = "//input[@placeholder='Enter Priority']"
     _desired_margin = "//input[@placeholder='Enter Desired Margin']"
     _add_button = "//button[contains(.,'Add')]"
-
     _link_placeholder = "//input[@placeholder='Copy and Paste BSC link here']"
     _continue_button = "//button[@type='submit']"
     _pre_request_checkbox = "//label[contains(@class,'no-margin checkboxLabelNoText')]"

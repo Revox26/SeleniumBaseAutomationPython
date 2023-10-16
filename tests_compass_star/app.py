@@ -22,7 +22,7 @@ class PytestRunnerApp:
 
         self.create_label("Select a Test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
-            ["Registration To Ready", "New Registration To Ready", "Transfer a Supplier", "Add Provisional Pre Request",
+            ["Registration To Ready", "New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "Add Provisional Pre Request",
              "Add Confirmed Pre Request", "BSC Order Package",
              "Practice Page"])
 
@@ -142,6 +142,9 @@ class PytestRunnerApp:
                                           additional_text],
             "Transfer a Supplier": ["pytest",
                                     "..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s",
+                                    additional_text],
+            "Pass to Due Diligence": ["pytest",
+                                    "..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s",
                                     additional_text],
             "Add Provisional Pre Request": ["pytest",
                                             "..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",

@@ -37,6 +37,9 @@ class SupplierLandLoginPage(BaseCase):
     def supplier_land_login_as_intermediary(self):
         self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
 
+    def supplier_land_login_as_simon(self):
+        self.login(Readconfig.get_admin_simon_user_name(), Readconfig.get_password())
+
     def open_supplier_land_new_window(self):
         self.get_new_driver()
         self.open(Readconfig.get_qa_sl_url())

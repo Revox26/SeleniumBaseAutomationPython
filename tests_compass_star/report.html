@@ -397,7 +397,7 @@ data: [
 
 {
 name: 'Passed',
-y: 6,
+y: 2,
 color: '#84d474'
 },
 
@@ -424,10 +424,10 @@ color: '#f17476'
             });
             </script>
             
-    <p>Report generated on 13-Oct-2023 at 16:34:24 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
+    <p>Report generated on 16-Oct-2023 at 23:07:26 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
     <h2>Summary</h2>
-    <p>7 tests ran in 199.62 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">6 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
+    <p>3 tests ran in 155.82 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">2 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -441,69 +441,30 @@ color: '#f17476'
       <tbody class="failed results-table-row">
         <tr>
           <td class="col-result">Failed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_set_director_to_ready</td>
-          <td class="col-duration">38.02</td>
-          <td class="col-links"></td></tr>
+          <td class="col-name">tests_supplier_land/test_pass_to_due_diligence.py::AddProvisionalPreRequest::test_pass_to_rdd</td>
+          <td class="col-duration">87.29</td>
+          <td class="col-links"><a class="url" href="https://e-supplierland.itdev.app/due-diligence/regular-check#/" target="_blank">URL</a> <a class="image" href="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_pass_to_rdd_1_0.png" target="_blank">Screenshot</a> </td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">self = &lt;tests_compass_star.test_invitation_to_registration_new.InvitationToReady testMethod=test_set_director_to_ready&gt;<br/><br/>    @pytest.mark.run(order=7)<br/>    def test_set_director_to_ready(self):<br/>        self.csl_log_out()<br/>        self.compass_star_login_admin()<br/>        self.view_documents()<br/>        self.set_status_to_offered()<br/>&gt;       self.set_supplier_status_to_ready()<br/><br/>test_invitation_to_registration_new.py:107: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>..\pages_compass_star\suppliers_page.py:23: in set_supplier_status_to_ready<br/>    self.click(self.director_appointed)<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:389: in click<br/>    element = page_actions.wait_for_element_visible(<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py:508: in wait_for_element_visible<br/>    timeout_exception(NoSuchElementException, message)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>exception = &lt;class &#x27;selenium.common.exceptions.NoSuchElementException&#x27;&gt;<br/>message = &quot;Element {//input[@name=&#x27;director_appointed&#x27;]} was not present after 7 seconds!&quot;<br/><br/>    def timeout_exception(exception, message):<br/>        exc, msg = shared_utils.format_exc(exception, message)<br/>&gt;       raise exc(msg)<br/><span class="error">E       seleniumbase.common.exceptions.NoSuchElementException: Message: </span><br/><span class="error">E        Element {//input[@name=&#x27;director_appointed&#x27;]} was not present after 7 seconds!</span><br/><br/>..\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py:266: NoSuchElementException<br/></div></td></tr></tbody>
+            <div class="image"><a href="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_pass_to_rdd_1_0.png"><img src="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_pass_to_rdd_1_0.png"/></a></div>
+            <div class="log">self = &lt;tests_supplier_land.test_pass_to_due_diligence.AddProvisionalPreRequest testMethod=test_pass_to_rdd&gt;<br/><br/>    @pytest.mark.run(order=3)<br/>    def test_pass_to_rdd(self):<br/>        self.navigate_to_suppliers_tab()<br/>        self.get_intermediary_name()<br/>        self.navigate_to_regular_check()<br/>&gt;       self.pass_the_supplier_to_rdd()<br/><br/>..\tests_supplier_land\test_pass_to_due_diligence.py:28: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>..\pages_supplier_land\due_diligence_page.py:72: in pass_the_supplier_to_rdd<br/>    self.click(self._dd_next_button, timeout=60)<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:389: in click<br/>    element = page_actions.wait_for_element_visible(<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py:508: in wait_for_element_visible<br/>    timeout_exception(NoSuchElementException, message)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>exception = &lt;class &#x27;selenium.common.exceptions.NoSuchElementException&#x27;&gt;<br/>message = &quot;Element {//button[.=&#x27;Next&#x27;]} was not present after 60 seconds!&quot;<br/><br/>    def timeout_exception(exception, message):<br/>        exc, msg = shared_utils.format_exc(exception, message)<br/>&gt;       raise exc(msg)<br/><span class="error">E       seleniumbase.common.exceptions.NoSuchElementException: Message: </span><br/><span class="error">E        Element {//button[.=&#x27;Next&#x27;]} was not present after 60 seconds!</span><br/><br/>..\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py:266: NoSuchElementException<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_login</td>
-          <td class="col-duration">20.60</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/directors?sort=created_at&amp;order=desc" target="_blank">URL</a> <a class="image" href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_login_1_0.png" target="_blank">Screenshot</a> </td></tr>
+          <td class="col-name">tests_supplier_land/test_pass_to_due_diligence.py::AddProvisionalPreRequest::test_login</td>
+          <td class="col-duration">16.66</td>
+          <td class="col-links"><a class="url" href="https://e-supplierland.itdev.app/directors?sort=created_at&amp;order=desc" target="_blank">URL</a> <a class="image" href="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_login_1_0.png" target="_blank">Screenshot</a> </td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="image"><a href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_login_1_0.png"><img src="assets/test_invitation_to_registration_new.py__InvitationToReady__test_login_1_0.png"/></a></div>
+            <div class="image"><a href="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_login_1_0.png"><img src="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_login_1_0.png"/></a></div>
             <div class="empty log">No log output captured.</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_navigate_to_invite_director</td>
-          <td class="col-duration">5.47</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/director/invite/link/N7ajmfAVEaMWgAKxpH0j" target="_blank">URL</a> <a class="image" href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_navigate_to_invite_director_1_0.png" target="_blank">Screenshot</a> </td></tr>
+          <td class="col-name">tests_supplier_land/test_pass_to_due_diligence.py::AddProvisionalPreRequest::test_pass_to_idd</td>
+          <td class="col-duration">51.35</td>
+          <td class="col-links"><a class="url" href="https://e-supplierland.itdev.app/due-diligence/initial-check#/105578" target="_blank">URL</a> <a class="image" href="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_pass_to_idd_1_0.png" target="_blank">Screenshot</a> </td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="image"><a href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_navigate_to_invite_director_1_0.png"><img src="assets/test_invitation_to_registration_new.py__InvitationToReady__test_navigate_to_invite_director_1_0.png"/></a></div>
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_open_invitation_link</td>
-          <td class="col-duration">19.90</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/director/invite/N7ajmfAVEaMWgAKxpH0j?agree=1" target="_blank">URL</a> <a class="image" href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_open_invitation_link_1_0.png" target="_blank">Screenshot</a> </td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="image"><a href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_open_invitation_link_1_0.png"><img src="assets/test_invitation_to_registration_new.py__InvitationToReady__test_open_invitation_link_1_0.png"/></a></div>
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_registering_as_director</td>
-          <td class="col-duration">53.56</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/docs/189199" target="_blank">URL</a> <a class="image" href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_registering_as_director_1_0.png" target="_blank">Screenshot</a> </td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="image"><a href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_registering_as_director_1_0.png"><img src="assets/test_invitation_to_registration_new.py__InvitationToReady__test_registering_as_director_1_0.png"/></a></div>
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_complete_with_bsc</td>
-          <td class="col-duration">42.07</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/director/myapplication" target="_blank">URL</a> <a class="image" href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_complete_with_bsc_1_0.png" target="_blank">Screenshot</a> </td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="image"><a href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_complete_with_bsc_1_0.png"><img src="assets/test_invitation_to_registration_new.py__InvitationToReady__test_complete_with_bsc_1_0.png"/></a></div>
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_invitation_to_registration_new.py::InvitationToReady::test_proceed_to_complete_with_supplier_land</td>
-          <td class="col-duration">19.21</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.supplierland.com/find-a-customer#/confirmation" target="_blank">URL</a> <a class="image" href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_proceed_to_complete_with_supplier_land_1_0.png" target="_blank">Screenshot</a> </td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="image"><a href="assets/test_invitation_to_registration_new.py__InvitationToReady__test_proceed_to_complete_with_supplier_land_1_0.png"><img src="assets/test_invitation_to_registration_new.py__InvitationToReady__test_proceed_to_complete_with_supplier_land_1_0.png"/></a></div>
+            <div class="image"><a href="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_pass_to_idd_1_0.png"><img src="assets/tests_supplier_land_test_pass_to_due_diligence.py__AddProvisionalPreRequest__test_pass_to_idd_1_0.png"/></a></div>
             <div class="empty log">No log output captured.</div></td></tr></tbody></table></body></html><p></p><div><b>Status:</b> Test Run Complete: <b>1 test failed!</b> --- (<b><a href="latest_logs/">See latest logs for details</a></b>)</div><p></p>
