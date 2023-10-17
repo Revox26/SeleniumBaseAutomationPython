@@ -1,9 +1,8 @@
 import time
-
 from seleniumbase import BaseCase
 
 
-class SupplierLandInitialCheckPage(BaseCase):
+class SupplierLandDueDiligencePage(BaseCase):
     _due_diligence = "//a[contains(text(),'Due Diligence')]"
     _initial_check = "//a[contains(text(),'Initial Check')]"
     _regular_check = "//a[contains(text(),'Regular Check')]"
@@ -18,6 +17,7 @@ class SupplierLandInitialCheckPage(BaseCase):
     _growl_idd_successfully_passed = "//div[.='Initial due diligence has Passed successfully.']"
     _growl_rdd_successfully_passed = "//div[.='Regular due diligence has Passed successfully and Job has been successfully mark done.']"
 
+    _rdd_assert_label = "//h4[.='Jobs - Regular Due Diligence Checks']"
     _rdd_select_a_client = "//input[@aria-controls='vs2__listbox']"
     _rdd_select_a_sample_size = "//input[@placeholder='Please select a sample size']"
     _rdd_create_a_job_button = "//button[contains(.,'Create Job')]"
@@ -59,6 +59,7 @@ class SupplierLandInitialCheckPage(BaseCase):
     def pass_the_supplier_to_rdd(self):
         with open("..//data//intermediary.txt", "r") as file:
             intermediary_text = file.read().strip()
+        self.assert_element(self._rdd_assert_label, timeout=60)
         self.type(self._rdd_select_a_client, intermediary_text + "\n", timeout=60)
         self.type(self._rdd_select_a_sample_size, "Select a supplier\n")
         self.wait_for_element_clickable(self._rdd_create_a_job_button, timeout=60)
@@ -69,11 +70,13 @@ class SupplierLandInitialCheckPage(BaseCase):
         self.click(self._rdd_yes_select_button)
         time.sleep(2)
         self.refresh_page()
+
         while True:
             get_job_name_text = self.get_text_content(self.current_job_text)
             if intermediary_text == get_job_name_text:
                 self.click(self._view)
                 break
+
         self.click(self._view_regular_due_diligence)
         self.click(self._dd_next_button, timeout=60)
         self.click(self._dd_pass_button, timeout=60)

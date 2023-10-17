@@ -1,12 +1,12 @@
 from pages_compass_star.suppliers_page import CompassStarSuppliersTabPage
-from pages_supplier_land.due_diligence_page import SupplierLandInitialCheckPage
+from pages_supplier_land.due_diligence_page import SupplierLandDueDiligencePage
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 import pytest
 
 
-class AddProvisionalPreRequest(
+class PassToDueDiligence(
     SupplierLandLoginPage,
-    SupplierLandInitialCheckPage,
+    SupplierLandDueDiligencePage,
     CompassStarSuppliersTabPage
 
 ):

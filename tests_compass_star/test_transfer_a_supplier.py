@@ -1,12 +1,11 @@
 import pytest
-
 from pages_compass_star.assign_director_page import CompassStarAssignDirectorsPage
 from pages_compass_star.company_details_page import CompassStarCompanyDetailsTabPage
 from pages_compass_star.login_page import CompassStarLoginPage
 from pages_compass_star.suppliers_page import CompassStarSuppliersTabPage
 
 
-class InvitationToReady(
+class TransferSupplier(
     CompassStarLoginPage,
     CompassStarSuppliersTabPage,
     CompassStarCompanyDetailsTabPage,

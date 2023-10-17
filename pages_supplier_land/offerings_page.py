@@ -11,8 +11,6 @@ class SupplierLandOfferingsPage(BaseCase):
         self.click(self._offerings)
 
     def search_company_in_offerings(self):
-        arrow_down = self.press_down_arrow(self._offerings_industry)
-
         with open("..//data//intermediary.txt", "r") as file:
             _get_intermediary = file.read().strip()
 

@@ -20,7 +20,7 @@ from pages_supplier_land.find_a_customer_page import SupplierLandFindCustomerPag
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 
 
-class InvitationToReady(
+class InvitationToReadyNew(
     BscCreateYOurAccountPage,
     BscPaymentDetailsPage,
     CompassStarLoginPage,
