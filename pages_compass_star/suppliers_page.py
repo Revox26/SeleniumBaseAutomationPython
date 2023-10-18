@@ -41,6 +41,7 @@ class CompassStarSuppliersTabPage(BaseCase):
         self.click(self._amend)
         self.click(self._verify)
         self.click(self.search_suppliers_button)
-        intermediaryName = self.get_text(self._intermediary_name_text)
+        self.scroll_into_view(self._intermediary_name_text)
+        intermediary_name = self.get_text(self._intermediary_name_text)
         with open("..//data//intermediary.txt", "w") as file:
-            file.write(intermediaryName)
+            file.write(intermediary_name)

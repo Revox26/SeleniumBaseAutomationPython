@@ -65,6 +65,7 @@ class CompassStarAssignDirectorsPage(BaseCase):
         self.click(self._transfer_button)
         self.wait_for_element_clickable(self._proceed_transfer_button, timeout=60)
         self.select_option_by_text(self._status_dropdown_in_transfer_modal, "Initial Due Diligence", timeout=60)
+        time.sleep(1)
         self.click(self._proceed_transfer_button)
         self.assert_element(self._transfer_confirmation)
         self.click(self._proceed_transfer_button)

@@ -22,7 +22,8 @@ class PytestRunnerApp:
 
         self.create_label("Select a Test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
-            ["Registration To Ready", "New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "Add Provisional Pre Request",
+            ["Registration To Ready", "New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence",
+             "Add Provisional Pre Request",
              "Add Confirmed Pre Request", "BSC Order Package",
              "Practice Page"])
 
@@ -43,7 +44,7 @@ class PytestRunnerApp:
         checkbox_frame.pack(pady=20, padx=10, fill="both")
 
         # Create the additional text box and assign it to a variable
-        self.additional_text_var = self.create_text_box(self.additional_text_frame, "Additional Options:")
+        self.additional_text_var = self.create_text_box(self.additional_text_frame, "Additional Options")
 
         # Inside the LabelFrame, add checkboxes with tooltips
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode",
@@ -144,8 +145,8 @@ class PytestRunnerApp:
                                     "..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s",
                                     additional_text],
             "Pass to Due Diligence": ["pytest",
-                                    "..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s",
-                                    additional_text],
+                                      "..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s",
+                                      additional_text],
             "Add Provisional Pre Request": ["pytest",
                                             "..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",
                                             additional_text],
