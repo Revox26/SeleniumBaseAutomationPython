@@ -46,8 +46,7 @@ Follow these simple steps to set up and run the automation project:
   Navigate to the project directory using the cd command: *cd path/to/automation-project*
 
 4. Create a Virtual Environment:
-- Create a Python virtual environment for your project using the following command: *python -m venv yourEnvironmentName
-  *
+- Create a Python virtual environment for your project using the following command: *python -m venv yourEnvironmentName*
 
 5. Activate the Virtual Environment:
 - Activate the virtual environment by running the appropriate command for your operating system: 
