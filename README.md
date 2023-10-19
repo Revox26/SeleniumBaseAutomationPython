@@ -56,7 +56,7 @@ Follow these simple steps to set up and run the automation project:
 - Install the required Python packages from the requirements.txt file using pip: *pip install -r requirements.txt*
 
 7. Navigate to the Test Directory:
-- Move to the tests directory using the following command: *cd tests_compass_star*
+- Move to the tests directory using the following command: *cd test_runner*
 
 8. Run the Automation Test Runner GUI App:
 - Start the automation framework by running the main application script: *python app.py*
