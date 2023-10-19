@@ -88,6 +88,10 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
     def submit_pre_request(self):
         self.wait_for_element_visible(self._pre_request_checkbox, timeout=60)
-        self.click(self._pre_request_checkbox)
-        self.click(self._submit_button)
-        self.sleep(10)
+        while True:
+            try:
+                self.click(self._pre_request_checkbox)
+                self.click(self._submit_button)
+            except Exception as e:
+                print(e)
+                break

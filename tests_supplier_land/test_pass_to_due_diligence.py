@@ -26,10 +26,10 @@ class PassToDueDiligence(
 
     @pytest.mark.run(order=3)
     def test_pass_to_rdd(self):
-        print("\n Starting the pass to RDD test...")
+        print("\nStarting to get the intermediary name")
         self.navigate_to_suppliers_tab()
-        print("Starting to get the intermediary name")
         self.get_intermediary_name()
+        print("Starting the pass to RDD test...")
         self.navigate_to_regular_check()
         self.pass_the_supplier_to_rdd()
         print("Pass to RDD test completed successfully")

@@ -17,7 +17,7 @@ class SupplierLandOfferingsPage(BaseCase):
         with open("..//data//industry.txt", "r") as file:
             _get_industry = file.read().strip()
 
-        self.type(self._offerings_client, _get_intermediary + "\n")
+        self.type(self._offerings_client, _get_intermediary + "\n", timeout=60)
         self.type(self._offerings_industry, _get_industry)
         self.press_keys(self._offerings_industry, "\ue015\ue007")
         self.click(self._offerings_search_button)
