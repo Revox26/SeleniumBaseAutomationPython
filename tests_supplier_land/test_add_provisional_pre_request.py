@@ -3,6 +3,7 @@ from pages_supplier_land.offerings_page import SupplierLandOfferingsPage
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 
 
+
 class AddProvisionalPreRequest(
     SupplierLandLoginPage,
     SupplierLandAddNewPreRequestPage,

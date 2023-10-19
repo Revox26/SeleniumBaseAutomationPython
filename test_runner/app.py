@@ -43,8 +43,13 @@ class PytestRunnerApp:
         checkbox_frame = ttk.LabelFrame(self.master, text="Select Test Options:")
         checkbox_frame.pack(pady=20, padx=10, fill="both")
 
+        # Create a Label for additional options
+        self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options",
+                                               font=("Arial", 12, "bold"))
+        self.additional_text_label.pack(padx=1, pady=1)
         # Create the additional text box and assign it to a variable
-        self.additional_text_var = self.create_text_box(self.additional_text_frame, "Additional Options")
+        self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
+        self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
 
         # Inside the LabelFrame, add checkboxes with tooltips
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode",
@@ -67,9 +72,23 @@ class PytestRunnerApp:
         self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
         self.quit_button = self.create_button("Quit", master.quit, bg="red", fg="white", padx=20)
 
+    def update_additional_text_label(self, *args):
+        selected_test = self.select_a_test_dropdown_var.get()
+        # Define a dictionary that maps test names to label text
+        label_texts = {
+            "New Registration To Ready": "Director Preferred Yearly Contract Value",
+            "Transfer a Supplier": "Company Name",
+            "Pass to Due Diligence": "Company Name",
+            "BSC Order Package": "Company Number from CH",
+            "Practice Page": "This is practice page"
+
+        }
+        # Use the dictionary to set the label text or use a default value
+        self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
+
     def create_text_box(self, frame, label_text):
         label = ttk.Label(frame, text=label_text, font=("Arial", 12, "bold"))
-        label.pack(padx=10, pady=5)
+        label.pack(padx=0, pady=0)
 
         text_var = tk.StringVar()
         text_box = ttk.Entry(frame, textvariable=text_var, font=("Arial", 18))
