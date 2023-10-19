@@ -18,6 +18,8 @@ class SupplierLandFindCustomerPage(BaseCase):
                 self.clear(self._director_preferred_value)
                 self.type(self._director_preferred_value, process)
                 self.click(self._find_customer_proceed)
+            if process == "old":
+                self.click(self._find_customer_proceed)
 
         else:
             self.click(self._find_customer_proceed)

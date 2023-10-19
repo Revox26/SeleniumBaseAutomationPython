@@ -10,7 +10,7 @@ class DirectorPersonalDetailsPage(BaseCase):
     nationality_dropdown = "//select[@id='nationality']"
     occupation = "//input[@id='occupation']"
     professional_interest = "//span[contains(text(),'None selected')]"
-    select_transport = "//label[starts-with(text(),' Transport')]"
+    select_transport = "//label[starts-with(text(),' Engineering')]"
     date_of_birth = "//input[contains(@class,'form-control hasDatepicker')]"
     mobile_number = "//input[@id='phone']"
     address = "//input[@id='address']"
