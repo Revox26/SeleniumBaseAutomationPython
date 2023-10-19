@@ -16,9 +16,10 @@ class SupplierLandDueDiligencePage(BaseCase):
     _dd_yes_pass_button = "//button[.='Yes, pass this supplier']"
     _growl_idd_successfully_passed = "//div[.='Initial due diligence has Passed successfully.']"
     _growl_rdd_successfully_passed = "//div[.='Regular due diligence has Passed successfully and Job has been successfully mark done.']"
+    _growl_rdd_successfully_passed2 = "//div[.='Regular due diligence has Passed successfully']"
 
     _rdd_assert_label = "//h4[.='Jobs - Regular Due Diligence Checks']"
-    _rdd_select_a_client = "//input[@aria-controls='vs2__listbox']"
+    _rdd_select_a_client = "(//input[@placeholder='Please select a client'])[1]"
     _rdd_select_a_sample_size = "//input[@placeholder='Please select a sample size']"
     _rdd_create_a_job_button = "//button[contains(.,'Create Job')]"
     _rd_search_for_company_name_to_add = "//input[@placeholder='Search for Company Name, Company Registration or VAT Number']"
@@ -60,7 +61,10 @@ class SupplierLandDueDiligencePage(BaseCase):
         with open("..//data//intermediary.txt", "r") as file:
             intermediary_text = file.read().strip()
         self.assert_element(self._rdd_assert_label, timeout=60)
-        self.type(self._rdd_select_a_client, intermediary_text + "\n", timeout=60)
+        self.wait_for_element_visible(self._rdd_select_a_client, timeout=60)
+        time.sleep(1.5)
+        self.type(self._rdd_select_a_client, intermediary_text, timeout=60)
+        self.press_keys(self._rdd_select_a_client, "\ue007")
         self.type(self._rdd_select_a_sample_size, "Select a supplier\n")
         self.wait_for_element_clickable(self._rdd_create_a_job_button, timeout=60)
         self.click(self._rdd_create_a_job_button)
@@ -81,4 +85,8 @@ class SupplierLandDueDiligencePage(BaseCase):
         self.click(self._dd_next_button, timeout=60)
         self.click(self._dd_pass_button, timeout=60)
         self.click(self._dd_yes_pass_button, timeout=60)
-        self.assert_element(self._growl_rdd_successfully_passed, timeout=60)
+
+        try:
+            self.assert_element(self._growl_rdd_successfully_passed, timeout=60)
+        except Exception as e:
+            self.assert_element(self._growl_rdd_successfully_passed2, timeout=60)

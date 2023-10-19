@@ -1,6 +1,5 @@
 import random
 from seleniumbase import BaseCase
-
 from configuration_files.config_reader import Readconfig
 
 
