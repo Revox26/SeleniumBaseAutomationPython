@@ -39,7 +39,7 @@ Follow these simple steps to set up and run the automation project:
 
 2. Provide Important Data:
 - Contact the project owner or maintainer to obtain the necessary data such as URL, username, and password.
-  Paste the file of important data into the project directory.
+  Paste the file of important data into configuration_files.
 
 3. Navigate to the Project Directory:
 - Open your command-line interface (e.g., Command Prompt or Terminal).
