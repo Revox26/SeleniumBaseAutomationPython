@@ -6,7 +6,7 @@ from configuration_files.config_reader import Readconfig
 class SupplierLandAddNewPreRequestPage(BaseCase):
     _new_suppliers = "//a[contains(.,'New Suppliers')]"
     _pre_request = "//span[contains(.,'Pre-Request')]"
-    _add_pre_request = "//a[.='Add Pre-Request']"
+    _add_pre_request = "(//a[.='Add Pre-Request'])[1]"
     _add_pre_request_heading = "//h4[.='Add Pre-Request']"
     _logo = "//img[@alt='SupplierLand - Transforming Supply Chain Management']"
     _client = "//input[@placeholder='Please select a client']"
@@ -93,5 +93,4 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
                 self.click(self._pre_request_checkbox)
                 self.click(self._submit_button)
             except Exception as e:
-                print(e)
                 break

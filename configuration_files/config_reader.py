@@ -111,7 +111,11 @@ class Readconfig:
     @staticmethod
     def get_intermediary_username():
         it_username = config.get("accounts", "intermediary_username")
-        return it_username  #
+        return it_username
+    @staticmethod
+    def get_intermediary_username_new():
+        it_username = config.get("accounts", "intermediary_username_new")
+        return it_username
 
     @staticmethod
     def get_password():

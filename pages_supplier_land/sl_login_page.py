@@ -35,7 +35,10 @@ class SupplierLandLoginPage(BaseCase):
         self.login(Readconfig.get_george_user_name(), Readconfig.get_password())
 
     def supplier_land_login_as_intermediary(self):
-        self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
+        if self.data == "qa":
+            self.login(Readconfig.get_intermediary_username_new(), Readconfig.get_password())
+        else:
+            self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
 
     def supplier_land_login_as_simon(self):
         self.login(Readconfig.get_admin_simon_user_name(), Readconfig.get_password())
