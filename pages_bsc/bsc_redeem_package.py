@@ -34,6 +34,7 @@ class BscRedeemPackagePage(BaseCase):
 
         self.type(self.rp_first_name, random_name)
         self.type(self.rp_email_address, random_email)
+        self.scroll_into_view(self.rp_check_out_button)
         self.js_click(self.rp_i_agree_1)
         self.js_click(self.rp_i_agree_2)
         self.click(self.rp_check_out_button)
