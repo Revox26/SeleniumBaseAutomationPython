@@ -13,7 +13,8 @@ below to get started and make your life easier through automation.
 3. Getting started
 4. Test Configuration
 5. Test Execution
-6. Troubleshooting
+6. Video Demonstration
+7. Troubleshooting
 
 # 1. Introduction
 
@@ -92,11 +93,11 @@ After configuring your test, you can execute it:
 3. The test will execute, and the test output will be displayed in the command prompt or terminal window.
 
 
-# Video Demonstration
+# 6. Video Demonstration
 
 ![sample_automation.gif](sample_automation.gif)
 
-# 6. Troubleshooting
+# 7. Troubleshooting
 If you encounter any issues while using the QA-Team Automation Test Runner, consider the following troubleshooting steps:
 - Check Python Installation: Ensure you have Python 3.x installed and the required packages.
 - Syntax Errors: Check the code for any syntax errors, and ensure you have the correct code file.
