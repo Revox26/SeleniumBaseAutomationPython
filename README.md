@@ -93,7 +93,8 @@ After configuring your test, you can execute it:
 
 
 # Video Demonstration
-![sample_automation.gif](..%2FUsers%2FJeremy%20Marco%2FDownloads%2Fsample_automation.gif)
+
+![sample_automation.gif](sample_automation.gif)
 
 # 6. Troubleshooting
 If you encounter any issues while using the QA-Team Automation Test Runner, consider the following troubleshooting steps:
