@@ -22,8 +22,8 @@ class DirectorDocumentationPage(BaseCase):
         self.select_option_by_text(self.select_id_2, "(NBI) Clearance")
         self.choose_file(self.input_id_2, "..//director_id's/NBI-ID.jpg")
 
-        # self.select_option_by_text(self.select_id_3, "PhilHealth ID")
-        # self.choose_file(self.input_id_3, "..//director_id's/Philhealth-ID.jpg")
+        self.select_option_by_text(self.select_id_3, "PhilHealth ID")
+        self.choose_file(self.input_id_3, "..//director_id's/Philhealth-ID.jpg")
 
         if self.is_element_present(self.upload_and_finish):
             self.click(self.upload_and_finish)

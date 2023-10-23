@@ -43,11 +43,13 @@ class BscOpenOrdersPage(BaseCase):
     def transfer_company_tab(self):
         fake = Faker()
         fake_company_name = fake.company()
+
         with open("..//data//first_name.txt", "r") as file:
             random_name = file.read().strip()
         with open("..//data//email.txt", "r") as file:
             random_email = file.read().strip()
         get_fake_company_name = fake_company_name + " " + random_name + " Ltd"
+
         self.click(self.transfer_company_page, timeout=60)
         self.scroll_into_view(self.transfer_company_page)
         self.type(self.company_name, get_fake_company_name, timeout=60)

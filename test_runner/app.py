@@ -149,32 +149,27 @@ class PytestRunnerApp:
         return button
 
     def run_pytest(self):
-
         additional_text = "--var1=" + self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
+        registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration.py --rs -x -q -s"
+        new_registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s"
+        transfer_supplier_command = "pytest ..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s"
+        pass_to_due_diligence_command = "pytest ..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s"
+        add_provisional_pre_request_command = "pytest ..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s"
+        add_confirmed_pre_request_command = "pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s"
+        bsc_order_package_command = "pytest ..//tests_bsc/test_bsc_redeem_package.py --rs -x -q -s"
+        practice_page_command = "pytest ..//test_runner/practice.py --rs -x -q -s"
+
         test_commands = {
-            "Registration To Ready": ["pytest",
-                                      "..//tests_compass_star/test_invitation_to_registration.py --rs -x -q -s",
-                                      additional_text],
-            "New Registration To Ready": ["pytest",
-                                          "..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s",
-                                          additional_text],
-            "Transfer a Supplier": ["pytest",
-                                    "..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s",
-                                    additional_text],
-            "Pass to Due Diligence": ["pytest",
-                                      "..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s",
-                                      additional_text],
-            "Add Provisional Pre Request": ["pytest",
-                                            "..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s",
-                                            additional_text],
-            "Add Confirmed Pre Request": ["pytest",
-                                          "..//tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s",
-                                          additional_text],
-            "BSC Order Package": ["pytest", "..//tests_bsc/test_bsc_redeem_package.py --rs -x -q -s",
-                                  additional_text],
-            "Practice Page": ["pytest", "..//test_runner/practice.py --rs -x -q -s", additional_text]
+            "Registration To Ready": [registration_to_ready_command, additional_text],
+            "New Registration To Ready": [new_registration_to_ready_command, additional_text],
+            "Transfer a Supplier": [transfer_supplier_command, additional_text],
+            "Pass to Due Diligence": [pass_to_due_diligence_command, additional_text],
+            "Add Provisional Pre Request": [add_provisional_pre_request_command, additional_text],
+            "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text],
+            "BSC Order Package": [bsc_order_package_command, additional_text],
+            "Practice Page": [practice_page_command, additional_text]
         }
 
         if selected_test in test_commands:
