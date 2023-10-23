@@ -48,7 +48,7 @@ class CompassStarAssignDirectorsPage(BaseCase):
         self.click(self.yes_confirm_assign_director)
         self.assert_element(self.company_name_text)
 
-        get_company_name_text = self.get_text_content(self.company_name_text)
+        get_company_name_text = self.get_text(self.company_name_text)
 
         with open("..//data//director_company.txt", "w") as file:
             file.write(get_company_name_text)

@@ -10,26 +10,20 @@ class CompassStarLoginPage(BaseCase):
     password = "//input[@placeholder='Password']"
     login_button = "//button[@type='submit']"
 
-    def open_compass_star_page(self):
+    def open_compass_star_page(self): # select environmental staging
         instance = self.data
 
-        if instance == "qa":
-            self.open(Readconfig.get_qa_csl_url())
-        elif instance == "v1":
-            self.open(Readconfig.get_v1_csl_url())
-        elif instance == "v2":
-            self.open(Readconfig.get_v2_csl_url())
-        elif instance == "v3":
-            self.open(Readconfig.get_v3_csl_url())
-        elif instance == "v4":
-            self.open(Readconfig.get_v4_csl_url())
-        elif instance == "replica":
-            self.open(Readconfig.get_replica_csl_url())
-        elif instance == "echo":
-            self.open(Readconfig.get_echo_csl_url())
-        else:
-            self.open(Readconfig.get_qa_csl_url())
+        csl_urls = {
+            "qa": Readconfig.get_qa_csl_url(),
+            "v1": Readconfig.get_v1_csl_url(),
+            "v2": Readconfig.get_v2_csl_url(),
+            "v3": Readconfig.get_v3_csl_url(),
+            "v4": Readconfig.get_v4_csl_url(),
+            "replica": Readconfig.get_replica_csl_url(),
+            "echo": Readconfig.get_echo_csl_url()
+        }
 
+        self.open(csl_urls.get(instance, Readconfig.get_qa_csl_url()))
         self.save_cookies(name="cookies.txt")
 
     def compass_star_login_admin(self):

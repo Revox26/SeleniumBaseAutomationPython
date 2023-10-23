@@ -1,0 +1,24 @@
+tests_supplier_land/test_pass_to_due_diligence.py::PassToDueDiligence::test_pass_to_idd
+--------------------------------------------------------------------
+Last Page: [WARNING! Browser Not Open!]
+ Duration: 7.22s
+  Browser: Chrome 118.0.5993.89
+   Driver: chromedriver 118.0.5993.70
+Timestamp: 1698045227  (Unix Timestamp)
+     Date: Monday, 23 October 2023
+     Time: 3:13:47 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_supplier_land\test_pass_to_due_diligence.py", line 25, in test_pass_to_idd
+    self.navigate_to_initial_check()
+  File "C:\SeleniumPython\pages_supplier_land\due_diligence_page.py", line 36, in navigate_to_initial_check
+    self.click(self._due_diligence)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 399, in click
+    element = page_actions.wait_for_element_visible(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 508, in wait_for_element_visible
+    timeout_exception(NoSuchElementException, message)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 266, in timeout_exception
+    raise exc(msg)
+Exception: Message: 
+ Element {//a[contains(text(),'Due Diligence')]} was not present after 7 seconds!

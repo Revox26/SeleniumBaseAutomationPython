@@ -22,6 +22,6 @@ class DirectorCompanyDetailsPage(BaseCase):
         self.assert_element(self.company_acquired_growl_message, timeout=60)
         self.click(self.company_details)
 
-        store_company_text = self.get_text_content(self.get_company_text)
+        store_company_text = self.get_text(self.get_company_text)
         with open("..//data//director_company.txt", "w") as file:
             file.write(store_company_text)
