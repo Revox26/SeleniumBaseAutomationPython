@@ -1,15 +1,15 @@
-tests_compass_star/test_invitation_to_registration.py::InvitationToReady::test_login
+tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_login
 --------------------------------------------------------------------
 Last Page: data:,
- Duration: 0.14s
+ Duration: 0.13s
   Browser: Chrome 118.0.5993.89
    Driver: chromedriver 118.0.5993.70
-Timestamp: 1698047354  (Unix Timestamp)
+Timestamp: 1698047358  (Unix Timestamp)
      Date: Monday, 23 October 2023
-     Time: 3:49:14 PM  (Malay Peninsula Standard Time, UTC+08:00)
+     Time: 3:49:18 PM  (Malay Peninsula Standard Time, UTC+08:00)
 --------------------------------------------------------------------
 Traceback:
-  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration.py", line 44, in test_login
+  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration_new.py", line 47, in test_login
     self.open_compass_star_page()
   File "C:\SeleniumPython\pages_compass_star\login_page.py", line 17, in open_compass_star_page
     "qa": Readconfig.get_qa_csl_url(),

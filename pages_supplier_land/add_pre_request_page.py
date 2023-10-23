@@ -27,6 +27,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
     _continue_button = "//button[@type='submit']"
     _pre_request_checkbox = "//label[contains(@class,'no-margin checkboxLabelNoText')]"
     _submit_button = "//button[contains(.,'Submit')]"
+    _t3_tick_box = "//label[@for='t3']"
 
     def navigate_to_pre_request(self):
         self.click(self._new_suppliers)
@@ -85,6 +86,32 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         if self.is_element_present(self._link_placeholder):
             self.type(self._link_placeholder, Readconfig.get_bsc_uat_redeem_link())
             self.click(self._continue_button)
+
+    def t3_add_pre_request_fields(self):
+        self.click(self._t3_tick_box)
+        self.press_keys(self._client, "\ue015\ue007")
+        self.press_keys(self._industry, "\ue015\ue007")
+
+        _client_text = self.get_text_content(self._client_value)
+        with open("..//data//intermediary.txt", "w") as file:
+            file.write(_client_text)
+
+        _industry_text = self.get_text_content(self._industry_value)
+        with open("..//data//industry.txt", "w") as file:
+            file.write(_industry_text)
+
+        print("\n Client Name: ", _client_text, "\n Industry Name: ", _industry_text)
+
+        self.type(self._pay_type, "Umbrella\n")
+        self.click(self._contract_start_date)
+        self.click(self._select_contract_start_date)
+        self.type(self._contract_value, "50000")
+        self.type(self._number_of_contractors_per_supplier, "3")
+        self.type(self._priority, "1")
+        self.type(self._desired_margin, "3.5")
+        self.click(self._add_button)
+        self.type(self._link_placeholder, Readconfig.get_bsc_uat_url_t3() + self.var1)
+        self.click(self._continue_button)
 
     def submit_pre_request(self):
         self.wait_for_element_visible(self._pre_request_checkbox, timeout=60)

@@ -94,6 +94,11 @@ class Readconfig:
         return uat_link
 
     @staticmethod
+    def get_bsc_uat_url_t3():
+        uat_link = config.get("url", "bsc_uat_t3_link")
+        return uat_link
+
+    @staticmethod
     def get_it_dev_username():
         it_username = config.get("accounts", "it_dev_user_name")
         return it_username
