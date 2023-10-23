@@ -91,6 +91,10 @@ After configuring your test, you can execute it:
 2. The selected pytest test command will be generated based on your configuration.
 3. The test will execute, and the test output will be displayed in the command prompt or terminal window.
 
+
+# Video Demonstration
+![sample_automation.gif](..%2FUsers%2FJeremy%20Marco%2FDownloads%2Fsample_automation.gif)
+
 # 6. Troubleshooting
 If you encounter any issues while using the QA-Team Automation Test Runner, consider the following troubleshooting steps:
 - Check Python Installation: Ensure you have Python 3.x installed and the required packages.
