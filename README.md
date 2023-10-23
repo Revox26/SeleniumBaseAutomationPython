@@ -34,8 +34,8 @@ tests with ease.
 
 Follow these simple steps to set up and run the automation project:
 1. Clone the Repository:
-- Clone this repository to your local machine using the following command: *git
-  clone https://github.com/Jeremy-QA/SeleniumBaseAutomationPython.git*
+- Clone this repository to your local machine using the following command: <code> git
+  clone https://github.com/Jeremy-QA/SeleniumBaseAutomationPython.git </code>
 
 2. Provide Important Data:
 - Contact the project owner or maintainer to obtain the necessary data such as URL, username, and password.
@@ -43,23 +43,23 @@ Follow these simple steps to set up and run the automation project:
 
 3. Navigate to the Project Directory:
 - Open your command-line interface (e.g., Command Prompt or Terminal).
-  Navigate to the project directory using the cd command: *cd path/to/automation-project*
+  Navigate to the project directory using the cd command: <code> cd path/to/automation-project </code>
 
 4. Create a Virtual Environment:
-- Create a Python virtual environment for your project using the following command: *python -m venv yourEnvironmentName*
+- Create a Python virtual environment for your project using the following command: <code> python -m venv yourEnvironmentName </code>
 
 5. Activate the Virtual Environment:
 - Activate the virtual environment by running the appropriate command for your operating system: 
-  *yourEnvironmentName\Scripts\activate*
+  <code> yourEnvironmentName\Scripts\activate </code>
 
 6. Install Project Dependencies:
-- Install the required Python packages from the requirements.txt file using pip: *pip install -r requirements.txt*
+- Install the required Python packages from the requirements.txt file using pip: <code> pip install -r requirements.txt </code>
 
 7. Navigate to the Test Directory:
-- Move to the tests directory using the following command: *cd test_runner*
+- Move to the tests directory using the following command: <code> cd test_runner </code>
 
 8. Run the Automation Test Runner GUI App:
-- Start the automation framework by running the main application script: *python app.py*
+- Start the automation framework by running the main application script: <code> python app.py </code>
 
 Now you're all set! You can enjoy the automation framework and streamline your tasks efficiently.
 
