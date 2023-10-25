@@ -95,7 +95,7 @@ class InvitationToReadyNew(
 
         process = self.var1
         if process == "old":
-            logger.info("Assigning director using admin account...")
+            logger.info("Assigning company using admin account...")
             self.navigate_to_assign_directors_tab()
 
     @pytest.mark.run(order=5)
