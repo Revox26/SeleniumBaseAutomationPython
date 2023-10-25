@@ -95,6 +95,7 @@ After configuring your test, you can execute it:
 
 # 6. Video Demonstration
 
+
 ![sample_automation.gif](sample_automation.gif)
 
 # 7. Troubleshooting

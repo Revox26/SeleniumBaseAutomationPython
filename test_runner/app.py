@@ -22,14 +22,23 @@ class PytestRunnerApp:
 
         self.create_label("Select a Test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
-            ["Registration To Ready", "New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence",
+            ["Registration To Ready",
+             "New Registration To Ready",
+             "Transfer a Supplier",
+             "Pass to Due Diligence",
              "Add Provisional Pre Request",
-             "Add Confirmed Pre Request", "BSC Order Package",
+             "Add Confirmed Pre Request",
+             "BSC Order Package",
              "Practice Page"])
 
         self.create_label("Select Staging Environment:")
         self.staging_dropdown_var = self.create_dropdown(
-            ["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Echo Instance",
+            ["QA Instance",
+             "V1 Instance",
+             "V2 Instance",
+             "V3 Instance",
+             "V4 Instance",
+             "Echo Instance",
              "Replica Instance"])
 
         self.create_label("Select Browser:")
@@ -52,21 +61,28 @@ class PytestRunnerApp:
         self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
 
         # Inside the LabelFrame, add checkboxes with tooltips
-        self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode",
+        self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame,
+                                                           "Demo Mode",
                                                            "Slow down and visually see test actions as they occur.")
 
-        self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Slow Mode",
+        self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame,
+                                                           "Slow Mode",
                                                            "Slow down the automation.")
 
-        self.report_checkbox_var = self.create_checkbox(checkbox_frame, "Generate Report",
+        self.report_checkbox_var = self.create_checkbox(checkbox_frame,
+                                                        "Generate Report",
                                                         "Creates a detailed pytest-html report after tests finish.")
 
-        self.screenshot_checkbox_var = self.create_checkbox(checkbox_frame, "Save Screenshot",
+        self.screenshot_checkbox_var = self.create_checkbox(checkbox_frame,
+                                                            "Save Screenshot",
                                                             "Save a screenshot at the end of each test.")
 
-        self.incognito_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Incognito Mode",
+        self.incognito_mode_checkbox_var = self.create_checkbox(checkbox_frame,
+                                                                "Incognito Mode",
                                                                 "Enable Chrome's Incognito mode.")
-        self.start_window_maximize_var = self.create_checkbox(checkbox_frame, "Start Maximized",
+
+        self.start_window_maximize_var = self.create_checkbox(checkbox_frame,
+                                                              "Start Maximized",
                                                               "Start tests with the browser window maximized.")
 
         self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
@@ -89,7 +105,6 @@ class PytestRunnerApp:
     def create_text_box(self, frame, label_text):
         label = ttk.Label(frame, text=label_text, font=("Arial", 12, "bold"))
         label.pack(padx=0, pady=0)
-
         text_var = tk.StringVar()
         text_box = ttk.Entry(frame, textvariable=text_var, font=("Arial", 18))
         text_box.pack(fill="both", padx=10, pady=5)
@@ -111,11 +126,9 @@ class PytestRunnerApp:
             event.widget.master.focus_set()
 
         dropdown_var = tk.StringVar()
-
         dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Arial", 22),
                                 state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
-
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var
 
@@ -131,11 +144,9 @@ class PytestRunnerApp:
         x, y, _, _ = event.widget.bbox("insert")
         x += event.widget.winfo_rootx() + 25
         y += event.widget.winfo_rooty() + 25
-
         self.tooltip = tk.Toplevel(event.widget)
         self.tooltip.wm_overrideredirect(True)
         self.tooltip.wm_geometry(f"+{x}+{y}")
-
         label = tk.Label(self.tooltip, text=text, background="light yellow", relief="solid", borderwidth=1)
         label.pack()
 
@@ -200,7 +211,6 @@ class PytestRunnerApp:
 
         }
         pytest_command.extend([key for key, value in staging_options.items() if value == additional_args])
-
         browser_arguments = self.select_browser_dropdown_var.get()
         browser_options = {
             "--chrome": "Chrome",
@@ -208,9 +218,7 @@ class PytestRunnerApp:
             "--firefox": "Firefox"
         }
         pytest_command.extend([key for key, value in browser_options.items() if value == browser_arguments])
-
         pytest_command.extend([option for option, value in options.items() if value])
-
         screen_log = subprocess.Popen(" ".join(pytest_command), shell=True)
         print(screen_log)
 

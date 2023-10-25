@@ -59,7 +59,8 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
             file.write(_client_text)
         with open("..//data//industry.txt", "w") as file:
             file.write(_industry_text)
-        print("\n Client Name: ", _client_text, "\n Industry Name: ", _industry_text)
+        print("Client Name: ", _client_text)
+        print("Industry Name: ", _industry_text)
 
         if self.is_element_present(self._number_of_suppliers):
             self.type(self._number_of_suppliers, "3")
@@ -100,7 +101,8 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         with open("..//data//industry.txt", "w") as file:
             file.write(_industry_text)
 
-        print("\n Client Name: ", _client_text, "\n Industry Name: ", _industry_text)
+        print("Client Name: ", _client_text)
+        print("Industry Name: ", _industry_text)
 
         self.type(self._pay_type, "Umbrella\n")
         self.click(self._contract_start_date)

@@ -32,7 +32,8 @@ class CompassStarInviteDirectorPage(BaseCase):
             file.write(random_name)
         with open("..//data//last_name.txt", "w") as file:
             file.write(random_last_name)
-        print("\n First Name: ", random_name, "\n Last Name: ", random_last_name)
+        print("First Name: ", random_name)
+        print("Last Name: ", random_last_name)
 
     def get_invitation_link(self):
         director_invitation_link = self.get_text_content(self.invitation_link)

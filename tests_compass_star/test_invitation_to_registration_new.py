@@ -19,6 +19,10 @@ from pages_director.video_page import DirectorVideoPage
 from pages_supplier_land.find_a_customer_page import SupplierLandFindCustomerPage
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 
+from utilities.custom_logging import get_custom_logger
+
+logger = get_custom_logger(__name__)
+
 
 class InvitationToReadyNew(
     BscCreateYOurAccountPage,
@@ -44,64 +48,84 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=1)
     def test_login(self):
+        logger.info("Starting the Compass Star login test as admin...")
         self.open_compass_star_page()
         self.compass_star_login_admin()
+        logger.info("Compass Star login as admin completed successfully.")
 
     @pytest.mark.run(order=2)
     def test_navigate_to_invite_director(self):
+        logger.info("Navigating to the invite director page...")
         self.navigate_to_invite_director_page()
         self.invite_director_page()
         self.get_invitation_link()
+        logger.info("Invitation link has been generated successfully")
 
     @pytest.mark.run(order=3)
     def test_open_invitation_link(self):
+        logger.info("Opening the invitation link...")
         self.open_invitation_link(self.get_invitation_link())
         sb_config.shared_driver = self.driver
         self.skip_the_video()
+        logger.info("Invitation link opened and video skipped successfully.")
 
     @pytest.mark.run(order=4)
     def test_registering_as_director(self):
+        logger.info("Registering as director...")
         self.director_personal_details()
         self.director_account_details()
 
         try:
             self.director_documentation_page()
             self.director_confirmation_page()
-
-        except Exception as e:  # catch if auto log out occur.
+        # catch if auto log out occur.
+        except Exception as e:
+            logger.error(f"Error during director registration: {str(e)}")
             self.compass_star_login_director()
             self.director_documentation_page()
-            print(e)
+
+        logger.info("Director registration completed successfully.")
 
         self.open_compass_star_page()
         self.compass_star_login_admin()
+        logger.info("Starting to accept the ID and set the status to accepted...")
         self.view_documents()
         self.accept_id_and_set_to_accepted()
+        logger.info("Director status successfully set to accepted")
 
         process = self.var1
         if process == "old":
-            self.navigate_to_assign_directors_tab()  # assign director using admin account
+            logger.info("Assigning director using admin account...")
+            self.navigate_to_assign_directors_tab()
 
     @pytest.mark.run(order=5)
     def test_complete_with_bsc(self):
+        """ Complete with BSC """
         process = self.var1
         if process != "old":
-            self.assign_a_company_in_director_account()  # assign director using director account
+            logger.info("Assigning company using director account...")
+            self.assign_a_company_in_director_account()
 
+        logger.info("Completing the process with BSC...")
         self.navigate_to_complete_with_bsc()
         self.input_bsc_personal_information()
         self.create_your_bsc_account()
         self.bsc_payment_details()
+        logger.info("BSC process completed successfully.")
 
     @pytest.mark.run(order=6)
     def test_proceed_to_complete_with_supplier_land(self):
+        logger.info("Completing the process with Supplier Land...")
         self.complete_with_supplier_land()
         self.i_want_to_be_a_supplier_and_interested()
+        logger.info("Supplier Land process completed successfully.")
 
     @pytest.mark.run(order=7)
     def test_set_director_to_ready(self):
+        logger.info("Setting company status to ready...")
         self.csl_log_out()
         self.compass_star_login_admin()
         self.view_documents()
         self.set_status_to_offered()
         self.set_supplier_status_to_ready()
+        logger.info("Company status set to ready.")

@@ -8,9 +8,8 @@ class SupplierLandLoginPage(BaseCase):
     __password = "//input[@placeholder='Password']"
     __login_button = "//button[@type='submit']"
 
-    def open_supplier_land_page(self):  # select environmental staging
+    def open_supplier_land_page(self):
         instance = self.data
-
         environmental_staging = {
             "qa": Readconfig.get_qa_sl_url(),
             "v1": Readconfig.get_v1_sl_url(),
