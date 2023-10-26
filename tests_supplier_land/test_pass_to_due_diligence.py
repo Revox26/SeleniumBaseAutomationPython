@@ -17,6 +17,7 @@ class PassToDueDiligence(
     def test_login(self):
         logger.info("Starting the login test...")
         self.open_supplier_land_page()
+
         self.supplier_land_login_as_simon()
         logger.info("Login test as Simon completed successfully.")
 
@@ -24,6 +25,8 @@ class PassToDueDiligence(
     def test_pass_to_idd(self):
         logger.info("Navigating to the initial check page...")
         self.navigate_to_initial_check()
+        logger.info("Navigated to initial check page successfully.")
+
         logger.info("Starting the pass to IDD test...")
         self.pass_the_supplier_to_idd()
         logger.info("Pass to IDD test completed successfully.")
@@ -32,9 +35,16 @@ class PassToDueDiligence(
     def test_pass_to_rdd(self):
         logger.info("Navigating to the suppliers tab...")
         self.navigate_to_suppliers_tab()
+        logger.info("Navigated to suppliers tab successfully.")
+
         logger.info("Getting the intermediary name...")
         self.get_intermediary_name()
-        logger.info("Starting the pass to RDD test...")
+        logger.info("Got the intermediary name successfully.")
+
+        logger.info("Navigating to the regular check page...")
         self.navigate_to_regular_check()
+        logger.info("Navigated to regular check page successfully.")
+
+        logger.info("Starting the pass to RDD test...")
         self.pass_the_supplier_to_rdd()
         logger.info("Pass to RDD test completed successfully.")

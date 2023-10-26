@@ -95,16 +95,18 @@ class InvitationToReadyNew(
 
         process = self.var1
         if process == "old":
-            logger.info("Assigning company using admin account...")
+            logger.info("Allocating company using admin account...")
             self.navigate_to_assign_directors_tab()
+            logger.info("Allocation of the company using the admin account was successful.")
 
     @pytest.mark.run(order=5)
     def test_complete_with_bsc(self):
         """ Complete with BSC """
         process = self.var1
         if process != "old":
-            logger.info("Assigning company using director account...")
+            logger.info("Allocating company using director account...")
             self.assign_a_company_in_director_account()
+            logger.info("Allocation of the company using the director's account was successful.")
 
         logger.info("Completing the process with BSC...")
         self.navigate_to_complete_with_bsc()

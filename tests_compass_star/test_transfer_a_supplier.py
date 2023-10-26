@@ -26,11 +26,11 @@ class TransferSupplier(
 
     @pytest.mark.run(order=2)
     def test_check_if_already_have_vat_reg_and_auth_code(self):
-        logger.info("Checking if VAT registration and authorization code already exist...")
+        logger.info("Checking if vat reg and auth code already exist...")
         self.navigate_to_suppliers_tab()
         self.search_supplier_name_in_suppliers_tab()
         self.input_auth_code_and_vat_reg()
-        logger.info("VAT registration and authorization already checked.")
+        logger.info("VAT reg and auth code already checked.")
 
     @pytest.mark.run(order=3)
     def test_transfer_the_supplier_to_confirmed_pre_request(self):

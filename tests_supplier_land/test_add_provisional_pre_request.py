@@ -21,24 +21,25 @@ class AddProvisionalPreRequest(
         self.supplier_land_login_as_george()
         logger.info("Login test as George completed successfully.")
 
-    # @pytest.mark.run(order=2)
-    # def test_navigate_to_pre_request(self):
-    #     logger.info("Navigating to the pre-request page...")
-    #     self.navigate_to_pre_request()
-    #
-    # @pytest.mark.run(order=3)
-    # def test_pre_request_fields(self):
-    #     logger.info("Filling in pre-request fields...")
-    #     if self.data == "v2":
-    #         self.t3_add_pre_request_fields()
-    #     else:
-    #         self.add_pre_request_fields()
-    #     self.submit_pre_request()
-    #     logger.info("Pre-request fields submitted successfully.")
-    #
-    # @pytest.mark.run(order=4)
-    # def test_search_company_in_offerings(self):
-    #     logger.info("Navigating to the offerings page...")
-    #     self.navigate_to_offerings()
-    #     self.search_company_in_offerings()
-    #     logger.info("Company search in offerings completed.")
+    @pytest.mark.run(order=2)
+    def test_navigate_to_pre_request(self):
+        logger.info("Navigating to the pre-request page...")
+        self.navigate_to_pre_request()
+        logger.info("Navigated to pre-request page successfully.")
+
+    @pytest.mark.run(order=3)
+    def test_pre_request_fields(self):
+        logger.info("Filling in pre-request fields...")
+        if self.data == "v2":
+            self.t3_add_pre_request_fields()
+        else:
+            self.add_pre_request_fields()
+        self.submit_pre_request()
+        logger.info("Pre-request fields submitted successfully.")
+
+    @pytest.mark.run(order=4)
+    def test_search_company_in_offerings(self):
+        logger.info("Navigating to the offerings page...")
+        self.navigate_to_offerings()
+        self.search_company_in_offerings()
+        logger.info("Company search in offerings completed.")

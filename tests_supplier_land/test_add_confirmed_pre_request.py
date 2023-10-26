@@ -26,7 +26,7 @@ class AddConfirmedPreRequest(
     def test_navigate_to_pre_request(self):
         logger.info("Navigating to the pre-request page...")
         self.navigate_to_pre_request()
-        logger.info("Successfully navigated to the pre-request page.")
+        logger.info("Navigated to pre-request page successfully.")
 
     @pytest.mark.run(order=3)
     def test_pre_request_fields(self):
@@ -42,8 +42,11 @@ class AddConfirmedPreRequest(
         self.open_supplier_land_page()
         self.supplier_land_login_as_george()
         logger.info("Login as George completed successfully.")
+
         logger.info("Navigating to the offerings page...")
         self.navigate_to_offerings()
+        logger.info("Navigated to offerings page successfully.")
+
         logger.info("Searching for a company in offerings...")
         self.search_company_in_offerings()
         logger.info("Company search in offerings completed.")
