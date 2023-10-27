@@ -63,27 +63,45 @@ class PytestRunnerApp:
         # Inside the LabelFrame, add checkboxes with tooltips
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame,
                                                            "Demo Mode",
-                                                           "Slow down and visually see test actions as they occur.")
+                                                           "Slow down and visually see test actions as they occur.",
+                                                           0, 0)
 
         self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame,
                                                            "Slow Mode",
-                                                           "Slow down the automation.")
+                                                           "Slow down the automation.",
+                                                           0, 1)
 
         self.report_checkbox_var = self.create_checkbox(checkbox_frame,
                                                         "Generate Report",
-                                                        "Creates a detailed pytest-html report after tests finish.")
+                                                        "Creates a detailed pytest-html report after tests finish.",
+                                                        0, 2)
 
         self.screenshot_checkbox_var = self.create_checkbox(checkbox_frame,
                                                             "Save Screenshot",
-                                                            "Save a screenshot at the end of each test.")
+                                                            "Save a screenshot at the end of each test.",
+                                                            1, 0)
 
         self.incognito_mode_checkbox_var = self.create_checkbox(checkbox_frame,
                                                                 "Incognito Mode",
-                                                                "Enable Chrome's Incognito mode.")
+                                                                "Enable Chrome's Incognito mode.",
+                                                                1, 1)
 
         self.start_window_maximize_var = self.create_checkbox(checkbox_frame,
                                                               "Start Maximized",
-                                                              "Start tests with the browser window maximized.")
+                                                              "Start tests with the browser window maximized.",
+                                                              1, 2)
+        self.dark_mode_var = self.create_checkbox(checkbox_frame,
+                                                  "Dark Mode",
+                                                  "Enable Chrome's Dark mode.",
+                                                  2, 0)
+        self.headless_var = self.create_checkbox(checkbox_frame,
+                                                 "Headless",
+                                                 "Run tests in headless mode.",
+                                                 2, 1)
+        self.final_trace_var = self.create_checkbox(checkbox_frame,
+                                                    "Trace/Debug",
+                                                    "Debug Mode after each test.",
+                                                    2, 2)
 
         self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
         self.quit_button = self.create_button("Quit", master.quit, bg="red", fg="white", padx=20)
@@ -132,10 +150,10 @@ class PytestRunnerApp:
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var
 
-    def create_checkbox(self, frame, text, tooltip_text):
+    def create_checkbox(self, parent, text, tooltip_text, row, column):
         checkbox_var = tk.IntVar()
-        checkbox = tk.Checkbutton(frame, text=text, variable=checkbox_var, font=("Arial", 12), bg="light gray", )
-        checkbox.grid(column=0, row=len(frame.winfo_children()), sticky="w", pady=4)
+        checkbox = ttk.Checkbutton(parent, text=text, variable=checkbox_var)
+        checkbox.grid(row=row, column=column, padx=5, pady=5, sticky="w")
         checkbox.bind("<Enter>", lambda event, text=tooltip_text: self.show_tooltip(event, text))
         checkbox.bind("<Leave>", self.hide_tooltip)
         return checkbox_var
@@ -194,7 +212,10 @@ class PytestRunnerApp:
             "--screenshot": self.screenshot_checkbox_var.get(),
             "--slow": self.slow_mode_checkbox_var.get(),
             "--incognito": self.incognito_mode_checkbox_var.get(),
-            "--maximize": self.start_window_maximize_var.get()
+            "--maximize": self.start_window_maximize_var.get(),
+            "--dark": self.dark_mode_var.get(),
+            "--headless": self.headless_var.get(),
+            "--trace": self.final_trace_var.get()
 
         }
 
