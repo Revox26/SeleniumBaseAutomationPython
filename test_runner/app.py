@@ -20,7 +20,7 @@ class PytestRunnerApp:
 
         master.configure(bg="light gray")  # Set background color
 
-        self.create_label("Select a Test:")
+        self.create_label("Select a test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
             ["Registration To Ready",
              "New Registration To Ready",
@@ -31,7 +31,7 @@ class PytestRunnerApp:
              "BSC Order Package",
              "Practice Page"])
 
-        self.create_label("Select Staging Environment:")
+        self.create_label("Select a staging environment:")
         self.staging_dropdown_var = self.create_dropdown(
             ["QA Instance",
              "V1 Instance",
@@ -41,7 +41,7 @@ class PytestRunnerApp:
              "Echo Instance",
              "Replica Instance"])
 
-        self.create_label("Select Browser:")
+        self.create_label("Select a browser:")
         self.select_browser_dropdown_var = self.create_dropdown(["Chrome", "Edge", "Firefox"])
 
         # Create a new frame for the additional text box
@@ -104,7 +104,24 @@ class PytestRunnerApp:
                                                     2, 2)
 
         self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
+        self.clear_button = self.create_button("Clear", self.clear_fields, bg="blue", fg="white", padx=20)
         self.quit_button = self.create_button("Quit", master.quit, bg="red", fg="white", padx=20)
+
+    # Clear all the checkboxes
+    def clear_fields(self):
+        self.select_a_test_dropdown_var.set("")
+        self.staging_dropdown_var.set("")
+        self.select_browser_dropdown_var.set("")
+        self.additional_text_var.set("")
+        self.demo_mode_checkbox_var.set(0)
+        self.slow_mode_checkbox_var.set(0)
+        self.report_checkbox_var.set(0)
+        self.screenshot_checkbox_var.set(0)
+        self.incognito_mode_checkbox_var.set(0)
+        self.start_window_maximize_var.set(0)
+        self.dark_mode_var.set(0)
+        self.headless_var.set(0)
+        self.final_trace_var.set(0)
 
     def update_additional_text_label(self, *args):
         selected_test = self.select_a_test_dropdown_var.get()
@@ -130,7 +147,7 @@ class PytestRunnerApp:
 
     def create_label(self, text):
         label = tk.Label(self.master, text=text, font=("Arial", 18, "bold"), bg="lightgray")
-        label.pack(pady=(20, 10))
+        label.pack(anchor="w", pady=(20, 10), padx=7)
         return label
 
     def create_label1(self, text):
@@ -139,14 +156,18 @@ class PytestRunnerApp:
         return label
 
     def create_dropdown(self, values):
-
         def remove_highlight(event):
             event.widget.master.focus_set()
 
         dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Arial", 22),
+        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Arial", 17),
                                 state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
+
+        # # Calculate the width based on the longest item
+        # max_item_width = max(len(item) for item in values)
+        # dropdown.config(width=max_item_width)
+
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var
 
