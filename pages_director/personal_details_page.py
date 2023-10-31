@@ -4,7 +4,7 @@ from faker import Faker
 
 class DirectorPersonalDetailsPage(BaseCase):
     personal_details_label = "// span[contains(text(), 'Personal details')]"
-    title = "//input[contains(@value,'mr')]"
+    title = "(//input[contains(@value,'mr')])[1]"
     first_name = "//input[@id='first_name']"
     nationality = "//input[@id='nationality']"
     nationality_dropdown = "//select[@id='nationality']"
