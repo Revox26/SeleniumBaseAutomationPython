@@ -1,6 +1,7 @@
 import subprocess
 import tkinter as tk
 from tkinter import ttk
+
 from art import *
 
 
@@ -29,7 +30,9 @@ class PytestRunnerApp:
              "Add Provisional Pre Request",
              "Add Confirmed Pre Request",
              "BSC Order Package",
-             "Practice Page"])
+             "Upload Communications Template",
+             "Practice Page"],
+        )
 
         self.create_label("Select a staging environment:")
         self.staging_dropdown_var = self.create_dropdown(
@@ -107,8 +110,8 @@ class PytestRunnerApp:
         self.clear_button = self.create_button("Clear", self.clear_fields, bg="blue", fg="white", padx=20)
         self.quit_button = self.create_button("Quit", master.quit, bg="red", fg="white", padx=20)
 
-    # Clear all the checkboxes
     def clear_fields(self):
+        # Clear all the fields
         self.select_a_test_dropdown_var.set("")
         self.staging_dropdown_var.set("")
         self.select_browser_dropdown_var.set("")
@@ -128,6 +131,7 @@ class PytestRunnerApp:
         # Define a dictionary that maps test names to label text
         label_texts = {
             "New Registration To Ready": "Director Preferred Yearly Contract Value",
+            "Upload Communications Template": "Company Number --var2='type_of_template'",
             "Transfer a Supplier": "Company Name",
             "Pass to Due Diligence": "Company Name",
             "BSC Order Package": "Company Number from CH",
@@ -164,9 +168,9 @@ class PytestRunnerApp:
                                 state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
 
-        # # Calculate the width based on the longest item
-        # max_item_width = max(len(item) for item in values)
-        # dropdown.config(width=max_item_width)
+        # Calculate the width based on the longest item
+        max_item_width = max(len(item) for item in values)
+        dropdown.config(width=max_item_width)
 
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var
@@ -209,6 +213,7 @@ class PytestRunnerApp:
         add_provisional_pre_request_command = "pytest ..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s"
         add_confirmed_pre_request_command = "pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s"
         bsc_order_package_command = "pytest ..//tests_bsc/test_bsc_redeem_package.py --rs -x -q -s"
+        upload_comms_template_command = "pytest ..//tests_compass_star/test_upload_comms_template.py --rs -x -q -s"
         practice_page_command = "pytest ..//test_runner/practice.py --rs -x -q -s"
 
         test_commands = {
@@ -219,6 +224,7 @@ class PytestRunnerApp:
             "Add Provisional Pre Request": [add_provisional_pre_request_command, additional_text],
             "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text],
             "BSC Order Package": [bsc_order_package_command, additional_text],
+            "Upload Communications Template": [upload_comms_template_command, additional_text],
             "Practice Page": [practice_page_command, additional_text]
         }
 
@@ -262,7 +268,6 @@ class PytestRunnerApp:
         pytest_command.extend([key for key, value in browser_options.items() if value == browser_arguments])
         pytest_command.extend([option for option, value in options.items() if value])
         screen_log = subprocess.Popen(" ".join(pytest_command), shell=True)
-        print(screen_log)
 
 
 if __name__ == "__main__":

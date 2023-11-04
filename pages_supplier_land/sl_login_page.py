@@ -36,6 +36,8 @@ class SupplierLandLoginPage(BaseCase):
     def supplier_land_login_as_intermediary(self):
         if self.data == "qa":
             self.login(Readconfig.get_intermediary_username_new(), Readconfig.get_password())
+        elif self.data == "v1":
+            self.login(Readconfig.get_intermediary_username_new(), Readconfig.get_password())
         else:
             self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
 
