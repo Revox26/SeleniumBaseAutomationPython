@@ -64,7 +64,7 @@ Follow these simple steps to set up and run the automation project:
 
 Now you're all set! You can enjoy the automation framework and streamline your tasks efficiently.
 
-![img.png](img.png)
+![automation_design_image.png](automation_design_image.png)
 
 # 3. Getting started
 Once you have installed the required software, follow these steps to start using the QA-Team Automation Test Runner:
@@ -95,8 +95,8 @@ After configuring your test, you can execute it:
 
 # 6. Video Demonstration
 
+![automation_demonstration_video.gif](automation_demonstration_video.gif)
 
-![sample_automation.gif](sample_automation.gif)
 
 # 7. Troubleshooting
 If you encounter any issues while using the QA-Team Automation Test Runner, consider the following troubleshooting steps:
