@@ -24,9 +24,9 @@ class UploadCommunicationsTemplate(
     @pytest.mark.run(order=2)
     def test_upload_communications(self):
         list_of_templates = {
-            'vat': (self.input_company_number_in_vat_return_template, self.upload_vat_return_template),
-            'invoice': (self.input_company_number_in_invoice_approval_template, self.upload_invoice_approval_template),
-            'funding': (self.input_company_number_in_funding_request_template, self.upload_funding_request_template),
+            'vat': (self.input_company_number_in_vat_return_csv, self.upload_vat_return_template),
+            'invoice': (self.input_company_number_in_invoice_approval_csv, self.upload_invoice_approval_template),
+            'funding': (self.input_company_number_in_funding_request_csv, self.upload_funding_request_template),
 
         }
         # Handle the selected template
@@ -42,3 +42,8 @@ class UploadCommunicationsTemplate(
                 input_method(self.var1)
                 self.navigate_to_communications_tab()
                 upload_method()
+
+
+
+
+

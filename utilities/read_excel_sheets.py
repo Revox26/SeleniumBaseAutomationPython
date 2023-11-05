@@ -13,14 +13,14 @@ class ReadCommsTemplate:
         # Save the modified DataFrame back to the same CSV file
         df.to_csv(template_path, index=False)  # Use the same file path
 
-    def input_company_number_in_vat_return_template(self, csv_company_number):
+    def input_company_number_in_vat_return_csv(self, csv_company_number):
         template_path = "..//comms_templates//Vat_Return.csv"
         self.input_company_number_in_template(template_path, csv_company_number)
 
-    def input_company_number_in_invoice_approval_template(self, csv_company_number):
+    def input_company_number_in_invoice_approval_csv(self, csv_company_number):
         template_path = "..//comms_templates//Invoice_Approval.csv"
         self.input_company_number_in_template(template_path, csv_company_number)
 
-    def input_company_number_in_funding_request_template(self, csv_company_number):
+    def input_company_number_in_funding_request_csv(self, csv_company_number):
         template_path = "..//comms_templates//Funding_Request.csv"
         self.input_company_number_in_template(template_path, csv_company_number)
