@@ -28,3 +28,7 @@ class CompassStarCommunicationsTabPage(BaseCase):
     def upload_funding_request_template(self):
         self.__upload_template__("Funding Request ( Requires CSV )", "Upload Funding Request",
                                  "..//comms_templates/Funding_Request.csv")
+
+    def upload_change_of_flat_rate_template(self):
+        self.__upload_template__("Change Of Flat Rate VAT Business Type ( Requires CSV )", "Upload Change of Flat Rate",
+                                 "..//comms_templates/Change_Of_Flat_Rate_VAT_Business_Type.csv")

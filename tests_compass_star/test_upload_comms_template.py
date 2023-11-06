@@ -23,10 +23,12 @@ class UploadCommunicationsTemplate(
 
     @pytest.mark.run(order=2)
     def test_upload_communications(self):
+        logger.info("Starting to upload the communications template...")
         list_of_templates = {
             'vat': (self.input_company_number_in_vat_return_csv, self.upload_vat_return_template),
             'invoice': (self.input_company_number_in_invoice_approval_csv, self.upload_invoice_approval_template),
             'funding': (self.input_company_number_in_funding_request_csv, self.upload_funding_request_template),
+            'change_of_flat_rate': (self.input_company_number_in_change_of_flat_rate_csv, self.upload_change_of_flat_rate_template),
 
         }
         # Handle the selected template
@@ -43,7 +45,4 @@ class UploadCommunicationsTemplate(
                 self.navigate_to_communications_tab()
                 upload_method()
 
-
-
-
-
+        logger.info("Communication template uploaded successfully.")

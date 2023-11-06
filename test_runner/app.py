@@ -126,7 +126,8 @@ class PytestRunnerApp:
             "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
             "Invoice Approval": "--var2=invoice",
-            "Funding Request": "--var2=funding"
+            "Funding Request": "--var2=funding",
+            "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
 
         }
 
@@ -274,7 +275,8 @@ class PytestRunnerApp:
             "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
             "Invoice Approval": "--var2=invoice",
-            "Funding Request": "--var2=funding"
+            "Funding Request": "--var2=funding",
+            "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
 
         }
 
