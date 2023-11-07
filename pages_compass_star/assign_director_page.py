@@ -41,12 +41,17 @@ class CompassStarAssignDirectorsPage(BaseCase):
 
         self.click(self.assign_a_director)
 
-        self.type(self.director_name_search_box, first_name + " " + last_name)
-        self.click(self.click_search_button)
-        self.click(self.select_director)
-        self.click(self.assign_director_to_the_company_button)
-        self.click(self.yes_confirm_assign_director)
-        self.assert_element(self.company_name_text)
+        if self.data == "v2":
+            self.click(self.select_director)
+            self.click(self.assign_director_to_the_company_button)
+            self.click(self.yes_confirm_assign_director)
+        else:
+            self.type(self.director_name_search_box, first_name + " " + last_name)
+            self.click(self.click_search_button)
+            self.click(self.select_director)
+            self.click(self.assign_director_to_the_company_button)
+            self.click(self.yes_confirm_assign_director)
+            self.assert_element(self.company_name_text)
 
         get_company_name_text = self.get_text(self.company_name_text)
 

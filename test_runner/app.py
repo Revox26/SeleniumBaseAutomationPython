@@ -25,6 +25,7 @@ class PytestRunnerApp:
         self.select_a_test_dropdown_var = self.create_dropdown(
             ["Registration To Ready",
              "New Registration To Ready",
+             "T3 Allocation To Ready",
              "Transfer a Supplier",
              "Pass to Due Diligence",
              "Add Provisional Pre Request",
@@ -168,7 +169,8 @@ class PytestRunnerApp:
             "Transfer a Supplier": "Company Name",
             "Pass to Due Diligence": "Company Name",
             "BSC Order Package": "Company Number from CH",
-            "Practice Page": "This is practice page"
+            "Practice Page": "This is practice page",
+            "T3 Allocation To Ready": "Director's Email Address"
 
         }
         # Use the dictionary to set the label text or use a default value
@@ -248,6 +250,7 @@ class PytestRunnerApp:
 
         registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration.py --rs -x -q -s"
         new_registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s"
+        t3_allocation_to_ready_command = "pytest ..//tests_compass_star/test_t3_allocation_to_ready.py --rs -x -q -s"
         transfer_supplier_command = "pytest ..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s"
         pass_to_due_diligence_command = "pytest ..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s"
         add_provisional_pre_request_command = "pytest ..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s"
@@ -265,7 +268,8 @@ class PytestRunnerApp:
             "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text],
             "BSC Order Package": [bsc_order_package_command, additional_text],
             "Upload Communications Template": [upload_comms_template_command, additional_text],
-            "Practice Page": [practice_page_command, additional_text]
+            "Practice Page": [practice_page_command, additional_text],
+            "T3 Allocation To Ready": [t3_allocation_to_ready_command, additional_text]
         }
 
         # Get the value of the additional dropdown

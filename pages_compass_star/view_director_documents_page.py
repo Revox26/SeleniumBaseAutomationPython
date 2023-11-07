@@ -20,6 +20,12 @@ class CompassStarViewDocumentsPage(BaseCase):
         self.click(self.update_application)
         self.click(self.yes_accept_to_certified)
 
+    def accept_director_id(self):
+        self.assert_element(self.company_name_label)
+        self.click(self.accept_id)
+        self.click(self.yes_accept_id)
+        self.click(self.accept_id)
+        self.click(self.yes_accept_id)
 
     def set_status_to_offered(self):
         self.click(self.set_to_offered)
