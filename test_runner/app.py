@@ -23,8 +23,7 @@ class PytestRunnerApp:
 
         self.create_label("Select a test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
-            ["Registration To Ready",
-             "New Registration To Ready",
+            ["New Registration To Ready",
              "T3 Allocation To Ready",
              "Transfer a Supplier",
              "Pass to Due Diligence",
@@ -69,6 +68,7 @@ class PytestRunnerApp:
         self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
 
         # Inside the LabelFrame, add checkboxes with tooltips
+        self.tooltip = None
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame,
                                                            "Demo Mode",
                                                            "Slow down and visually see test actions as they occur.",
@@ -260,7 +260,6 @@ class PytestRunnerApp:
         practice_page_command = "pytest ..//test_runner/practice.py --rs -x -q -s"
 
         test_commands = {
-            "Registration To Ready": [registration_to_ready_command, additional_text],
             "New Registration To Ready": [new_registration_to_ready_command, additional_text],
             "Transfer a Supplier": [transfer_supplier_command, additional_text],
             "Pass to Due Diligence": [pass_to_due_diligence_command, additional_text],

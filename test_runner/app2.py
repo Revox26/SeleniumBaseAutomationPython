@@ -23,8 +23,8 @@ class PytestRunnerApp:
 
         self.create_label("Select a test:")
         self.select_a_test_dropdown_var = self.create_dropdown(
-            ["Registration To Ready",
-             "New Registration To Ready",
+            ["New Registration To Ready",
+             "T3 Allocation To Ready",
              "Transfer a Supplier",
              "Pass to Due Diligence",
              "Add Provisional Pre Request",
@@ -48,6 +48,9 @@ class PytestRunnerApp:
         self.create_label("Select a browser:")
         self.select_browser_dropdown_var = self.create_dropdown(["Chrome", "Edge", "Firefox"])
 
+        style = ttk.Style()
+        style.configure('Custom.TLabelframe', background='Light gray')
+
         # Create a new frame for the additional text box
         self.additional_text_frame = ttk.Frame(self.master)
         self.additional_text_frame.pack(pady=20, padx=10, fill="both")
@@ -58,13 +61,14 @@ class PytestRunnerApp:
 
         # Create a Label for additional options
         self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options",
-                                               font=("Arial", 12, "bold"))
-        self.additional_text_label.pack(padx=1, pady=1)
+                                               font=("Roboto", 12, "bold"))
+        self.additional_text_label.pack()
         # Create the additional text box and assign it to a variable
         self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
         self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
 
         # Inside the LabelFrame, add checkboxes with tooltips
+        self.tooltip = None
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame,
                                                            "Demo Mode",
                                                            "Slow down and visually see test actions as they occur.",
@@ -120,10 +124,11 @@ class PytestRunnerApp:
             event.widget.master.focus_set()
 
         template_values = {
-            "All": "--var2=all",
+            "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
             "Invoice Approval": "--var2=invoice",
-            "Funding Request": "--var2=funding"
+            "Funding Request": "--var2=funding",
+            "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
 
         }
 
@@ -131,10 +136,8 @@ class PytestRunnerApp:
 
         dropdown_var = tk.StringVar()
         dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values,
-                                font=("Arial", 18), state="readonly")
+                                font=("Roboto", 18), state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
-
-
 
         dropdown.config(width=26)
         dropdown.bind("<FocusIn>", remove_highlight)
@@ -166,7 +169,8 @@ class PytestRunnerApp:
             "Transfer a Supplier": "Company Name",
             "Pass to Due Diligence": "Company Name",
             "BSC Order Package": "Company Number from CH",
-            "Practice Page": "This is practice page"
+            "Practice Page": "This is practice page",
+            "T3 Allocation To Ready": "Director's Email Address"
 
         }
         # Use the dictionary to set the label text or use a default value
@@ -178,20 +182,20 @@ class PytestRunnerApp:
             self.template_dropdown_value.pack_forget()  # Hide the second dropdown
 
     def create_text_box(self, frame, label_text):
-        label = ttk.Label(frame, text=label_text, font=("Arial", 12, "bold"))
+        label = ttk.Label(frame, text=label_text, font=("Roboto", 12, "bold"))
         label.pack(padx=0, pady=0)
         text_var = tk.StringVar()
-        text_box = ttk.Entry(frame, textvariable=text_var, font=("Arial", 18))
+        text_box = ttk.Entry(frame, textvariable=text_var, font=("Roboto", 18))
         text_box.pack(fill="both", padx=6, pady=5)
         return text_var
 
     def create_label(self, text):
-        label = tk.Label(self.master, text=text, font=("Arial", 18, "bold"), bg="lightgray")
-        label.pack(anchor="w", pady=(20, 10), padx=7)
+        label = tk.Label(self.master, text=text, font=("Roboto", 14, "bold"), bg="lightgray")
+        label.pack(anchor="w", pady=(25, 0), padx=8)
         return label
 
     def create_label1(self, text):
-        label = tk.Label(self.master, text=text, font=("Arial", 12, "bold"), bg="lightgray")
+        label = tk.Label(self.master, text=text, font=("Roboto", 12, "bold"), bg="lightgray")
         label.pack(pady=(20, 10))
         return label
 
@@ -200,7 +204,7 @@ class PytestRunnerApp:
             event.widget.master.focus_set()
 
         dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Arial", 17),
+        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Roboto", 17),
                                 state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
 
@@ -236,7 +240,7 @@ class PytestRunnerApp:
             self.tooltip.destroy()
 
     def create_button(self, text, command, **kwargs):
-        button = tk.Button(self.master, text=text, command=command, **kwargs, font=("Arial", 12, "bold"))
+        button = tk.Button(self.master, text=text, command=command, **kwargs, font=("Roboto", 12, "bold"))
         button.pack(side="left", padx=(10, 10), pady=(0, 10), expand=True, fill="both")
         return button
 
@@ -246,6 +250,7 @@ class PytestRunnerApp:
 
         registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration.py --rs -x -q -s"
         new_registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s"
+        t3_allocation_to_ready_command = "pytest ..//tests_compass_star/test_t3_allocation_to_ready.py --rs -x -q -s"
         transfer_supplier_command = "pytest ..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s"
         pass_to_due_diligence_command = "pytest ..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s"
         add_provisional_pre_request_command = "pytest ..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s"
@@ -255,7 +260,6 @@ class PytestRunnerApp:
         practice_page_command = "pytest ..//test_runner/practice.py --rs -x -q -s"
 
         test_commands = {
-            "Registration To Ready": [registration_to_ready_command, additional_text],
             "New Registration To Ready": [new_registration_to_ready_command, additional_text],
             "Transfer a Supplier": [transfer_supplier_command, additional_text],
             "Pass to Due Diligence": [pass_to_due_diligence_command, additional_text],
@@ -263,17 +267,19 @@ class PytestRunnerApp:
             "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text],
             "BSC Order Package": [bsc_order_package_command, additional_text],
             "Upload Communications Template": [upload_comms_template_command, additional_text],
-            "Practice Page": [practice_page_command, additional_text]
+            "Practice Page": [practice_page_command, additional_text],
+            "T3 Allocation To Ready": [t3_allocation_to_ready_command, additional_text]
         }
 
         # Get the value of the additional dropdown
         additional_dropdown_value = self.comms_template_dropdown_var.get()
 
         option_values = {
-            "All": "--var2=all",
+            "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
             "Invoice Approval": "--var2=invoice",
-            "Funding Request": "--var2=funding"
+            "Funding Request": "--var2=funding",
+            "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
 
         }
 
