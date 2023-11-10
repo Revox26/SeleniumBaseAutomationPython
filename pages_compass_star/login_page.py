@@ -10,7 +10,7 @@ class CompassStarLoginPage(BaseCase):
     password = "//input[@placeholder='Password']"
     login_button = "//button[@type='submit']"
 
-    def open_compass_star_page(self): # select environmental staging
+    def open_compass_star_page(self):  # select environmental staging
         instance = self.data
 
         csl_urls = {

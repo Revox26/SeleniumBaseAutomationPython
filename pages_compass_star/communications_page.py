@@ -7,6 +7,8 @@ class CompassStarCommunicationsTabPage(BaseCase):
     input_comms_note = "//textarea[@id='comment']"
     _upload_csv_file = "//input[@id='csv-upload']"
     send_to_communications_queue = "//button[@id='send-comms-queue']"
+    scheduled = "//input[@name='scheduled']"
+    send_sms = "//input[@name='send_sms']"
 
     def navigate_to_communications_tab(self):
         self.click(self.communications_tab)
@@ -15,6 +17,8 @@ class CompassStarCommunicationsTabPage(BaseCase):
         self.select_option_by_text(self.select_template, template_name)
         self.type(self.input_comms_note, note)
         self.choose_file(self._upload_csv_file, template_path)
+        self.click(self.scheduled)
+        self.click(self.send_sms)
         self.click(self.send_to_communications_queue)
 
     def upload_vat_return_template(self):
