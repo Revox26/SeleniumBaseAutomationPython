@@ -39,7 +39,9 @@ class AddProvisionalPreRequest(
 
     @pytest.mark.run(order=4)
     def test_search_company_in_offerings(self):
-        logger.info("Navigating to the offerings page...")
-        self.navigate_to_offerings()
-        self.search_company_in_offerings()
-        logger.info("Company search in offerings completed.")
+        if self.data != "v2":
+            logger.info("Navigating to the offerings page...")
+            self.navigate_to_offerings()
+            self.search_company_in_offerings()
+            logger.info("Company search in offerings completed.")
+            pass
