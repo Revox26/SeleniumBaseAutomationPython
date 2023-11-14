@@ -32,7 +32,7 @@ class CompleteWithBscPage(BaseCase):
             company_name = file.read().strip()
             print("Company Name : ", company_name)
 
-        self.click(self.i_accept_bsc, timeout=60)
+        self.click(self.i_accept_bsc)
         self.click(self.next_button)
         self.type(self.bsc_first_name, first_name)
         self.type(self.bsc_email_address, generated_email)
