@@ -6,6 +6,12 @@ config.read("..//configuration_files//config.ini")
 
 class Readconfig:
 
+    # SL URL
+    @staticmethod
+    def get_delta_sl_url():
+        delta_url = config.get("url", "delta_sl_url")
+        return delta_url
+
     @staticmethod
     def get_qa_sl_url():
         qa_url = config.get("url", "qa_sl_url")
@@ -36,8 +42,17 @@ class Readconfig:
         replica_url = config.get("url", "replica_sl_url")
         return replica_url
 
-    # CSL
+    @staticmethod
+    def get_testing_sl_url():
+        echo_url = config.get("url", "testing_sl_url")
+        return echo_url
 
+    @staticmethod
+    def get_echo_sl_url():
+        echo_url = config.get("url", "echo_sl_url")
+        return echo_url
+
+    # CSL URL
     @staticmethod
     def get_qa_csl_url():
         csl_qa_url = config.get("url", "qa_csl_url")
@@ -78,27 +93,12 @@ class Readconfig:
         echo_url = config.get("url", "testing_csl_url")
         return echo_url
 
-    # SL
-    @staticmethod
-    def get_testing_sl_url():
-        echo_url = config.get("url", "testing_sl_url")
-        return echo_url
-
-    @staticmethod
-    def get_echo_sl_url():
-        echo_url = config.get("url", "echo_sl_url")
-        return echo_url
-
     @staticmethod
     def get_delta_csl_url():
         delta_url = config.get("url", "delta_csl_url")
         return delta_url
 
-    @staticmethod
-    def get_delta_sl_url():
-        delta_url = config.get("url", "delta_sl_url")
-        return delta_url
-
+    # BSC URL
     @staticmethod
     def get_bsc_uat_url():
         uat_link = config.get("url", "bsc_uat_link")
@@ -109,6 +109,12 @@ class Readconfig:
         uat_link = config.get("url", "bsc_uat_t3_link")
         return uat_link
 
+    @staticmethod
+    def get_bsc_uat_redeem_link():
+        jdc_password = config.get("url", "bsc_uat_redeem_link")
+        return jdc_password
+
+    # ACCOUNTS
     @staticmethod
     def get_it_dev_username():
         it_username = config.get("accounts", "it_dev_user_name")
@@ -157,9 +163,4 @@ class Readconfig:
     @staticmethod
     def get_jdc_password():
         jdc_password = config.get("accounts", "jdc_password")
-        return jdc_password
-
-    @staticmethod
-    def get_bsc_uat_redeem_link():
-        jdc_password = config.get("url", "bsc_uat_redeem_link")
         return jdc_password
