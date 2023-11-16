@@ -14,14 +14,14 @@ class UploadCommunicationsTemplate(
 
 ):
 
-    @pytest.mark.run(order=1)
+    @pytest.mark.run(order=0)
     def test_login(self):
         logger.info("Starting the Compass Star login test as admin...")
         self.open_compass_star_page()
         self.compass_star_login_admin()
         logger.info("Compass Star login as admin completed successfully.")
 
-    @pytest.mark.run(order=2)
+    @pytest.mark.run(order=1)
     def test_upload_communications(self):
         logger.info("Starting to upload the communications template...")
         list_of_templates = {

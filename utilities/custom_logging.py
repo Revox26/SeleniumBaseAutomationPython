@@ -13,7 +13,7 @@ def get_custom_logger(name, log_level=logging.INFO):
     logger.setLevel(log_level)
 
     # Create a formatter
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %I:%M:%S %p')
 
     # Create a file handler
     file_handler = logging.FileHandler('my_custom.log')
