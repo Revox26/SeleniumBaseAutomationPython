@@ -74,6 +74,17 @@ class Readconfig:
         return echo_url
 
     @staticmethod
+    def get_testing_csl_url():
+        echo_url = config.get("url", "testing_csl_url")
+        return echo_url
+
+    # SL
+    @staticmethod
+    def get_testing_sl_url():
+        echo_url = config.get("url", "testing_sl_url")
+        return echo_url
+
+    @staticmethod
     def get_echo_sl_url():
         echo_url = config.get("url", "echo_sl_url")
         return echo_url
@@ -104,6 +115,11 @@ class Readconfig:
         return it_username
 
     @staticmethod
+    def get_it_dev_jech_username():
+        it_username = config.get("accounts", "it_dev_user_name_jech")
+        return it_username
+
+    @staticmethod
     def get_george_user_name():
         it_username = config.get("accounts", "george_user_name")
         return it_username
@@ -117,6 +133,7 @@ class Readconfig:
     def get_intermediary_username():
         it_username = config.get("accounts", "intermediary_username")
         return it_username
+
     @staticmethod
     def get_intermediary_username_new():
         it_username = config.get("accounts", "intermediary_username_new")
@@ -146,5 +163,3 @@ class Readconfig:
     def get_bsc_uat_redeem_link():
         jdc_password = config.get("url", "bsc_uat_redeem_link")
         return jdc_password
-
-

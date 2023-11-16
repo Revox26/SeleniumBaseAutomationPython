@@ -20,6 +20,7 @@ class CompassStarLoginPage(BaseCase):
             "v3": Readconfig.get_v3_csl_url(),
             "v4": Readconfig.get_v4_csl_url(),
             "replica": Readconfig.get_replica_csl_url(),
+            "testing": Readconfig.get_testing_csl_url(),
             "echo": Readconfig.get_echo_csl_url()
         }
 
@@ -27,7 +28,15 @@ class CompassStarLoginPage(BaseCase):
         self.save_cookies(name="cookies.txt")
 
     def compass_star_login_admin(self):
-        self.type(self.username, Readconfig.get_it_dev_username())
+        if self.data == "testing":
+            self.type(self.username, Readconfig.get_it_dev_jech_username())
+        else:
+            self.type(self.username, Readconfig.get_it_dev_username())
+        self.type(self.password, Readconfig.get_password())
+        self.click(self.login_button)
+
+    def compass_star_login_as_jech(self):
+        self.type(self.username, Readconfig.get_it_dev_jech_username())
         self.type(self.password, Readconfig.get_password())
         self.click(self.login_button)
 

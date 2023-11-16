@@ -43,6 +43,7 @@ class PytestRunnerApp:
              "V3 Instance",
              "V4 Instance",
              "Echo Instance",
+             "Testing Instance",
              "Replica Instance"])
 
         self.create_label("Select a browser:")
@@ -311,6 +312,7 @@ class PytestRunnerApp:
             "--data=v3": "V3 Instance",
             "--data=v4": "V4 Instance",
             "--data=echo": "Echo Instance",
+            "--data=testing": "Testing Instance",
             "--data=replica": "Replica Instance"
 
         }

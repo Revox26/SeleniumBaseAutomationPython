@@ -109,7 +109,6 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         self.click(self._select_contract_start_date)
         self.type(self._contract_value, "50000")
         self.type(self._number_of_contractors_per_supplier, "3")
-        self.type(self._priority, "1")
         self.type(self._desired_margin, "3.5")
         self.click(self._add_button)
         self.type(self._link_placeholder, Readconfig.get_bsc_uat_url_t3() + self.var1)
