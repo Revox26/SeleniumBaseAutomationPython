@@ -45,7 +45,10 @@ class SupplierLandLoginPage(BaseCase):
             self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
 
     def supplier_land_login_as_simon(self):
-        self.login(Readconfig.get_admin_simon_user_name(), Readconfig.get_password())
+        if self.data == "testing":
+            self.login("csladmin@email.com", Readconfig.get_password())
+        else:
+            self.login(Readconfig.get_admin_simon_user_name(), Readconfig.get_password())
 
     def open_supplier_land_new_window(self):
         self.get_new_driver()

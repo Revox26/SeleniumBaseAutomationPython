@@ -29,7 +29,7 @@ class CompassStarLoginPage(BaseCase):
 
     def compass_star_login_admin(self):
         if self.data == "testing":
-            self.type(self.username, Readconfig.get_it_dev_jech_username())
+            self.type(self.username, "csladmin@email.com")
         else:
             self.type(self.username, Readconfig.get_it_dev_username())
         self.type(self.password, Readconfig.get_password())
