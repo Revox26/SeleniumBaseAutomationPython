@@ -6,13 +6,17 @@ from utilities.read_excel_sheets import ReadCommsTemplate
 
 logger = get_custom_logger(__name__)
 
-
 class UploadCommunicationsTemplate(
     CompassStarLoginPage,
     ReadCommsTemplate,
     CompassStarCommunicationsTabPage
-
 ):
+
+    def check_and_log_upload_status(self, template_type):
+        if self.is_element_visible(CompassStarCommunicationsTabPage.comms_successfully_upload_alert):
+            logger.info(f"{template_type} template uploaded successfully.")
+        else:
+            logger.error(f"{template_type} template failed to upload.")
 
     @pytest.mark.run(order=0)
     def test_login(self):
@@ -28,15 +32,17 @@ class UploadCommunicationsTemplate(
             'vat': (self.input_company_number_in_vat_return_csv, self.upload_vat_return_template),
             'invoice': (self.input_company_number_in_invoice_approval_csv, self.upload_invoice_approval_template),
             'funding': (self.input_company_number_in_funding_request_csv, self.upload_funding_request_template),
-            'change_of_flat_rate': (self.input_company_number_in_change_of_flat_rate_csv, self.upload_change_of_flat_rate_template),
-
+            'change_of_flat_rate': (
+                self.input_company_number_in_change_of_flat_rate_csv, self.upload_change_of_flat_rate_template),
         }
+
         # Handle the selected template
         if self.var2 in list_of_templates:
             input_method, upload_method = list_of_templates[self.var2]
             input_method(self.var1)
             self.navigate_to_communications_tab()
             upload_method()
+            self.check_and_log_upload_status(self.var2)
 
         elif self.var2 == 'all':
             # Handle the combination of all templates
@@ -44,5 +50,4 @@ class UploadCommunicationsTemplate(
                 input_method(self.var1)
                 self.navigate_to_communications_tab()
                 upload_method()
-
-        logger.info("Communication template uploaded successfully.")
+                self.check_and_log_upload_status(template_type)

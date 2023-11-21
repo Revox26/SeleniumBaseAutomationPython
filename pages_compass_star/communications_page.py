@@ -9,6 +9,8 @@ class CompassStarCommunicationsTabPage(BaseCase):
     send_to_communications_queue = "//button[@id='send-comms-queue']"
     scheduled = "//input[@name='scheduled']"
     send_sms = "//input[@name='send_sms']"
+    comms_not_successfully_upload_alert = "//div[contains(@class,'alert alert-danger')]"
+    comms_successfully_upload_alert = "//div[@class='growl growl-notice growl-medium']"
 
     def navigate_to_communications_tab(self):
         self.click(self.communications_tab)
