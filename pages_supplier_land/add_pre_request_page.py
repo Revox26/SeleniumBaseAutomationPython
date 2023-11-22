@@ -28,6 +28,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
     _pre_request_checkbox = "//label[contains(@class,'no-margin checkboxLabelNoText')]"
     _submit_button = "//button[contains(.,'Submit')]"
     _t3_tick_box = "//label[@for='t3']"
+    _add_pre_request_modal = "//div[@class='modal-header no-border']"
 
     def navigate_to_pre_request(self):
         self.click(self._new_suppliers)
@@ -82,9 +83,8 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
         self.type(self._desired_margin, "3.5")
         self.click(self._add_button)
-        self.sleep(3)
 
-        if self.is_element_present(self._link_placeholder):
+        if self.is_element_present(self._add_pre_request_modal):
             self.type(self._link_placeholder, Readconfig.get_bsc_uat_redeem_link())
             self.click(self._continue_button)
 
