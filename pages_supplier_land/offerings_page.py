@@ -13,6 +13,8 @@ class SupplierLandOfferingsPage(BaseCase):
     enabled_cancel_all = "//button[starts-with(text(),'Cancel All')]"
     offerings_priority = "(//td[.='a few seconds ago']/..//input[@type='text']) | (//td[.='a minute ago']/..//input[@type='text'])"
     pencil = "(//td[.='a few seconds ago']/..//i[@class='fa fa-pencil']) | (//td[.='a minute ago']/..//i[@class='fa fa-pencil'])"
+    offerings_priority1 = "(//td[contains(.,'minutes ago')]/..//input[@type='text'])"
+    pencil1 = "(//td[contains(.,'minutes ago')]/..//i[@class='fa fa-pencil'])"
 
     def navigate_to_offerings(self):
         self.click(self._offerings)
@@ -28,7 +30,10 @@ class SupplierLandOfferingsPage(BaseCase):
         self.type(self._offerings_industry, _get_industry)
         self.press_keys(self._offerings_industry, "\ue015\ue007")
         self.click(self._offerings_search_button)
-        self.click(self._offerings_check_all)
-        self.type(self.offerings_priority, self.var2)
-        self.click(self.pencil)
+        try:
+            self.type(self.offerings_priority, self.var2, timeout=60)
+            self.click(self.pencil)
+        except Exception as e:
+            self.type(self.offerings_priority1, self.var2, timeout=60)
+            self.click(self.pencil1)
         time.sleep(10)

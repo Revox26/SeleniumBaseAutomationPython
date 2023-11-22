@@ -64,7 +64,6 @@ class PytestRunnerApp:
         self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options",
                                                font=("Roboto", 12, "bold"))
         self.additional_text_label.pack()
-
         # Create the additional text box and assign it to a variable
         self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
         self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
@@ -121,21 +120,6 @@ class PytestRunnerApp:
         # Replace with your desired options
         self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
 
-        # Create a Label for additional options (second text box)
-        self.additional_text_var2_label = ttk.Label(self.additional_text_frame, text="Priority",
-                                                    font=("Roboto", 12, "bold"))
-        self.additional_text_var2_label.pack()
-        # Initially hide the label for the additional text box
-        self.additional_text_var2_label.pack_forget()
-
-        # Create the additional text box (second text box) and assign it to a variable
-        self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
-
-
-
-
-
-
     def create_comms_template_dropdown(self):
         def remove_highlight(event):
             event.widget.master.focus_set()
@@ -176,7 +160,6 @@ class PytestRunnerApp:
         self.headless_var.set(0)
         self.final_trace_var.set(0)
         self.comms_template_dropdown_var.set("")
-        self.additional_text_var2_entry.delete(0, 'end')
 
     def update_additional_text_label(self, *args):
         selected_test = self.select_a_test_dropdown_var.get()
@@ -198,17 +181,6 @@ class PytestRunnerApp:
             self.template_dropdown_value.pack()  # Show the second dropdown
         else:
             self.template_dropdown_value.pack_forget()  # Hide the second dropdown
-
-        # Show or hide the additional text box based on the selected test
-        if selected_test == "Add Provisional Pre Request":
-            self.additional_text_var2_label.pack()  # Show the label for the additional text box
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=5)  # Show the additional text box
-        elif selected_test == "Add Confirmed Pre Request":
-            self.additional_text_var2_label.pack()  # Show the label for the additional text box
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=5)  # Show the additional text box
-        else:
-            self.additional_text_var2_label.pack_forget()  # Hide the label for the additional text box
-            self.additional_text_var2_entry.pack_forget()  # Hide the additional text box
 
     def create_text_box(self, frame, label_text):
         label = ttk.Label(frame, text=label_text, font=("Roboto", 12, "bold"))
@@ -274,10 +246,10 @@ class PytestRunnerApp:
         return button
 
     def run_pytest(self):
-        additional_textbox = "--var2=" + self.additional_text_var2_entry.get()
         additional_text = "--var1=" + self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
+        registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration.py --rs -x -q -s"
         new_registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s"
         t3_allocation_to_ready_command = "pytest ..//tests_compass_star/test_t3_allocation_to_ready.py --rs -x -q -s"
         transfer_supplier_command = "pytest ..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s"
@@ -289,15 +261,15 @@ class PytestRunnerApp:
         practice_page_command = "pytest ..//test_runner/practice.py --rs -x -q -s"
 
         test_commands = {
-            "New Registration To Ready": [new_registration_to_ready_command, additional_text, additional_textbox],
-            "Transfer a Supplier": [transfer_supplier_command, additional_text, additional_textbox],
-            "Pass to Due Diligence": [pass_to_due_diligence_command, additional_text, additional_textbox],
-            "Add Provisional Pre Request": [add_provisional_pre_request_command, additional_text, additional_textbox],
-            "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text, additional_textbox],
-            "BSC Order Package": [bsc_order_package_command, additional_text, additional_textbox],
-            "Upload Communications Template": [upload_comms_template_command, additional_text, additional_textbox],
-            "Practice Page": [practice_page_command, additional_text, additional_textbox],
-            "T3 Allocation To Ready": [t3_allocation_to_ready_command, additional_text, additional_textbox]
+            "New Registration To Ready": [new_registration_to_ready_command, additional_text],
+            "Transfer a Supplier": [transfer_supplier_command, additional_text],
+            "Pass to Due Diligence": [pass_to_due_diligence_command, additional_text],
+            "Add Provisional Pre Request": [add_provisional_pre_request_command, additional_text],
+            "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text],
+            "BSC Order Package": [bsc_order_package_command, additional_text],
+            "Upload Communications Template": [upload_comms_template_command, additional_text],
+            "Practice Page": [practice_page_command, additional_text],
+            "T3 Allocation To Ready": [t3_allocation_to_ready_command, additional_text]
         }
 
         # Get the value of the additional dropdown
