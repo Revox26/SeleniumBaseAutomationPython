@@ -9,8 +9,7 @@ class SupplierLandOfferingsPage(BaseCase):
     _offerings_industry = "//input[@placeholder='Please select industry']"
     _offerings_search_button = "//button[contains(.,'Search')]"
     _offerings_check_all = "//label[@for='offer_check_all']"
-    disabled_cancel_all = "//button[@disabled='disabled']"
-    enabled_cancel_all = "//button[starts-with(text(),'Cancel All')]"
+    _cancel_all = "//button[starts-with(text(),'Cancel All')]"
     offerings_priority = "(//td[.='a few seconds ago']/..//input[@type='text']) | (//td[.='a minute ago']/..//input[@type='text'])"
     pencil = "(//td[.='a few seconds ago']/..//i[@class='fa fa-pencil']) | (//td[.='a minute ago']/..//i[@class='fa fa-pencil'])"
     offerings_priority1 = "(//td[contains(., 'minutes ago')]/..//input[@type='text'])[last()]"
@@ -30,10 +29,12 @@ class SupplierLandOfferingsPage(BaseCase):
         self.type(self._offerings_industry, _get_industry)
         self.press_keys(self._offerings_industry, "\ue015\ue007")
         self.click(self._offerings_search_button)
+        time.sleep(1)
+        self.wait_for_element_clickable(self._cancel_all, timeout=60)
         try:
-            self.type(self.offerings_priority, self.var2, timeout=30)
+            self.type(self.offerings_priority, self.var2)
             self.click(self.pencil)
         except Exception as e:
-            self.type(self.offerings_priority1, self.var2, timeout=30)
+            self.type(self.offerings_priority1, self.var2)
             self.click(self.pencil1)
         time.sleep(10)
