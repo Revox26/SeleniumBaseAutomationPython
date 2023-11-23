@@ -15,7 +15,7 @@ class SupplierLandFindCustomerPage(BaseCase):
         process = self.var1
         if self.is_element_present(self._director_preferred_value):
             if not process == "old":
-                self.clear(self._director_preferred_value)
+                self.clear(self._director_preferred_value, timeout=60)
                 self.type(self._director_preferred_value, process)
                 self.click(self._find_customer_proceed)
             if process == "old":

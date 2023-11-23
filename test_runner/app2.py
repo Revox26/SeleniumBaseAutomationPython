@@ -61,9 +61,8 @@ class PytestRunnerApp:
         checkbox_frame.pack(pady=20, padx=10, fill="both")
 
         # Create a Label for additional options
-        self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options",
-                                               font=("Roboto", 12, "bold"))
-        self.additional_text_label.pack()
+        self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options", font=("Roboto", 12, "bold"))
+        self.additional_text_label.pack(anchor="w", padx=8)
 
         # Create the additional text box and assign it to a variable
         self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
@@ -71,70 +70,36 @@ class PytestRunnerApp:
 
         # Inside the LabelFrame, add checkboxes with tooltips
         self.tooltip = None
-        self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame,
-                                                           "Demo Mode",
-                                                           "Slow down and visually see test actions as they occur.",
-                                                           0, 0)
-
-        self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame,
-                                                           "Slow Mode",
-                                                           "Slow down the automation.",
-                                                           0, 1)
-
-        self.report_checkbox_var = self.create_checkbox(checkbox_frame,
-                                                        "Generate Report",
-                                                        "Creates a detailed pytest-html report after tests finish.",
-                                                        0, 2)
-
-        self.screenshot_checkbox_var = self.create_checkbox(checkbox_frame,
-                                                            "Save Screenshot",
-                                                            "Save a screenshot at the end of each test.",
-                                                            1, 0)
-
-        self.incognito_mode_checkbox_var = self.create_checkbox(checkbox_frame,
-                                                                "Incognito Mode",
-                                                                "Enable Chrome's Incognito mode.",
-                                                                1, 1)
-
-        self.start_window_maximize_var = self.create_checkbox(checkbox_frame,
-                                                              "Start Maximized",
-                                                              "Start tests with the browser window maximized.",
-                                                              1, 2)
-        self.dark_mode_var = self.create_checkbox(checkbox_frame,
-                                                  "Dark Mode",
-                                                  "Enable Chrome's Dark mode.",
-                                                  2, 0)
-        self.headless_var = self.create_checkbox(checkbox_frame,
-                                                 "Headless",
-                                                 "Run tests in headless mode.",
-                                                 2, 1)
-        self.final_trace_var = self.create_checkbox(checkbox_frame,
-                                                    "Trace/Debug",
-                                                    "Debug Mode after each test.",
-                                                    2, 2)
+        self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode", "Slow down and visually see test actions as they occur.", 0, 0)
+        self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Slow Mode", "Slow down the automation.", 0, 1)
+        self.report_checkbox_var = self.create_checkbox(checkbox_frame, "Generate Report", "Creates a detailed pytest-html report after tests finish.", 0, 2)
+        self.screenshot_checkbox_var = self.create_checkbox(checkbox_frame, "Save Screenshot", "Save a screenshot at the end of each test.", 1, 0)
+        self.incognito_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Incognito Mode", "Enable Chrome's Incognito mode.", 1, 1)
+        self.start_window_maximize_var = self.create_checkbox(checkbox_frame, "Start Maximized", "Start tests with the browser window maximized.", 1, 2)
+        self.dark_mode_var = self.create_checkbox(checkbox_frame, "Dark Mode", "Enable Chrome's Dark mode.", 2, 0)
+        self.headless_var = self.create_checkbox(checkbox_frame, "Headless", "Run tests in headless mode.", 2, 1)
+        self.final_trace_var = self.create_checkbox(checkbox_frame, "Trace/Debug", "Debug Mode after each test.", 2, 2)
 
         self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
         self.clear_button = self.create_button("Clear", self.clear_fields, bg="blue", fg="white", padx=20)
         self.quit_button = self.create_button("Quit", master.quit, bg="red", fg="white", padx=20)
 
+        # Create a dropdown for types of template
         self.comms_template_dropdown_var, self.template_dropdown_value = self.create_comms_template_dropdown()
-        # Replace with your desired options
         self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
 
         # Create a Label for additional options (second text box)
-        self.additional_text_var2_label = ttk.Label(self.additional_text_frame, text="Priority",
-                                                    font=("Roboto", 12, "bold"))
-        self.additional_text_var2_label.pack()
-        # Initially hide the label for the additional text box
-        self.additional_text_var2_label.pack_forget()
+        self.label_for_priority_var = ttk.Label(self.additional_text_frame, text="Priority", font=("Roboto", 12, "bold"))
+        self.label_for_priority_var.pack()
+        self.label_for_priority_var.pack_forget()
+
+        # Create a Label for upload communications template
+        self.label_for_communications_var = ttk.Label(self.additional_text_frame, text="Type of template", font=("Roboto", 12, "bold"))
+        self.label_for_communications_var.pack()
+        self.label_for_communications_var.pack_forget()
 
         # Create the additional text box (second text box) and assign it to a variable
         self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
-
-
-
-
-
 
     def create_comms_template_dropdown(self):
         def remove_highlight(event):
@@ -183,7 +148,7 @@ class PytestRunnerApp:
         # Define a dictionary that maps test names to label text
         label_texts = {
             "New Registration To Ready": "Director Preferred Yearly Contract Value",
-            "Upload Communications Template": "Company number and type of template",
+            "Upload Communications Template": "Company number",
             "Transfer a Supplier": "Company Name",
             "Pass to Due Diligence": "Company Name",
             "BSC Order Package": "Company Number from CH",
@@ -195,24 +160,25 @@ class PytestRunnerApp:
         self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
 
         if selected_test == "Upload Communications Template":
+            self.label_for_communications_var.pack(anchor="w", padx=8, pady=6)
             self.template_dropdown_value.pack()  # Show the second dropdown
+
         else:
             self.template_dropdown_value.pack_forget()  # Hide the second dropdown
+            self.label_for_communications_var.pack_forget()
 
         # Show or hide the additional text box based on the selected test
-        if selected_test == "Add Provisional Pre Request":
-            self.additional_text_var2_label.pack()  # Show the label for the additional text box
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=5)  # Show the additional text box
-        elif selected_test == "Add Confirmed Pre Request":
-            self.additional_text_var2_label.pack()  # Show the label for the additional text box
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=5)  # Show the additional text box
+        if selected_test in ["Add Provisional Pre Request", "Add Confirmed Pre Request"]:
+            self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
+            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
         else:
-            self.additional_text_var2_label.pack_forget()  # Hide the label for the additional text box
-            self.additional_text_var2_entry.pack_forget()  # Hide the additional text box
+            self.label_for_priority_var.pack_forget()
+            self.additional_text_var2_entry.pack_forget()
 
     def create_text_box(self, frame, label_text):
         label = ttk.Label(frame, text=label_text, font=("Roboto", 12, "bold"))
-        label.pack(padx=0, pady=0)
+        label.pack()
+        label.place(anchor="center")
         text_var = tk.StringVar()
         text_box = ttk.Entry(frame, textvariable=text_var, font=("Roboto", 18))
         text_box.pack(fill="both", padx=6, pady=5)
@@ -233,13 +199,12 @@ class PytestRunnerApp:
             event.widget.master.focus_set()
 
         dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Roboto", 17),
-                                state="readonly")
+        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Roboto", 17), state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
 
         # Calculate the width based on the longest item
-        # max_item_width = max(len(item) for item in values)
-        # dropdown.config(width=max_item_width)
+        max_item_width = max(len(item) for item in values)
+        dropdown.config(width=max_item_width)
 
         dropdown.config(width=27)
 

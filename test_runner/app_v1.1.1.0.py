@@ -62,7 +62,7 @@ class PytestRunnerApp:
 
         # Create a Label for additional options
         self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options", font=("Roboto", 12, "bold"))
-        self.additional_text_label.pack(anchor="w", padx=8)
+        self.additional_text_label.pack()
 
         # Create the additional text box and assign it to a variable
         self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
@@ -160,7 +160,7 @@ class PytestRunnerApp:
         self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
 
         if selected_test == "Upload Communications Template":
-            self.label_for_communications_var.pack(anchor="w", padx=8, pady=6)
+            self.label_for_communications_var.pack()
             self.template_dropdown_value.pack()  # Show the second dropdown
 
         else:
@@ -169,8 +169,8 @@ class PytestRunnerApp:
 
         # Show or hide the additional text box based on the selected test
         if selected_test in ["Add Provisional Pre Request", "Add Confirmed Pre Request"]:
-            self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
+            self.label_for_priority_var.pack()
+            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=5)
         else:
             self.label_for_priority_var.pack_forget()
             self.additional_text_var2_entry.pack_forget()
@@ -178,7 +178,6 @@ class PytestRunnerApp:
     def create_text_box(self, frame, label_text):
         label = ttk.Label(frame, text=label_text, font=("Roboto", 12, "bold"))
         label.pack()
-        label.place(anchor="center")
         text_var = tk.StringVar()
         text_box = ttk.Entry(frame, textvariable=text_var, font=("Roboto", 18))
         text_box.pack(fill="both", padx=6, pady=5)

@@ -397,7 +397,7 @@ data: [
 
 {
 name: 'Passed',
-y: 3,
+y: 6,
 color: '#84d474'
 },
 
@@ -415,7 +415,7 @@ color: '#efd8b4'
 
 {
 name: 'Failed',
-y: 0,
+y: 1,
 color: '#f17476'
 },
 
@@ -424,10 +424,10 @@ color: '#f17476'
             });
             </script>
             
-    <p>Report generated on 21-Nov-2023 at 16:15:16 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
+    <p>Report generated on 22-Nov-2023 at 18:41:35 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
     <h2>Summary</h2>
-    <p>3 tests ran in 122.32 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
+    <p>7 tests ran in 230.07 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">6 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -438,36 +438,82 @@ color: '#f17476'
           <th>Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_set_director_to_ready</td>
+          <td class="col-duration">47.22</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;tests_compass_star.test_invitation_to_registration_new.InvitationToReadyNew testMethod=test_set_director_to_ready&gt;<br/>dropdown_selector = &quot;//select[@name=&#x27;status&#x27;]&quot;, option = &#x27;Ready&#x27;, dropdown_by = &#x27;xpath&#x27;, option_by = &#x27;text&#x27;<br/>timeout = 7<br/><br/>    def __select_option(<br/>        self,<br/>        dropdown_selector,<br/>        option,<br/>        dropdown_by=&quot;css selector&quot;,<br/>        option_by=&quot;text&quot;,<br/>        timeout=None,<br/>    ):<br/>        &quot;&quot;&quot;Selects an HTML &lt;select&gt; option by specification.<br/>        Option specifications are by &quot;text&quot;, &quot;index&quot;, or &quot;value&quot;.<br/>        Defaults to &quot;text&quot; if option_by is unspecified or unknown.&quot;&quot;&quot;<br/>        from selenium.webdriver.support.ui import Select<br/>    <br/>        self.__check_scope()<br/>        if not timeout:<br/>            timeout = settings.SMALL_TIMEOUT<br/>        if self.timeout_multiplier and timeout == settings.SMALL_TIMEOUT:<br/>            timeout = self.__get_new_timeout(timeout)<br/>        dropdown_selector, dropdown_by = self.__recalculate_selector(<br/>            dropdown_selector, dropdown_by<br/>        )<br/>        self.wait_for_ready_state_complete()<br/>        element = self.wait_for_element_present(<br/>            dropdown_selector, by=dropdown_by, timeout=timeout<br/>        )<br/>        try:<br/>            element = self.wait_for_element_clickable(<br/>                dropdown_selector, by=dropdown_by, timeout=1.8<br/>            )<br/>        except Exception:<br/>            self.wait_for_ready_state_complete()<br/>        if self.is_element_visible(dropdown_selector, by=dropdown_by):<br/>            self.__demo_mode_highlight_if_active(<br/>                dropdown_selector, dropdown_by<br/>            )<br/>        pre_action_url = None<br/>        try:<br/>            pre_action_url = self.driver.current_url<br/>        except Exception:<br/>            pass<br/>        pre_window_count = len(self.driver.window_handles)<br/>        try:<br/>            if option_by == &quot;index&quot;:<br/>                Select(element).select_by_index(option)<br/>            elif option_by == &quot;value&quot;:<br/>                Select(element).select_by_value(option)<br/>            else:<br/>                Select(element).select_by_visible_text(option)<br/>            time.sleep(0.05)<br/>&gt;           self.wait_for_ready_state_complete()<br/><br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:2995: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:4346: in wait_for_ready_state_complete<br/>    self._check_browser()<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;tests_compass_star.test_invitation_to_registration_new.InvitationToReadyNew testMethod=test_set_director_to_ready&gt;<br/><br/>    def _check_browser(self):<br/>        &quot;&quot;&quot;This method raises an exception if the active window is closed.<br/>        (This provides a much cleaner exception message in this situation.)&quot;&quot;&quot;<br/>        active_window = None<br/>        try:<br/>            active_window = self.driver.current_window_handle  # Fails if None<br/>        except Exception:<br/>            pass<br/>        if not active_window:<br/>&gt;           raise NoSuchWindowException(&quot;Active window was already closed!&quot;)<br/><span class="error">E           selenium.common.exceptions.NoSuchWindowException: Message: Active window was already closed!</span><br/><br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:8734: NoSuchWindowException<br/><br/>During handling of the above exception, another exception occurred:<br/><br/>self = &lt;tests_compass_star.test_invitation_to_registration_new.InvitationToReadyNew testMethod=test_set_director_to_ready&gt;<br/><br/>    @pytest.mark.run(order=7)<br/>    def test_set_director_to_ready(self):<br/>        logger.info(&quot;Setting company status to ready...&quot;)<br/>        self.csl_log_out()<br/>        self.compass_star_login_admin()<br/>        self.view_documents()<br/>        self.set_status_to_offered()<br/>&gt;       self.set_supplier_status_to_ready()<br/><br/>..\tests_compass_star\test_invitation_to_registration_new.py:136: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>..\pages_compass_star\suppliers_page.py:27: in set_supplier_status_to_ready<br/>    self.select_option_by_text(self.supplier_status, &quot;Ready&quot;)<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:3089: in select_option_by_text<br/>    self.__select_option(<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:2998: in __select_option<br/>    self.wait_for_ready_state_complete()<br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:4346: in wait_for_ready_state_complete<br/>    self._check_browser()<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;tests_compass_star.test_invitation_to_registration_new.InvitationToReadyNew testMethod=test_set_director_to_ready&gt;<br/><br/>    def _check_browser(self):<br/>        &quot;&quot;&quot;This method raises an exception if the active window is closed.<br/>        (This provides a much cleaner exception message in this situation.)&quot;&quot;&quot;<br/>        active_window = None<br/>        try:<br/>            active_window = self.driver.current_window_handle  # Fails if None<br/>        except Exception:<br/>            pass<br/>        if not active_window:<br/>&gt;           raise NoSuchWindowException(&quot;Active window was already closed!&quot;)<br/><span class="error">E           selenium.common.exceptions.NoSuchWindowException: Message: Active window was already closed!</span><br/><br/>..\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py:8734: NoSuchWindowException<br/> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:131 Setting company status to ready...<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests_compass_star/test_transfer_a_supplier.py::TransferSupplier::test_login</td>
-          <td class="col-duration">24.86</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/directors?sort=created_at&amp;order=desc" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_login_1_0.png" target="_blank">Screenshot</a> </td></tr>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_login</td>
+          <td class="col-duration">27.94</td>
+          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/directors?sort=created_at&amp;order=desc" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_login_1_0.png" target="_blank">Screenshot</a> </td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="image"><a href="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_login_1_0.png"><img src="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_login_1_0.png"/></a></div>
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_transfer_a_supplier:test_transfer_a_supplier.py:21 Starting the Compass Star login test as admin...
-[32mINFO    [0m tests_compass_star.test_transfer_a_supplier:test_transfer_a_supplier.py:24 Compass Star login as admin completed successfully.<br/></div></td></tr></tbody>
+            <div class="image"><a href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_login_1_0.png"><img src="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_login_1_0.png"/></a></div>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:51 Starting the Compass Star login test as admin...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:54 Compass Star login as admin completed successfully.<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests_compass_star/test_transfer_a_supplier.py::TransferSupplier::test_check_if_already_have_vat_reg_and_auth_code</td>
-          <td class="col-duration">26.06</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/company/details/79774" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_check_if_already_have_vat_reg_and_auth_code_1_0.png" target="_blank">Screenshot</a> </td></tr>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_navigate_to_invite_director</td>
+          <td class="col-duration">9.31</td>
+          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/director/invite/link/8jsZruasVra7badeZBfC" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_navigate_to_invite_director_1_0.png" target="_blank">Screenshot</a> </td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="image"><a href="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_check_if_already_have_vat_reg_and_auth_code_1_0.png"><img src="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_check_if_already_have_vat_reg_and_auth_code_1_0.png"/></a></div>
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_transfer_a_supplier:test_transfer_a_supplier.py:28 Checking if vat reg and auth code already exist...
-[32mINFO    [0m tests_compass_star.test_transfer_a_supplier:test_transfer_a_supplier.py:32 VAT reg and auth code already checked.<br/></div></td></tr></tbody>
+            <div class="image"><a href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_navigate_to_invite_director_1_0.png"><img src="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_navigate_to_invite_director_1_0.png"/></a></div>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:58 Navigating to the invite director page...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:62 Invitation link has been generated successfully<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests_compass_star/test_transfer_a_supplier.py::TransferSupplier::test_transfer_the_supplier_to_confirmed_pre_request</td>
-          <td class="col-duration">71.27</td>
-          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/pre-request-list?provisional=provisional&amp;confirmed=confirmed" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_transfer_the_supplier_to_confirmed_pre_request_1_0.png" target="_blank">Screenshot</a> </td></tr>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_open_invitation_link</td>
+          <td class="col-duration">14.41</td>
+          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/director/invite/8jsZruasVra7badeZBfC?agree=1" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_open_invitation_link_1_0.png" target="_blank">Screenshot</a> </td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="image"><a href="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_transfer_the_supplier_to_confirmed_pre_request_1_0.png"><img src="assets/tests_compass_star_test_transfer_a_supplier.py__TransferSupplier__test_transfer_the_supplier_to_confirmed_pre_request_1_0.png"/></a></div>
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_transfer_a_supplier:test_transfer_a_supplier.py:36 Proceeding to transfer the supplier to confirmed pre-request...
-[32mINFO    [0m tests_compass_star.test_transfer_a_supplier:test_transfer_a_supplier.py:39 Supplier transfer to confirmed pre-request completed.<br/></div></td></tr></tbody></table></body></html><p></p><div><b>Status:</b> Test Run Complete: <b>Success!</b> (All tests passed)</div><p></p>
+            <div class="image"><a href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_open_invitation_link_1_0.png"><img src="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_open_invitation_link_1_0.png"/></a></div>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:66 Opening the invitation link...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:70 Invitation link opened and video skipped successfully.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_registering_as_director</td>
+          <td class="col-duration">64.04</td>
+          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/docs/191038" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_registering_as_director_1_0.png" target="_blank">Screenshot</a> </td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="image"><a href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_registering_as_director_1_0.png"><img src="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_registering_as_director_1_0.png"/></a></div>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:74 Registering as director...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:87 Director registration completed successfully.
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:91 Starting to accept the ID and set the status to accepted...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:94 Director status successfully set to accepted<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_complete_with_bsc</td>
+          <td class="col-duration">45.39</td>
+          <td class="col-links"><a class="url" href="https://aws-staging.compassstarltd.com/director/myapplication" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_complete_with_bsc_1_0.png" target="_blank">Screenshot</a> </td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="image"><a href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_complete_with_bsc_1_0.png"><img src="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_complete_with_bsc_1_0.png"/></a></div>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:106 Allocating company using director account...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:108 Allocation of the company using the director&#x27;s account was successful.
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:110 Completing the process with BSC...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:117 BSC process completed successfully.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_proceed_to_complete_with_supplier_land</td>
+          <td class="col-duration">20.54</td>
+          <td class="col-links"><a class="url" href="https://aws-staging.supplierland.com/find-a-customer#/confirmation" target="_blank">URL</a> <a class="image" href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_proceed_to_complete_with_supplier_land_1_0.png" target="_blank">Screenshot</a> </td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="image"><a href="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_proceed_to_complete_with_supplier_land_1_0.png"><img src="assets/tests_compass_star_test_invitation_to_registration_new.py__InvitationToReadyNew__test_proceed_to_complete_with_supplier_land_1_0.png"/></a></div>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:124 Completing the process with Supplier Land...
+[32mINFO    [0m tests_compass_star.test_invitation_to_registration_new:test_invitation_to_registration_new.py:127 Supplier Land process completed successfully.<br/></div></td></tr></tbody></table></body></html><p></p><div><b>Status:</b> Test Run Complete: <b>1 test failed!</b> --- (<b><a href="latest_logs/">See latest logs for details</a></b>)</div><p></p>

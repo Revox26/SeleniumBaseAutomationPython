@@ -24,17 +24,13 @@ class CompassStarCommunicationsTabPage(BaseCase):
         self.click(self.send_to_communications_queue)
 
     def upload_vat_return_template(self):
-        self.__upload_template__("Vat Return ( Requires CSV )", "Upload Vat Return",
-                                 "..//comms_templates/Vat_Return.csv")
+        self.__upload_template__("Vat Return ( Requires CSV )", "Upload Vat Return", "..//comms_templates/Vat_Return.csv")
 
     def upload_invoice_approval_template(self):
-        self.__upload_template__("Invoice Approval ( Requires CSV )", "Upload Invoice Approval",
-                                 "..//comms_templates/Invoice_Approval.csv")
+        self.__upload_template__("Invoice Approval ( Requires CSV )", "Upload Invoice Approval", "..//comms_templates/Invoice_Approval.csv")
 
     def upload_funding_request_template(self):
-        self.__upload_template__("Funding Request ( Requires CSV )", "Upload Funding Request",
-                                 "..//comms_templates/Funding_Request.csv")
+        self.__upload_template__("Funding Request ( Requires CSV )", "Upload Funding Request", "..//comms_templates/Funding_Request.csv")
 
     def upload_change_of_flat_rate_template(self):
-        self.__upload_template__("Change Of Flat Rate VAT Business Type ( Requires CSV )", "Upload Change of Flat Rate",
-                                 "..//comms_templates/Change_Of_Flat_Rate_VAT_Business_Type.csv")
+        self.__upload_template__("Change Of Flat Rate VAT Business Type ( Requires CSV )", "Upload Change of Flat Rate", "..//comms_templates/Change_Of_Flat_Rate_VAT_Business_Type.csv")
