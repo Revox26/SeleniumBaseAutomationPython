@@ -15,22 +15,22 @@ class CompassStarCommunicationsTabPage(BaseCase):
     def navigate_to_communications_tab(self):
         self.click(self.communications_tab)
 
-    def __upload_template__(self, template_name, note, template_path):
+    def __upload_template__(self, template_name, template_path, note, ):
         self.select_option_by_text(self.select_template, template_name)
-        self.type(self.input_comms_note, note)
         self.choose_file(self._upload_csv_file, template_path)
+        self.type(self.input_comms_note, note)
         self.click(self.scheduled)
         self.click(self.send_sms)
         self.click(self.send_to_communications_queue)
 
     def upload_vat_return_template(self):
-        self.__upload_template__("Vat Return ( Requires CSV )", "Upload Vat Return", "..//comms_templates/Vat_Return.csv")
+        self.__upload_template__("Vat Return ( Requires CSV )", "..//comms_templates/Vat_Return.csv", "Upload Vat Return")
 
     def upload_invoice_approval_template(self):
-        self.__upload_template__("Invoice Approval ( Requires CSV )", "Upload Invoice Approval", "..//comms_templates/Invoice_Approval.csv")
+        self.__upload_template__("Invoice Approval ( Requires CSV )", "..//comms_templates/Invoice_Approval.csv", "Upload Invoice Approval")
 
     def upload_funding_request_template(self):
-        self.__upload_template__("Funding Request ( Requires CSV )", "Upload Funding Request", "..//comms_templates/Funding_Request.csv")
+        self.__upload_template__("Funding Request ( Requires CSV )", "..//comms_templates/Funding_Request.csv", "Upload Funding Request")
 
     def upload_change_of_flat_rate_template(self):
-        self.__upload_template__("Change Of Flat Rate VAT Business Type ( Requires CSV )", "Upload Change of Flat Rate", "..//comms_templates/Change_Of_Flat_Rate_VAT_Business_Type.csv")
+        self.__upload_template__("Change Of Flat Rate VAT Business Type ( Requires CSV )", "..//comms_templates/Change_Of_Flat_Rate_VAT_Business_Type.csv", "Upload Change of Flat Rate")
