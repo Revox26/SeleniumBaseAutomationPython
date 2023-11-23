@@ -68,6 +68,23 @@ class PytestRunnerApp:
         self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
         self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
 
+        # Create a dropdown for types of template
+        self.comms_template_dropdown_var, self.template_dropdown_value = self.create_comms_template_dropdown()
+        self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
+
+        # Create a Label for priority (second text box)
+        self.label_for_priority_var = ttk.Label(self.additional_text_frame, text="Priority", font=("Roboto", 12, "bold"))
+        self.label_for_priority_var.pack()
+        self.label_for_priority_var.pack_forget()
+
+        # Create a Label for upload communications template
+        self.label_for_communications_var = ttk.Label(self.additional_text_frame, text="Type of template", font=("Roboto", 12, "bold"))
+        self.label_for_communications_var.pack()
+        self.label_for_communications_var.pack_forget()
+
+        # Create the additional text box (second text box) and assign it to a variable
+        self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
+
         # Inside the LabelFrame, add checkboxes with tooltips
         self.tooltip = None
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode", "Slow down and visually see test actions as they occur.", 0, 0)
@@ -82,24 +99,7 @@ class PytestRunnerApp:
 
         self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
         self.clear_button = self.create_button("Clear", self.clear_fields, bg="blue", fg="white", padx=20)
-        self.quit_button = self.create_button("Quit", master.quit, bg="red", fg="white", padx=20)
-
-        # Create a dropdown for types of template
-        self.comms_template_dropdown_var, self.template_dropdown_value = self.create_comms_template_dropdown()
-        self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
-
-        # Create a Label for additional options (second text box)
-        self.label_for_priority_var = ttk.Label(self.additional_text_frame, text="Priority", font=("Roboto", 12, "bold"))
-        self.label_for_priority_var.pack()
-        self.label_for_priority_var.pack_forget()
-
-        # Create a Label for upload communications template
-        self.label_for_communications_var = ttk.Label(self.additional_text_frame, text="Type of template", font=("Roboto", 12, "bold"))
-        self.label_for_communications_var.pack()
-        self.label_for_communications_var.pack_forget()
-
-        # Create the additional text box (second text box) and assign it to a variable
-        self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
+        self.quit_button = self.create_button("Exit", master.quit, bg="red", fg="white", padx=20)
 
     def create_comms_template_dropdown(self):
         def remove_highlight(event):
@@ -117,10 +117,8 @@ class PytestRunnerApp:
         values = list(template_values.keys())
 
         dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values,
-                                font=("Roboto", 18), state="readonly")
+        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
         dropdown.pack(fill="both", padx=10, pady=5)
-
         dropdown.config(width=26)
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var, dropdown
@@ -205,7 +203,6 @@ class PytestRunnerApp:
         # Calculate the width based on the longest item
         max_item_width = max(len(item) for item in values)
         dropdown.config(width=max_item_width)
-
         dropdown.config(width=27)
 
         dropdown.bind("<FocusIn>", remove_highlight)
@@ -239,30 +236,20 @@ class PytestRunnerApp:
         return button
 
     def run_pytest(self):
-        additional_textbox = "--var2=" + self.additional_text_var2_entry.get()
-        additional_text = "--var1=" + self.additional_text_var.get()
+        additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
+        additional_text_var1 = "--var1=" + self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
-        new_registration_to_ready_command = "pytest ..//tests_compass_star/test_invitation_to_registration_new.py --rs -x -q -s"
-        t3_allocation_to_ready_command = "pytest ..//tests_compass_star/test_t3_allocation_to_ready.py --rs -x -q -s"
-        transfer_supplier_command = "pytest ..//tests_compass_star/test_transfer_a_supplier.py --rs -x -q -s"
-        pass_to_due_diligence_command = "pytest ..//tests_supplier_land/test_pass_to_due_diligence.py --rs -x -q -s"
-        add_provisional_pre_request_command = "pytest ..//tests_supplier_land/test_add_provisional_pre_request.py --rs -x -q -s"
-        add_confirmed_pre_request_command = "pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py --rs -x -q -s"
-        bsc_order_package_command = "pytest ..//tests_bsc/test_bsc_redeem_package.py --rs -x -q -s"
-        upload_comms_template_command = "pytest ..//tests_compass_star/test_upload_comms_template.py --rs -x -q -s"
-        practice_page_command = "pytest ..//test_runner/practice.py --rs -x -q -s"
-
         test_commands = {
-            "New Registration To Ready": [new_registration_to_ready_command, additional_text, additional_textbox],
-            "Transfer a Supplier": [transfer_supplier_command, additional_text, additional_textbox],
-            "Pass to Due Diligence": [pass_to_due_diligence_command, additional_text, additional_textbox],
-            "Add Provisional Pre Request": [add_provisional_pre_request_command, additional_text, additional_textbox],
-            "Add Confirmed Pre Request": [add_confirmed_pre_request_command, additional_text, additional_textbox],
-            "BSC Order Package": [bsc_order_package_command, additional_text, additional_textbox],
-            "Upload Communications Template": [upload_comms_template_command, additional_text, additional_textbox],
-            "Practice Page": [practice_page_command, additional_text, additional_textbox],
-            "T3 Allocation To Ready": [t3_allocation_to_ready_command, additional_text, additional_textbox]
+            "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Transfer a Supplier": [f"pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Pass to Due Diligence": [f"pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Upload Communications Template": [f"pytest ..//tests_compass_star/test_upload_comms_template.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
         }
 
         # Get the value of the additional dropdown
