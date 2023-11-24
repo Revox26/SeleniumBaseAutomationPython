@@ -72,10 +72,6 @@ class PytestRunnerApp:
         self.comms_template_dropdown_var, self.template_dropdown_value = self.create_comms_template_dropdown()
         self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
 
-        # Create a dropdown for email credentials
-        self.email_credentials_dropdown_var, self.email_credentials_value = self.create_email_credentials_dropdown()
-        self.email_credentials_value.pack_forget()  # Initially hide the second dropdown
-
         # Create a Label for priority (second text box)
         self.label_for_priority_var = ttk.Label(self.additional_text_frame, text="Priority", font=("Roboto", 12, "bold"))
         self.label_for_priority_var.pack()
@@ -85,11 +81,6 @@ class PytestRunnerApp:
         self.label_for_communications_var = ttk.Label(self.additional_text_frame, text="Type of template", font=("Roboto", 12, "bold"))
         self.label_for_communications_var.pack()
         self.label_for_communications_var.pack_forget()
-
-        # Create a Label for upload communications template
-        self.label_for_email_credentials_var = ttk.Label(self.additional_text_frame, text="Email Credentials", font=("Roboto", 12, "bold"))
-        self.label_for_email_credentials_var.pack()
-        self.label_for_email_credentials_var.pack_forget()
 
         # Create the additional text box (second text box) and assign it to a variable
         self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
@@ -132,25 +123,6 @@ class PytestRunnerApp:
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var, dropdown
 
-    def create_email_credentials_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
-
-        list_of_email_credentials = {
-            "Gmail": "--var2=gmail",
-            "Outlook": "--var2=outlook",
-
-        }
-
-        values = list(list_of_email_credentials.keys())
-
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
-
     def clear_fields(self):
         # Clear all the fields
         self.select_a_test_dropdown_var.set("")
@@ -167,7 +139,6 @@ class PytestRunnerApp:
         self.headless_var.set(0)
         self.final_trace_var.set(0)
         self.comms_template_dropdown_var.set("")
-        self.email_credentials_dropdown_var.set("")
         self.additional_text_var2_entry.delete(0, 'end')
 
     def update_additional_text_label(self, *args):
@@ -193,14 +164,6 @@ class PytestRunnerApp:
         else:
             self.template_dropdown_value.pack_forget()  # Hide the second dropdown
             self.label_for_communications_var.pack_forget()
-
-        if selected_test == "BSC Order Package":
-            self.label_for_email_credentials_var.pack(anchor="w", padx=8, pady=6)
-            self.email_credentials_value.pack()  # Show the second dropdown
-
-        else:
-            self.label_for_email_credentials_var.pack_forget()  # Hide the second dropdown
-            self.email_credentials_value.pack_forget()
 
         # Show or hide the additional text box based on the selected test
         if selected_test in ["Add Provisional Pre Request", "Add Confirmed Pre Request"]:
@@ -289,26 +252,21 @@ class PytestRunnerApp:
             "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
         }
 
-        # Get the value of the comms template dropdown
-        additional_dropdown_value_for_comms = self.comms_template_dropdown_var.get()
-        option_values_for_comms_dropdown = {
+        # Get the value of the additional dropdown
+        additional_dropdown_value = self.comms_template_dropdown_var.get()
+
+        option_values = {
             "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
             "Invoice Approval": "--var2=invoice",
             "Funding Request": "--var2=funding",
             "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
-        }
-        option_values_for_email_credentials_dropdown = {
-            "Gmail": "--var2=gmail",
-            "Outlook": "--var2=outlook",
-        }
 
-        additional_dropdown_value_for_email_credentials = self.email_credentials_dropdown_var.get()
+        }
 
         if selected_test in test_commands:
             pytest_command = test_commands[selected_test]
-            pytest_command.append(option_values_for_comms_dropdown.get(additional_dropdown_value_for_comms, ""))  # Get the corresponding option
-            pytest_command.append(option_values_for_email_credentials_dropdown.get(additional_dropdown_value_for_email_credentials, ""))  # Get the corresponding option
+            pytest_command.append(option_values.get(additional_dropdown_value, ""))  # Get the corresponding option
         else:
             print("Please Select a Test")
 

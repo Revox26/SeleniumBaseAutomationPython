@@ -65,22 +65,28 @@ class BscOpenOrdersPage(BaseCase):
         self.click(self.transfer_company_button)
         self.assert_element(self.user_registration_saved_successfully, timeout=60)
 
-    def email_credentials_tab(self):
+    def transmit_email_provider(self, incoming_host, incoming_email, incoming_password, outgoing_smtp_host, outgoing_smtp_email, outgoing_smtp_password):
         # INCOMING
         self.click(self.email_credentials_page)
         self.click(self.incoming_type)
         self.click(self.select_imap)
-        self.type(self.incoming_host, "imap.gmail.com")
+        self.type(self.incoming_host, incoming_host)
         self.type(self.incoming_port, "993")
-        self.type(self.incoming_email, "richiesorhento@gmail.com")
-        self.type(self.incoming_password, "toue pqeq upuz oxbc")
+        self.type(self.incoming_email, incoming_email)
+        self.type(self.incoming_password, incoming_password)
 
         # OUTGOING
-        self.type(self.outgoing_smptp_host, "smtp.gmail.com")
+        self.type(self.outgoing_smptp_host, outgoing_smtp_host)
         self.type(self.outgoing_smtp_port, "587")
         self.click(self.outgoing_smtp_encryption)
         self.click(self.select_tls_encryption)
-        self.type(self.outgoing_smptp_email, "richiesorhento@gmail.com")
-        self.type(self.outgoing_smtp_password, "toue pqeq upuz oxbc")
+        self.type(self.outgoing_smptp_email, outgoing_smtp_email)
+        self.type(self.outgoing_smtp_password, outgoing_smtp_password)
         self.click(self.save_button_email_credentials)
         self.assert_element(self.email_credentials_successfully_saved, timeout=60)
+
+    def transmit_gmail_credentials(self):
+        self.transmit_email_provider("imap.gmail.com", "richiesorhento@gmail.com", "toue pqeq upuz oxbc", "smtp.gmail.com", "richiesorhento@gmail.com", "toue pqeq upuz oxbc")
+
+    def transmit_outlook_credentials(self):
+        self.transmit_email_provider("outlook.office365.com", "rcharddpinili@outlook.com", "@Test123456", "smtp-mail.outlook.com", "rcharddpinili@outlook.com", "@Test123456")

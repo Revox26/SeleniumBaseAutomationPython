@@ -397,7 +397,7 @@ data: [
 
 {
 name: 'Passed',
-y: 4,
+y: 2,
 color: '#84d474'
 },
 
@@ -424,10 +424,10 @@ color: '#f17476'
             });
             </script>
             
-    <p>Report generated on 23-Nov-2023 at 18:39:04 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
+    <p>Report generated on 24-Nov-2023 at 19:01:46 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
     <h2>Summary</h2>
-    <p>4 tests ran in 90.34 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">4 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
+    <p>2 tests ran in 175.40 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">2 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -441,44 +441,22 @@ color: '#f17476'
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests_supplier_land/test_add_confirmed_pre_request.py::AddConfirmedPreRequest::test_login</td>
-          <td class="col-duration">16.03</td>
+          <td class="col-name">tests_bsc/test_bsc_redeem_package.py::TestBscRedeemPackage::test_open_uat_redeem_url</td>
+          <td class="col-duration">65.75</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:20 Starting the login test as intermediary...
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:23 Login as intermediary completed successfully.<br/></div></td></tr></tbody>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     tests_bsc.test_bsc_redeem_package:test_bsc_redeem_package.py:23 Opening the UAT redeem URL...
+INFO     tests_bsc.test_bsc_redeem_package:test_bsc_redeem_package.py:25 Providing the following information...
+INFO     tests_bsc.test_bsc_redeem_package:test_bsc_redeem_package.py:27 Creating BSC account...
+INFO     tests_bsc.test_bsc_redeem_package:test_bsc_redeem_package.py:30 BSC payment has been processed successfully.<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests_supplier_land/test_add_confirmed_pre_request.py::AddConfirmedPreRequest::test_navigate_to_pre_request</td>
-          <td class="col-duration">11.39</td>
+          <td class="col-name">tests_bsc/test_bsc_redeem_package.py::TestBscRedeemPackage::test_login_bsc_uat_url</td>
+          <td class="col-duration">109.47</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:27 Navigating to the pre-request page...
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:29 Navigated to pre-request page successfully.<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">tests_supplier_land/test_add_confirmed_pre_request.py::AddConfirmedPreRequest::test_pre_request_fields</td>
-          <td class="col-duration">23.17</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:33 Adding new pre-request fields...
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:36 Pre-request submitted successfully.<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">tests_supplier_land/test_add_confirmed_pre_request.py::AddConfirmedPreRequest::test_search_company_in_offerings</td>
-          <td class="col-duration">39.62</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:40 Logging in as George...
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:44 Login as George completed successfully.
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:46 Navigating to the offerings page...
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:48 Navigated to offerings page successfully.
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:50 Searching for a company in offerings...
-INFO     tests_supplier_land.test_add_confirmed_pre_request:test_add_confirmed_pre_request.py:52 Company search in offerings completed.<br/></div></td></tr></tbody></table></body></html><p></p><div><b>Status:</b> Test Run Complete: <b>Success!</b> (All tests passed)</div><p></p>
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     tests_bsc.test_bsc_redeem_package:test_bsc_redeem_package.py:34 Logging in to BSC UAT URL as Jdctest...
+INFO     tests_bsc.test_bsc_redeem_package:test_bsc_redeem_package.py:42 BSC company and email transmitted successfully<br/></div></td></tr></tbody></table></body></html><p></p><div><b>Status:</b> Test Run Complete: <b>Success!</b> (All tests passed)</div><p></p>

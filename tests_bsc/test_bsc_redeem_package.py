@@ -35,5 +35,8 @@ class TestBscRedeemPackage(
         self.login_bsc_uat_url()
         self.manage_orders()
         self.transfer_company_tab()
-        self.email_credentials_tab()
+        if self.var2 == "gmail":
+            self.transmit_gmail_credentials()
+        elif self.var2 == "outlook":
+            self.transmit_outlook_credentials()
         logger.info("BSC company and email transmitted successfully")
