@@ -98,6 +98,12 @@ class Readconfig:
         delta_url = config.get("url", "delta_csl_url")
         return delta_url
 
+    # Destibrom URL
+    @staticmethod
+    def get_destibrom_v1_url():
+        destibrom_url = config.get("url", "destibrom_v1")
+        return destibrom_url
+
     # BSC URL
     @staticmethod
     def get_bsc_uat_url():

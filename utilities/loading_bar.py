@@ -12,7 +12,7 @@ def updt(total, progress):
     if progress >= 1.:
         progress, status = 1, ""
     block = int(round(barLength * progress))
-    text = "[{}] {:.0f}% {}".format(
+    text = "Processing [{}] {:.0f}% {}".format(
         "🟨" * block + "-" * (barLength - block), round(progress * 100, 0),
         status)
     text += "\n"

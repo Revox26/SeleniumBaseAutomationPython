@@ -85,7 +85,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
         self.click(self._add_button)
 
         if self.is_element_present(self._add_pre_request_modal):
-            self.type(self._link_placeholder, Readconfig.get_bsc_uat_redeem_link())
+            self.type(self._link_placeholder, Readconfig.get_bsc_uat_redeem_link(), timeout=60)
             self.click(self._continue_button)
 
     def t3_add_pre_request_fields(self):
