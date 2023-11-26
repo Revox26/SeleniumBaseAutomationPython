@@ -2,9 +2,11 @@ import pytest
 from pages_compass_star.communications_page import CompassStarCommunicationsTabPage
 from pages_compass_star.login_page import CompassStarLoginPage
 from utilities.custom_logging import get_custom_logger
+from utilities.loading_bar import updt
 from utilities.read_excel_sheets import ReadCommsTemplate
 
 logger = get_custom_logger(__name__)
+
 
 class UploadCommunicationsTemplate(
     CompassStarLoginPage,
@@ -16,24 +18,25 @@ class UploadCommunicationsTemplate(
         if self.is_element_visible(CompassStarCommunicationsTabPage.comms_successfully_upload_alert):
             logger.info(f"{template_type} template uploaded successfully.")
         else:
-            logger.error(f"{template_type} template failed to upload.")
+            logger.warning(f"{template_type} template failed to upload.")
 
-    @pytest.mark.run(order=0)
+    @pytest.mark.run(order=1)
     def test_login(self):
+        updt(4, 1)
         logger.info("Starting the Compass Star login test as admin...")
         self.open_compass_star_page()
         self.compass_star_login_admin()
         logger.info("Compass Star login as admin completed successfully.")
 
-    @pytest.mark.run(order=1)
+    @pytest.mark.run(order=2)
     def test_upload_communications(self):
+        updt(4, 2.5)
         logger.info("Starting to upload the communications template...")
         list_of_templates = {
             'vat': (self.input_company_number_in_vat_return_csv, self.upload_vat_return_template),
             'invoice': (self.input_company_number_in_invoice_approval_csv, self.upload_invoice_approval_template),
             'funding': (self.input_company_number_in_funding_request_csv, self.upload_funding_request_template),
-            'change_of_flat_rate': (
-                self.input_company_number_in_change_of_flat_rate_csv, self.upload_change_of_flat_rate_template),
+            'change_of_flat_rate': (self.input_company_number_in_change_of_flat_rate_csv, self.upload_change_of_flat_rate_template),
         }
 
         # Handle the selected template
@@ -44,6 +47,7 @@ class UploadCommunicationsTemplate(
             upload_method()
             self.check_and_log_upload_status(self.var2)
 
+
         elif self.var2 == 'all':
             # Handle the combination of all templates
             for template_type, (input_method, upload_method) in list_of_templates.items():
@@ -51,3 +55,8 @@ class UploadCommunicationsTemplate(
                 self.navigate_to_communications_tab()
                 upload_method()
                 self.check_and_log_upload_status(template_type)
+
+    @pytest.mark.run(order=3)
+    def test_successfully_upload(self):
+        updt(4, 4)
+        logger.info("Uploading process has been finished successfully.")

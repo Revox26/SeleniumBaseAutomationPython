@@ -273,6 +273,10 @@ class PytestRunnerApp:
         return button
 
     def run_pytest(self):
+        selected_test = self.select_a_test_dropdown_var.get()
+        if selected_test:
+            print("\n🦾🤖🕹️▄︻デ══━一💥", selected_test, "💥╾━╤デ╦︻ඞා🕹️🦾🤖")
+
         additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
         additional_text_var1 = "--var1=" + self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()

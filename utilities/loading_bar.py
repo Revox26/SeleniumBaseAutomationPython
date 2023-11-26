@@ -7,6 +7,7 @@ def updt(total, progress):
 
     Original source: https://stackoverflow.com/a/15860757/1391441
     """
+
     barLength, status = 40, ""
     progress = float(progress) / float(total)
     if progress >= 1.:
