@@ -1,4 +1,5 @@
 import logging
+import colorlog
 
 def clear_custom_log_file():
     with open('my_custom.log', 'w'):
@@ -13,7 +14,17 @@ def get_custom_logger(name, log_level=logging.INFO):
     logger.setLevel(log_level)
 
     # Create a formatter
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %I:%M:%S %p')
+    formatter = colorlog.ColoredFormatter(
+        '%(log_color)s%(asctime)s - %(levelname)s - %(message)s%(reset)s',
+        datefmt='%Y-%m-%d %I:%M:%S %p',
+        log_colors={
+            'DEBUG': 'cyan',
+            'INFO': 'green',
+            'WARNING': 'yellow',
+            'ERROR': 'red',
+            'CRITICAL': 'red,bg_white',
+        }
+    )
 
     # Create a file handler
     file_handler = logging.FileHandler('my_custom.log')

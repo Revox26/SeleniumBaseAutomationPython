@@ -20,6 +20,7 @@ from pages_supplier_land.find_a_customer_page import SupplierLandFindCustomerPag
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 
 from utilities.custom_logging import get_custom_logger
+from utilities.loading_bar import updt
 
 logger = get_custom_logger(__name__)
 
@@ -48,6 +49,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=1)
     def test_login(self):
+        updt(7, 1)
         logger.info("Starting the Compass Star login test as admin...")
         self.open_compass_star_page()
         self.compass_star_login_admin()
@@ -55,6 +57,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=2)
     def test_navigate_to_invite_director(self):
+        updt(7, 2)
         logger.info("Navigating to the invite director page...")
         self.navigate_to_invite_director_page()
         self.invite_director_page()
@@ -63,6 +66,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=3)
     def test_open_invitation_link(self):
+        updt(7, 3)
         logger.info("Opening the invitation link...")
         self.open_invitation_link(self.get_invitation_link())
         sb_config.shared_driver = self.driver
@@ -71,6 +75,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=4)
     def test_registering_as_director(self):
+        updt(7, 4)
         logger.info("Registering as director...")
         self.director_personal_details()
         self.director_account_details()
@@ -101,6 +106,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=5)
     def test_complete_with_bsc(self):
+        updt(7, 5)
         process = self.var1
         if process != "old":
             logger.info("Allocating company using director account...")
@@ -121,6 +127,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=6)
     def test_proceed_to_complete_with_supplier_land(self):
+        updt(7, 6)
         logger.info("Completing the process with Supplier Land...")
         self.complete_with_supplier_land()
         self.i_want_to_be_a_supplier_and_interested()
@@ -128,6 +135,7 @@ class InvitationToReadyNew(
 
     @pytest.mark.run(order=7)
     def test_set_director_to_ready(self):
+        updt(7, 7)
         logger.info("Setting company status to ready...")
         self.csl_log_out()
         self.compass_star_login_admin()

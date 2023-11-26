@@ -1,0 +1,20 @@
+test_invitation_to_registration_new.py::InvitationToReadyNew::test_login
+--------------------------------------------------------------------
+Last Page: [WARNING! Browser Not Open!]
+ Duration: 3.62s
+  Browser: Chrome 119.0.6045.160
+   Driver: chromedriver 119.0.6045.105
+Timestamp: 1700976075  (Unix Timestamp)
+     Date: Sunday, 26 November 2023
+     Time: 1:21:15 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration_new.py", line 54, in test_login
+    self.open_compass_star_page()
+  File "C:\SeleniumPython\pages_compass_star\login_page.py", line 27, in open_compass_star_page
+    self.open(csl_urls.get(instance, Readconfig.get_qa_csl_url()))
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 340, in open
+    self._check_browser()
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 8734, in _check_browser
+    raise NoSuchWindowException("Active window was already closed!")
+Exception: Message: Active window was already closed!
