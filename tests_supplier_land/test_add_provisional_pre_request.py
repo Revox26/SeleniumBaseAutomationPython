@@ -4,6 +4,7 @@ from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 import pytest
 
 from utilities.custom_logging import get_custom_logger
+from utilities.loading_bar import updt
 
 logger = get_custom_logger(__name__)
 
@@ -16,6 +17,7 @@ class AddProvisionalPreRequest(
 ):
     @pytest.mark.run(order=1)
     def test_login(self):
+        updt(8, 2)
         logger.info("Starting the login test...")
         self.open_supplier_land_page()
         self.supplier_land_login_as_george()
@@ -23,12 +25,14 @@ class AddProvisionalPreRequest(
 
     @pytest.mark.run(order=2)
     def test_navigate_to_pre_request(self):
+        updt(8, 4)
         logger.info("Navigating to the pre-request page...")
         self.navigate_to_pre_request()
         logger.info("Navigated to pre-request page successfully.")
 
     @pytest.mark.run(order=3)
     def test_pre_request_fields(self):
+        updt(8, 6)
         logger.info("Filling in pre-request fields...")
         if self.data == "v2":
             self.t3_add_pre_request_fields()
@@ -39,6 +43,7 @@ class AddProvisionalPreRequest(
 
     @pytest.mark.run(order=4)
     def test_search_company_in_offerings(self):
+        updt(8, 8)
         logger.info("Navigating to the offerings page...")
         self.navigate_to_offerings()
         self.search_company_in_offerings()

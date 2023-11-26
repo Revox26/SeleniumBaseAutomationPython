@@ -6,6 +6,7 @@ from pages_compass_star.suppliers_page import CompassStarSuppliersTabPage
 from pages_compass_star.view_director_documents_page import CompassStarViewDocumentsPage
 
 from utilities.custom_logging import get_custom_logger
+from utilities.loading_bar import updt
 
 logger = get_custom_logger(__name__)
 
@@ -21,6 +22,7 @@ class T3AllocationToReady(
 
     @pytest.mark.run(order=1)
     def test_login(self):
+        updt(9, 3)
         logger.info("Starting the Compass Star login test as admin...")
         self.open_compass_star_page()
         self.compass_star_login_admin()
@@ -28,6 +30,7 @@ class T3AllocationToReady(
 
     @pytest.mark.run(order=2)
     def test_TC_001(self):
+        updt(9, 6)
         logger.info("Starting to accept the ID and set the status to accepted...")
         self.view_documents()
         self.accept_director_id()
@@ -38,6 +41,7 @@ class T3AllocationToReady(
 
     @pytest.mark.run(order=3)
     def test_TC_002(self):
+        updt(9, 9)
         logger.info("Setting company status to ready...")
         self.set_status_to_offered()
         self.set_supplier_status_to_ready()
