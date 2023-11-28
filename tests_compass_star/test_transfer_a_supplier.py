@@ -4,6 +4,7 @@ from pages_compass_star.company_details_page import CompassStarCompanyDetailsTab
 from pages_compass_star.login_page import CompassStarLoginPage
 from pages_compass_star.suppliers_page import CompassStarSuppliersTabPage
 from utilities.custom_logging import get_custom_logger
+from utilities.loading_bar import updt
 
 logger = get_custom_logger(__name__)
 
@@ -18,6 +19,7 @@ class TransferSupplier(
 
     @pytest.mark.run(order=1)
     def test_login(self):
+        updt(3, 1)
         logger.info("Starting the Compass Star login test as admin...")
         self.open_compass_star_page()
         self.compass_star_login_admin()
@@ -25,6 +27,7 @@ class TransferSupplier(
 
     @pytest.mark.run(order=2)
     def test_check_if_already_have_vat_reg_and_auth_code(self):
+        updt(3, 2)
         logger.info("Checking if vat reg and auth code already exist...")
         self.navigate_to_suppliers_tab()
         self.search_supplier_name_in_suppliers_tab()
@@ -33,6 +36,7 @@ class TransferSupplier(
 
     @pytest.mark.run(order=3)
     def test_transfer_the_supplier_to_confirmed_pre_request(self):
+        updt(3, 3)
         logger.info("Proceeding to transfer the supplier to confirmed pre-request...")
         self.navigate_to_assign_directors()
         self.select_confirmed_pre_request_for_transfer()
