@@ -1,8 +1,12 @@
-[32m2023-11-27 07:11:46 PM - INFO - Starting the Compass Star login test as admin...[0m
-[32m2023-11-27 07:12:06 PM - INFO - Compass Star login as admin completed successfully.[0m
-[32m2023-11-27 07:12:06 PM - INFO - Starting to upload the communications template...[0m
-[33m2023-11-27 07:12:22 PM - WARNING - vat template failed to upload.[0m
-[33m2023-11-27 07:12:32 PM - WARNING - invoice template failed to upload.[0m
-[33m2023-11-27 07:12:40 PM - WARNING - funding template failed to upload.[0m
-[33m2023-11-27 07:12:48 PM - WARNING - change_of_flat_rate template failed to upload.[0m
-[32m2023-11-27 07:12:49 PM - INFO - Uploading process has been finished successfully.[0m
+[32m2023-11-29 06:10:01 PM - INFO - Starting the login test as intermediary...[0m
+[32m2023-11-29 06:10:16 PM - INFO - Login as intermediary completed successfully.[0m
+[32m2023-11-29 06:10:16 PM - INFO - Navigating to the pre-request page...[0m
+[32m2023-11-29 06:10:27 PM - INFO - Navigated to pre-request page successfully.[0m
+[32m2023-11-29 06:10:27 PM - INFO - Adding new pre-request fields...[0m
+[32m2023-11-29 06:10:50 PM - INFO - Pre-request submitted successfully.[0m
+[32m2023-11-29 06:10:50 PM - INFO - Logging in as George...[0m
+[32m2023-11-29 06:11:10 PM - INFO - Login as George completed successfully.[0m
+[32m2023-11-29 06:11:10 PM - INFO - Navigating to the offerings page...[0m
+[32m2023-11-29 06:11:13 PM - INFO - Navigated to offerings page successfully.[0m
+[32m2023-11-29 06:11:13 PM - INFO - Searching for a company in offerings...[0m
+[32m2023-11-29 06:11:39 PM - INFO - Company search in offerings completed.[0m
