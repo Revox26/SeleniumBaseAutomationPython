@@ -7,8 +7,13 @@ from art import *
 
 class PytestRunnerApp:
     def __init__(self, master):
+        def colored_text(text, color_code):
+            return f"\033[{color_code}m{text}\033[0m"
+
         ascii_art = text2art(" Welcome to \n Automation", "slant")
-        print(ascii_art)
+        colored_ascii_art = colored_text(ascii_art, "35;1")
+        print(colored_ascii_art)
+
         self.master = master
         master.title("QA-Team Automation Test Runner")
 

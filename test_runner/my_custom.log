@@ -1,12 +1,17 @@
-[32m2023-11-29 06:10:01 PM - INFO - Starting the login test as intermediary...[0m
-[32m2023-11-29 06:10:16 PM - INFO - Login as intermediary completed successfully.[0m
-[32m2023-11-29 06:10:16 PM - INFO - Navigating to the pre-request page...[0m
-[32m2023-11-29 06:10:27 PM - INFO - Navigated to pre-request page successfully.[0m
-[32m2023-11-29 06:10:27 PM - INFO - Adding new pre-request fields...[0m
-[32m2023-11-29 06:10:50 PM - INFO - Pre-request submitted successfully.[0m
-[32m2023-11-29 06:10:50 PM - INFO - Logging in as George...[0m
-[32m2023-11-29 06:11:10 PM - INFO - Login as George completed successfully.[0m
-[32m2023-11-29 06:11:10 PM - INFO - Navigating to the offerings page...[0m
-[32m2023-11-29 06:11:13 PM - INFO - Navigated to offerings page successfully.[0m
-[32m2023-11-29 06:11:13 PM - INFO - Searching for a company in offerings...[0m
-[32m2023-11-29 06:11:39 PM - INFO - Company search in offerings completed.[0m
+[32m2023-11-30 12:56:46 AM - INFO - Starting the Compass Star login test as admin...[0m
+[32m2023-11-30 12:57:13 AM - INFO - Compass Star login as admin completed successfully.[0m
+[32m2023-11-30 12:57:13 AM - INFO - Navigating to the invite director page...[0m
+[32m2023-11-30 12:57:19 AM - INFO - Invitation link has been generated successfully[0m
+[32m2023-11-30 12:57:19 AM - INFO - Opening the invitation link...[0m
+[32m2023-11-30 12:57:29 AM - INFO - Invitation link opened and video skipped successfully.[0m
+[32m2023-11-30 12:57:31 AM - INFO - Registering as director...[0m
+[32m2023-11-30 12:57:55 AM - INFO - Director registration completed successfully.[0m
+[32m2023-11-30 12:58:08 AM - INFO - Starting to accept the ID and set the status to accepted...[0m
+[32m2023-11-30 12:58:21 AM - INFO - Director status successfully set to accepted[0m
+[32m2023-11-30 12:58:23 AM - INFO - Allocating company using director account...[0m
+[32m2023-11-30 12:58:39 AM - INFO - Allocation of the company using the director's account was successful.[0m
+[32m2023-11-30 12:58:39 AM - INFO - Completing the process with BSC...[0m
+[32m2023-11-30 12:59:13 AM - INFO - BSC process completed successfully.[0m
+[32m2023-11-30 12:59:13 AM - INFO - Completing the process with Supplier Land...[0m
+[32m2023-11-30 12:59:35 AM - INFO - Supplier Land process completed successfully.[0m
+[32m2023-11-30 12:59:35 AM - INFO - Setting company status to ready...[0m
