@@ -6,6 +6,7 @@ from pages_bsc.bsc_redeem_package import BscRedeemPackagePage
 from pages_bsc.login_uat_bsc import BscLoginUatPage
 
 from utilities.custom_logging import get_custom_logger
+from utilities.loading_bar import updt
 
 logger = get_custom_logger(__name__)
 
@@ -20,6 +21,7 @@ class TestBscRedeemPackage(
 
     @pytest.mark.run(order=1)
     def test_open_uat_redeem_url(self):
+        updt(2, 1)
         logger.info("Opening the UAT redeem URL...")
         self.open_bsc_redeem_package()
         logger.info("Providing the following information...")
@@ -31,6 +33,7 @@ class TestBscRedeemPackage(
 
     @pytest.mark.run(order=2)
     def test_login_bsc_uat_url(self):
+        updt(2, 2)
         logger.info("Logging in to BSC UAT URL as Jdctest...")
         self.login_bsc_uat_url()
         self.manage_orders()
