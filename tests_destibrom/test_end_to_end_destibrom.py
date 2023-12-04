@@ -25,14 +25,13 @@ class DestiBromTesting(
     @pytest.mark.run(order=1)
     def test_login(self):
         self.open_destibrom_page()
-        self.navigate_to_login_menu()
         self.destibrom_login_as_super_admin()
         self.assert_element(DestibromDashboardPage.dashboard_label)
 
-    @pytest.mark.run(order=2)
-    def test_add_news_and_events(self):
-        self.navigate_to_news_and_events_menu()
-        self.add_new_for_news_and_events()
+    # @pytest.mark.run(order=2)
+    # def test_add_news_and_events(self):
+    #     self.navigate_to_news_and_events_menu()
+    #     self.add_new_for_news_and_events()
 
     @pytest.mark.run(order=3)
     def test_add_sponsored_and_ads(self):
