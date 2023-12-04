@@ -14,6 +14,7 @@ class DestibromSponsoredAdsPage(BaseCase):
     sponsored_ads_upload_content_image = "//input[@class='filepond--browser']"
     sponsored_ads_button = "//button[.='Save']"
     sponsored_ads_save_successfully_label = "//h2[.='Sponsored Ad Saved Successfully!']"
+    sponsored_ads_successfully_ok = "//h2[.='Sponsored Ad Saved Successfully!']/..//button[.='OK']"
     remove_hidden_class = "document.getElementById('filepond--browser-zdukl0c2q').classList.remove('filepond--browser')"
 
     def navigate_to_sponsored_ads_menu(self):
@@ -32,6 +33,7 @@ class DestibromSponsoredAdsPage(BaseCase):
         self.add_js_code(self.remove_hidden_class)
         self.choose_file(self.sponsored_ads_upload_content_image, "..//random_images/resized_image.png")
         self.type(self.sponsored_ads_content_link, website_url)
-        time.sleep(1)
+        self.sleep(1)
         self.click(self.sponsored_ads_button)
         self.assert_element(self.sponsored_ads_save_successfully_label)
+        self.click(self.sponsored_ads_successfully_ok)
