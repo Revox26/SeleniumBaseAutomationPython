@@ -1,10 +1,6 @@
-import time
-
 from seleniumbase import BaseCase
-from configuration_files.config_reader import Readconfig
-from utilities.random_image_generator import ImageHandler
-from utilities.random_website_generator import RandomWebsiteGenerator
-import os
+from utilities_destibrom.random_image_generator import ImageHandler
+from utilities_destibrom.random_website_generator import RandomWebsiteGenerator
 
 
 class DestibromSponsoredAdsPage(BaseCase):
