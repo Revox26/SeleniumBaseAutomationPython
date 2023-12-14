@@ -42,7 +42,7 @@ class SupplierLandDueDiligencePage(BaseCase):
 
     def pass_the_supplier_to_idd(self):
         supplier_name_text = self.var1
-        self.type(self._idd_search_box, supplier_name_text)
+        self.type(self._idd_search_box, supplier_name_text, timeout=60)
         self.click(self._idd_search_button)
         time.sleep(1)
 

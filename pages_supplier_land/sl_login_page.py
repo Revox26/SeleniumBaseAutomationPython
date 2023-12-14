@@ -41,6 +41,8 @@ class SupplierLandLoginPage(BaseCase):
             self.login(Readconfig.get_intermediary_username_new(), Readconfig.get_password())
         elif self.data == "echo":
             self.login(Readconfig.get_intermediary_username_new(), Readconfig.get_password())
+        elif self.data == "v3":
+            self.login(Readconfig.get_intermediary_username_new(), Readconfig.get_password())
         else:
             self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
 

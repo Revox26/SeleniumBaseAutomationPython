@@ -1,3 +1,6 @@
-[32m2023-12-05 06:20:14 PM - INFO - Starting the Compass Star login test as admin...[0m
-[32m2023-12-05 06:20:23 PM - INFO - Compass Star login as admin completed successfully.[0m
-[32m2023-12-05 06:20:24 PM - INFO - Navigating to the invite director page...[0m
+[32m2023-12-13 09:26:48 PM - INFO - Starting the Compass Star login test as admin...[0m
+[32m2023-12-13 09:27:06 PM - INFO - Compass Star login as admin completed successfully.[0m
+[32m2023-12-13 09:27:06 PM - INFO - Checking if vat reg and auth code already exist...[0m
+[32m2023-12-13 09:27:31 PM - INFO - VAT reg and auth code already checked.[0m
+[32m2023-12-13 09:27:31 PM - INFO - Proceeding to transfer the supplier to confirmed pre-request...[0m
+[32m2023-12-13 09:28:58 PM - INFO - Supplier transfer to confirmed pre-request completed.[0m

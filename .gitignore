@@ -1,1 +1,9 @@
 configuration_files/config.ini
+data/director_company.txt
+data/email.txt
+data/first_name.txt
+data/industry.txt
+data/intermediary.txt
+data/last_name.txt
+random_images/original_image.png
+random_images/resized_image.png
