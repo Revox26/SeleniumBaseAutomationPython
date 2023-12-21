@@ -6,4 +6,5 @@ data/industry.txt
 data/intermediary.txt
 data/last_name.txt
 random_images/original_image.png
-random_images/resized_image.png
+random_images/resized_image.png!/data/intermediary.txt
+

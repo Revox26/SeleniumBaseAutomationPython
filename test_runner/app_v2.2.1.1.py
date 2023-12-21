@@ -262,7 +262,7 @@ class PytestRunnerApp:
             "BSC Order Package": "Company Number from CH",
             "Practice Page": "This is practice page",
             "T3 Allocation To Ready": "Director's Email Address",
-            "Add Provisional Pre Request": "BSC ID",
+            "Add Provisional Pre Request": "",
             "Add Confirmed Pre Request": ""
 
         }
@@ -270,7 +270,7 @@ class PytestRunnerApp:
         self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
 
         if selected_test in ["New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "BSC Order Package",
-                             "Upload Communications Template", "T3 Allocation To Ready", "Add Provisional Pre Request"]:
+                             "Upload Communications Template", "T3 Allocation To Ready"]:
             self.additional_text_label.pack(fill="both", padx=6, pady=6)
             self.text_box_widget.pack(fill="both", padx=6, pady=6)
 
@@ -288,24 +288,15 @@ class PytestRunnerApp:
             self.label_for_email_credentials_var.pack_forget()  # Hide the second dropdown
             self.email_credentials_value.pack_forget()
 
-        if selected_test == "Add Provisional Pre Request":
+        if selected_test in ["Add Provisional Pre Request", "Add Confirmed Pre Request"]:
             self.label_for_select_client.pack(anchor="w", padx=8, pady=2)
             self.pre_request_client_value.pack()
             self.label_for_select_industry.pack(anchor="w", padx=8, pady=2)
             self.pre_request_industry_value.pack()
             self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
             self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
-
-        elif selected_test == "Add Confirmed Pre Request":
-            self.label_for_select_client.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_client_value.pack()
-            self.label_for_select_industry.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_industry_value.pack()
-            self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
-            self.additional_text_label.pack_forget()
             self.text_box_widget.pack_forget()
-
+            self.additional_text_label.pack_forget()
         else:
             self.pre_request_client_value.pack_forget()
             self.label_for_select_client.pack_forget()
