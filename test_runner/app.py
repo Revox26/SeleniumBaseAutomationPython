@@ -375,11 +375,11 @@ class PytestRunnerApp:
         selected_staging = self.staging_dropdown_var.get()
         selected_browser = self.select_browser_dropdown_var.get()
         if selected_test:
-            print("\n Selected Test: ️▄︻デ══━一💥", selected_test)
+            print("\n Selected Test: ", selected_test)
         if selected_staging:
-            print("\n Selected Staging: ️▄︻デ۪۞━一💥", selected_staging)
+            print("\n Selected Staging: ", selected_staging)
         if selected_browser:
-            print("\n Selected Browser: ️︻デ═一💥", selected_browser)
+            print("\n Selected Browser: ", selected_browser)
 
         additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
         additional_text_var1 = "--var1=" + self.additional_text_var.get()
