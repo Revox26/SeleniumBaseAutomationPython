@@ -7,6 +7,7 @@ class CompassStarAssignDirectorsPage(BaseCase):
     companies_tab = "//a[contains(.,'Companies')]"
     assign_directors_tab = "//a[contains(.,'Assign Directors')]"
     select_a_supplier = "//a[contains(@class,'label label-primary')]//span[.='Select a supplier']"
+    select_a_supplier_1_6 = "//td[contains(.,'1.6')]/..//a[contains(@class,'label label-primary')]//span[.='Select a supplier']"
     include_other_sectors = "input[name='include_other_sectors']"
     assign_a_director = "//span[contains(.,'Assign a Director')]"
     director_name_search_box = "//input[@id='director-name']"

@@ -1,6 +1,17 @@
-[32m2023-12-13 09:26:48 PM - INFO - Starting the Compass Star login test as admin...[0m
-[32m2023-12-13 09:27:06 PM - INFO - Compass Star login as admin completed successfully.[0m
-[32m2023-12-13 09:27:06 PM - INFO - Checking if vat reg and auth code already exist...[0m
-[32m2023-12-13 09:27:31 PM - INFO - VAT reg and auth code already checked.[0m
-[32m2023-12-13 09:27:31 PM - INFO - Proceeding to transfer the supplier to confirmed pre-request...[0m
-[32m2023-12-13 09:28:58 PM - INFO - Supplier transfer to confirmed pre-request completed.[0m
+[32m2023-12-21 02:48:14 PM - INFO - Starting the Compass Star login test as admin...[0m
+[32m2023-12-21 02:48:43 PM - INFO - Compass Star login as admin completed successfully.[0m
+[32m2023-12-21 02:48:43 PM - INFO - Navigating to the invite director page...[0m
+[32m2023-12-21 02:48:48 PM - INFO - Invitation link has been generated successfully[0m
+[32m2023-12-21 02:48:48 PM - INFO - Opening the invitation link...[0m
+[32m2023-12-21 02:48:58 PM - INFO - Invitation link opened and video skipped successfully.[0m
+[32m2023-12-21 02:49:00 PM - INFO - Registering as director...[0m
+[32m2023-12-21 02:49:20 PM - INFO - Director registration completed successfully.[0m
+[32m2023-12-21 02:49:34 PM - INFO - Starting to accept the ID and set the status to accepted...[0m
+[32m2023-12-21 02:49:45 PM - INFO - Director status successfully set to accepted[0m
+[32m2023-12-21 02:49:47 PM - INFO - Allocating company using director account...[0m
+[32m2023-12-21 02:50:04 PM - INFO - Allocation of the company using the director's account was successful.[0m
+[32m2023-12-21 02:50:04 PM - INFO - Completing the process with BSC...[0m
+[32m2023-12-21 02:50:38 PM - INFO - BSC process completed successfully.[0m
+[32m2023-12-21 02:50:38 PM - INFO - Completing the process with Supplier Land...[0m
+[32m2023-12-21 02:50:51 PM - INFO - Supplier Land process completed successfully.[0m
+[32m2023-12-21 02:50:51 PM - INFO - Setting company status to ready...[0m

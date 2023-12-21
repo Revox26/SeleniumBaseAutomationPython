@@ -71,7 +71,6 @@ class PytestRunnerApp:
 
         # Create the additional text box and assign it to a variable
         self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
-        self.text_box_widget.pack_forget()
         self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
 
         # Create a dropdown for types of template
@@ -82,30 +81,19 @@ class PytestRunnerApp:
         self.email_credentials_dropdown_var, self.email_credentials_value = self.create_email_credentials_dropdown()
         self.email_credentials_value.pack_forget()  # Initially hide the second dropdown
 
-        # Create a dropdown for client dropdown
-        self.pre_request_client_dropdown_var, self.pre_request_client_value = self.create_client_dropdown()
-        self.pre_request_client_value.pack_forget()  # Initially hide the second dropdown
-        # Create a Label for Select a Client (second text box)
-        self.label_for_select_client = ttk.Label(self.additional_text_frame, text="Select a Client", font=("Roboto", 12, "bold"))
-        self.label_for_select_client.pack_forget()
-
         # Create a Label for priority (second text box)
         self.label_for_priority_var = ttk.Label(self.additional_text_frame, text="Priority", font=("Roboto", 12, "bold"))
+        self.label_for_priority_var.pack()
         self.label_for_priority_var.pack_forget()
-
-        # Create a dropdown for Industry dropdown
-        self.pre_request_industry_dropdown_var, self.pre_request_industry_value = self.create_industry_dropdown()
-        self.pre_request_industry_value.pack_forget()  # Initially hide the second dropdown
-        # Create a Label for Select Industry (second text box)
-        self.label_for_select_industry = ttk.Label(self.additional_text_frame, text="Select Industry", font=("Roboto", 12, "bold"))
-        self.label_for_select_industry.pack_forget()
 
         # Create a Label for upload communications template
         self.label_for_communications_var = ttk.Label(self.additional_text_frame, text="Type of template", font=("Roboto", 12, "bold"))
+        self.label_for_communications_var.pack()
         self.label_for_communications_var.pack_forget()
 
         # Create a Label for upload communications template
         self.label_for_email_credentials_var = ttk.Label(self.additional_text_frame, text="Email Credentials", font=("Roboto", 12, "bold"))
+        self.label_for_email_credentials_var.pack()
         self.label_for_email_credentials_var.pack_forget()
 
         # Create the additional text box (second text box) and assign it to a variable
@@ -149,70 +137,6 @@ class PytestRunnerApp:
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var, dropdown
 
-    def create_client_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
-
-        client_values = {
-            "Random": "--var3=random",
-            "321 Corporate Payroll Ltd": "--var3=321_corporate_payroll_ltd",
-            "321 Pay Ltd": "--var3=321_pay_ltd",
-            "4th Option Ltd": "--var3=4th_option_ltd",
-            "Adelta Staffing Ltd": "--var3=adelta_staffing_ltd",
-            "ADO Pay Ltd": "--var3=ado_pay_ltd",
-            "Akin Resources Ltd": "--var3=akin_resources_ltd",
-            "ANNEX OUTSOURCING LTD": "--var3=annex_outsourcing_ltd",
-            "Apollo Staffing Ltd": "--var3=apollo_staffing_ltd",
-            "Apple Business Services Ltd": "--var3=apple_business_services_ltd",
-            "Appp Solutions Ltd": "--var3=appp_solutions_ltd",
-            "BROOKLANDS PROJECT MANAGEMENT LIMITED": "--var3=brooklands_project_management_limited",
-            "Business2 Ltd": "--var3=business2_ltd",
-            "Cerberus Staffing Ltd": "--var3=cerberus_staffing_ltd",
-            "Charon Solutions Ltd": "--var3=charon_solutions_ltd",
-            "Deliverex Ltd": "--var3=deliverex_ltd"
-
-        }
-
-        values = list(client_values.keys())
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
-
-    def create_industry_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
-
-        industry_values = {
-            "Random": "--var1=random",
-            "Accounts": "--var1=accounts",
-            "Transport": "--var1=transport",
-            "Administration": "--var1=administration",
-            "Advertising ": "--var1=advertising",
-            "Agricultural services": "--var1=agricultural_services",
-            "Boarding or care of animals": "--var1=boarding_or_care_of_animals",
-            "Call Centre": "--var1=call_centre",
-            "Cleaning": "--var1=cleaning",
-            "Computer repair services": "--var1=computer_repair_services",
-            "Construction": "--var1=construction",
-            "Engineering": "--var1=engineering",
-            "Healthcare": "--var1=healthcare",
-            "Financial services": "--var1=financial_services",
-            "Gardening": "--var1=gardening",
-            "Hospitality": "--var1=hospitality"
-
-        }
-
-        values = list(industry_values.keys())
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
-
     def create_email_credentials_dropdown(self):
         def remove_highlight(event):
             event.widget.master.focus_set()
@@ -249,8 +173,6 @@ class PytestRunnerApp:
         self.final_trace_var.set(0)
         self.comms_template_dropdown_var.set("")
         self.email_credentials_dropdown_var.set("")
-        self.pre_request_client_dropdown_var.set("")
-        self.pre_request_industry_dropdown_var.set("")
         self.additional_text_var2_entry.delete(0, 'end')
 
     def update_additional_text_label(self, *args):
@@ -263,22 +185,16 @@ class PytestRunnerApp:
             "Pass to Due Diligence": "Company Name",
             "BSC Order Package": "Company Number from CH",
             "Practice Page": "This is practice page",
-            "T3 Allocation To Ready": "Director's Email Address",
-            "Add Provisional Pre Request": "",
-            "Add Confirmed Pre Request": ""
+            "T3 Allocation To Ready": "Director's Email Address"
 
         }
         # Use the dictionary to set the label text or use a default value
         self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
 
-        if selected_test in ["New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "BSC Order Package",
-                             "Upload Communications Template", "T3 Allocation To Ready"]:
-            self.additional_text_label.pack(fill="both", padx=6, pady=6)
-            self.text_box_widget.pack(fill="both", padx=6, pady=6)
-
         if selected_test == "Upload Communications Template":
             self.label_for_communications_var.pack(anchor="w", padx=8, pady=6)
             self.template_dropdown_value.pack()  # Show the second dropdown
+
         else:
             self.template_dropdown_value.pack_forget()  # Hide the second dropdown
             self.label_for_communications_var.pack_forget()
@@ -286,24 +202,16 @@ class PytestRunnerApp:
         if selected_test == "BSC Order Package":
             self.label_for_email_credentials_var.pack(anchor="w", padx=8, pady=6)
             self.email_credentials_value.pack()  # Show the second dropdown
+
         else:
             self.label_for_email_credentials_var.pack_forget()  # Hide the second dropdown
             self.email_credentials_value.pack_forget()
 
+        # Show or hide the additional text box based on the selected test
         if selected_test in ["Add Provisional Pre Request", "Add Confirmed Pre Request"]:
-            self.label_for_select_client.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_client_value.pack()
-            self.label_for_select_industry.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_industry_value.pack()
             self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
             self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
-            self.text_box_widget.pack_forget()
-            self.additional_text_label.pack_forget()
         else:
-            self.pre_request_client_value.pack_forget()
-            self.label_for_select_client.pack_forget()
-            self.label_for_select_industry.pack_forget()
-            self.pre_request_industry_value.pack_forget()
             self.label_for_priority_var.pack_forget()
             self.additional_text_var2_entry.pack_forget()
 
@@ -314,7 +222,6 @@ class PytestRunnerApp:
         text_var = tk.StringVar()
         text_box = ttk.Entry(frame, textvariable=text_var, font=("Roboto", 18))
         text_box.pack(fill="both", padx=6, pady=5)
-        self.text_box_widget = text_box
         return text_var
 
     def create_label(self, text):
@@ -399,7 +306,6 @@ class PytestRunnerApp:
 
         # Get the value of the comms template dropdown
         additional_dropdown_value_for_comms = self.comms_template_dropdown_var.get()
-
         option_values_for_comms_dropdown = {
             "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
@@ -412,53 +318,11 @@ class PytestRunnerApp:
             "Gmail": "--var2=gmail",
             "Outlook": "--var2=outlook",
         }
+
         additional_dropdown_value_for_email_credentials = self.email_credentials_dropdown_var.get()
-
-        client_values = {
-            "Random": "--var3=random",
-            "321 Corporate Payroll Ltd": "--var3=321_corporate_payroll_ltd",
-            "321 Pay Ltd": "--var3=321_pay_ltd",
-            "4th Option Ltd": "--var3=4th_option_ltd",
-            "Adelta Staffing Ltd": "--var3=adelta_staffing_ltd",
-            "ADO Pay Ltd": "--var3=ado_pay_ltd",
-            "Akin Resources Ltd": "--var3=akin_resources_ltd",
-            "ANNEX OUTSOURCING LTD": "--var3=annex_outsourcing_ltd",
-            "Apollo Staffing Ltd": "--var3=apollo_staffing_ltd",
-            "Apple Business Services Ltd": "--var3=apple_business_services_ltd",
-            "Appp Solutions Ltd": "--var3=appp_solutions_ltd",
-            "BROOKLANDS PROJECT MANAGEMENT LIMITED": "--var3=brooklands_project_management_limited",
-            "Business2 Ltd": "--var3=business2_ltd",
-            "Cerberus Staffing Ltd": "--var3=cerberus_staffing_ltd",
-            "Charon Solutions Ltd": "--var3=charon_solutions_ltd",
-            "Deliverex Ltd": "--var3=deliverex_ltd"
-
-        }
-        industry_values = {
-            "Random": "--var1=random",
-            "Accounts": "--var1=accounts",
-            "Transport": "--var1=transport",
-            "Administration": "--var1=administration",
-            "Advertising ": "--var1=advertising",
-            "Agricultural services": "--var1=agricultural_services",
-            "Boarding or care of animals": "--var1=boarding_or_care_of_animals",
-            "Call Centre": "--var1=call_centre",
-            "Cleaning": "--var1=cleaning",
-            "Computer repair services": "--var1=computer_repair_services",
-            "Construction": "--var1=construction",
-            "Engineering": "--var1=engineering",
-            "Healthcare": "--var1=healthcare",
-            "Financial services": "--var1=financial_services",
-            "Gardening": "--var1=gardening",
-            "Hospitality": "--var1=hospitality"
-
-        }
-        additional_dropdown_value_for_client = self.pre_request_client_dropdown_var.get()
-        additional_dropdown_value_for_industry = self.pre_request_industry_dropdown_var.get()
 
         if selected_test in test_commands:
             pytest_command = test_commands[selected_test]
-            pytest_command.append(client_values.get(additional_dropdown_value_for_client, ""))  # Get the corresponding option
-            pytest_command.append(industry_values.get(additional_dropdown_value_for_industry, ""))  # Get the corresponding option
             pytest_command.append(option_values_for_comms_dropdown.get(additional_dropdown_value_for_comms, ""))  # Get the corresponding option
             pytest_command.append(option_values_for_email_credentials_dropdown.get(additional_dropdown_value_for_email_credentials, ""))  # Get the corresponding option
         else:
