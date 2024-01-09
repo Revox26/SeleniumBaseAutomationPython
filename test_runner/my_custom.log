@@ -1,12 +1,14 @@
-[32m2023-12-21 08:54:24 PM - INFO - Starting the login test as intermediary...[0m
-[32m2023-12-21 08:54:34 PM - INFO - Login as intermediary completed successfully.[0m
-[32m2023-12-21 08:54:34 PM - INFO - Navigating to the pre-request page...[0m
-[32m2023-12-21 08:54:46 PM - INFO - Navigated to pre-request page successfully.[0m
-[32m2023-12-21 08:54:46 PM - INFO - Adding new pre-request fields...[0m
-[32m2023-12-21 08:55:07 PM - INFO - Pre-request submitted successfully.[0m
-[32m2023-12-21 08:55:07 PM - INFO - Logging in as George...[0m
-[32m2023-12-21 08:55:29 PM - INFO - Login as George completed successfully.[0m
-[32m2023-12-21 08:55:29 PM - INFO - Navigating to the offerings page...[0m
-[32m2023-12-21 08:55:32 PM - INFO - Navigated to offerings page successfully.[0m
-[32m2023-12-21 08:55:32 PM - INFO - Searching for a company in offerings...[0m
-[32m2023-12-21 08:55:57 PM - INFO - Company search in offerings completed.[0m
+[32m2024-01-09 06:12:13 PM - INFO - Starting the login test...[0m
+[32m2024-01-09 06:12:23 PM - INFO - Login test as Simon completed successfully.[0m
+[32m2024-01-09 06:12:23 PM - INFO - Navigating to the initial check page...[0m
+[32m2024-01-09 06:12:41 PM - INFO - Navigated to initial check page successfully.[0m
+[32m2024-01-09 06:12:41 PM - INFO - Starting the pass to IDD test...[0m
+[32m2024-01-09 06:13:01 PM - INFO - Pass to IDD test completed successfully.[0m
+[32m2024-01-09 06:13:01 PM - INFO - Navigating to the suppliers tab...[0m
+[32m2024-01-09 06:13:11 PM - INFO - Navigated to suppliers tab successfully.[0m
+[32m2024-01-09 06:13:11 PM - INFO - Getting the intermediary name...[0m
+[32m2024-01-09 06:13:21 PM - INFO - Got the intermediary name successfully.[0m
+[32m2024-01-09 06:13:21 PM - INFO - Navigating to the regular check page...[0m
+[32m2024-01-09 06:13:25 PM - INFO - Navigated to regular check page successfully.[0m
+[32m2024-01-09 06:13:25 PM - INFO - Starting the pass to RDD test...[0m
+[32m2024-01-09 06:15:05 PM - INFO - Pass to RDD test completed successfully.[0m

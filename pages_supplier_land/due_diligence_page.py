@@ -48,7 +48,7 @@ class SupplierLandDueDiligencePage(BaseCase):
 
         while True:
             get_supplier_name_text = self.get_text_content(self._idd_supplier_name)
-            if get_supplier_name_text == supplier_name_text:
+            if get_supplier_name_text.lower() == supplier_name_text.lower():
                 self.click(self._view_initial_due_diligence)
                 break
 

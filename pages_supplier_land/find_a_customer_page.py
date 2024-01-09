@@ -24,12 +24,12 @@ class SupplierLandFindCustomerPage(BaseCase):
         else:
             self.click(self._find_customer_proceed)
 
-        self.assert_element(self._i_am_interested_disabled)
+        self.assert_element(self._i_am_interested_disabled, timeout=60)
 
         if not self.is_element_visible(self._i_am_interested):
             self.click(self._include_other_industries)
 
-        self.click(self._i_am_interested)
+        self.click(self._i_am_interested, timeout=60)
 
         try:
             if self.assert_element(self._customer_close_button):
