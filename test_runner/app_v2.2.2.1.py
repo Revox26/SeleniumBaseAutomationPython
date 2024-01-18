@@ -36,7 +36,6 @@ class PytestRunnerApp:
              "Add Confirmed Pre Request",
              "BSC Order Package",
              "Upload Communications Template",
-             "Withdraw IDD",
              "Practice Page"],
 
         )
@@ -264,7 +263,6 @@ class PytestRunnerApp:
             "Practice Page": "This is practice page",
             "T3 Allocation To Ready": "Director's Email Address",
             "Add Provisional Pre Request": "BSC ID",
-            "Withdraw IDD": "Company Number",
             "Add Confirmed Pre Request": ""
 
         }
@@ -272,7 +270,7 @@ class PytestRunnerApp:
         self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
 
         if selected_test in ["New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "BSC Order Package",
-                             "Upload Communications Template", "T3 Allocation To Ready", "Add Provisional Pre Request", "Withdraw IDD"]:
+                             "Upload Communications Template", "T3 Allocation To Ready", "Add Provisional Pre Request"]:
             self.additional_text_label.pack(fill="both", padx=6, pady=6)
             self.text_box_widget.pack(fill="both", padx=6, pady=6)
 
@@ -403,7 +401,6 @@ class PytestRunnerApp:
             "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Upload Communications Template": [f"pytest ..//tests_compass_star/test_upload_comms_template.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Withdraw IDD": [f"pytest ..//tests_supplier_land/test_withdraw_idd.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
         }
 
