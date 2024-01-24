@@ -46,14 +46,14 @@ class DestibromPushNotificationPage(BaseCase):
         self.click(self.push_notification_sent_ok)
 
     def add_location_notification(self):
-        self.click(self.location_link_tab)
-        options = self.get_select_options(self.location_resource)
-        random_option = random.choice(options)
         random_category_title = ["New Update Available", "Special Offer", "Event Reminder", "Breaking News"]
         random_category_text = ["Check out the latest features!", "Limited time offer just for you.", "Don't forget our upcoming event.", "Stay tuned for important updates."]
         random_title = random.choice(random_category_title)
         random_text = random.choice(random_category_text)
 
+        self.click(self.location_link_tab)
+        options = self.get_select_options(self.location_resource)
+        random_option = random.choice(options)
         self.select_option_by_text(self.location_resource, random_option)
         self.type(self.location_notification_title, random_title)
         self.type(self.location_notification_text, random_text)
