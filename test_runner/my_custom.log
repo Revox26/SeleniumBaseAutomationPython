@@ -1,10 +1,9 @@
-[32m2024-01-18 04:19:47 PM - INFO - Starting the login test...[0m
-[32m2024-01-18 04:20:02 PM - INFO - Login test completed successfully.[0m
-[32m2024-01-18 04:20:02 PM - INFO - Navigating to the suppliers tab...[0m
-[32m2024-01-18 04:20:06 PM - INFO - Navigated to suppliers tab successfully.[0m
-[32m2024-01-18 04:20:06 PM - INFO - Getting the intermediary name...[0m
-[32m2024-01-18 04:20:10 PM - INFO - Got the intermediary name successfully.[0m
-[32m2024-01-18 04:20:10 PM - INFO - Navigating to the withdraw idd page...[0m
-[32m2024-01-18 04:20:12 PM - INFO - Navigated to withdraw idd page successfully.[0m
-[32m2024-01-18 04:20:12 PM - INFO - Proceeding to the withdraw idd...[0m
-[32m2024-01-18 04:20:16 PM - INFO - Withdraw idd successfully.[0m
+[32m2024-01-24 05:16:06 PM - INFO - Starting the Compass Star login test as admin...[0m
+[32m2024-01-24 05:16:40 PM - INFO - Compass Star login as admin completed successfully.[0m
+[32m2024-01-24 05:16:40 PM - INFO - Navigating to the invite director page...[0m
+[32m2024-01-24 05:16:45 PM - INFO - Invitation link has been generated successfully[0m
+[32m2024-01-24 05:16:45 PM - INFO - Opening the invitation link...[0m
+[32m2024-01-24 05:16:55 PM - INFO - Invitation link opened and video skipped successfully.[0m
+[32m2024-01-24 05:16:57 PM - INFO - Registering as director...[0m
+[32m2024-01-24 05:17:17 PM - INFO - Director registration completed successfully.[0m
+[32m2024-01-24 05:17:31 PM - INFO - Starting to accept the ID and set the status to accepted...[0m

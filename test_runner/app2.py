@@ -37,6 +37,7 @@ class PytestRunnerApp:
              "BSC Order Package",
              "Upload Communications Template",
              "Withdraw IDD",
+             "Destination Bromsgrove",
              "Practice Page"],
 
         )
@@ -78,6 +79,10 @@ class PytestRunnerApp:
         # Create a dropdown for types of template
         self.comms_template_dropdown_var, self.template_dropdown_value = self.create_comms_template_dropdown()
         self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
+
+        # Create a dropdown for types of test in destibrom
+        self.desibrom_select_test_dropdown_var, self.destibrom_dropdown_value = self.create_destibrom_type_of_test_dropdown()
+        self.destibrom_dropdown_value.pack_forget()  # Initially hide the second dropdown
 
         # Create a dropdown for email credentials
         self.email_credentials_dropdown_var, self.email_credentials_value = self.create_email_credentials_dropdown()
@@ -231,8 +236,31 @@ class PytestRunnerApp:
         dropdown.bind("<FocusIn>", remove_highlight)
         return dropdown_var, dropdown
 
+    def create_destibrom_type_of_test_dropdown(self):
+        def remove_highlight(event):
+            event.widget.master.focus_set()
+
+        list_of_destibrom_test = {
+            "Add Amenity": "",
+            "Add Sponsored Ads": "",
+            "Add News and Updates": "",
+            "Send External Link Notification": "",
+            "Send Location Notification": "",
+            "Send Category Notification": ""
+        }
+
+        values = list(list_of_destibrom_test.keys())
+
+        dropdown_var = tk.StringVar()
+        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
+        dropdown.pack(fill="both", padx=10, pady=5)
+        dropdown.config(width=26)
+        dropdown.bind("<FocusIn>", remove_highlight)
+        return dropdown_var, dropdown
+
     def clear_fields(self):
         # Clear all the fields
+        self.desibrom_select_test_dropdown_var.set("")
         self.select_a_test_dropdown_var.set("")
         self.staging_dropdown_var.set("")
         self.select_browser_dropdown_var.set("")
@@ -282,6 +310,12 @@ class PytestRunnerApp:
         else:
             self.template_dropdown_value.pack_forget()  # Hide the second dropdown
             self.label_for_communications_var.pack_forget()
+
+        if selected_test == "Destination Bromsgrove":
+            self.destibrom_dropdown_value.pack()  # Show the second dropdown
+            self.text_box_widget.pack_forget()
+        else:
+            self.destibrom_dropdown_value.pack_forget()  # Hide the second dropdown
 
         if selected_test == "BSC Order Package":
             self.label_for_email_credentials_var.pack(anchor="w", padx=8, pady=6)
@@ -407,9 +441,30 @@ class PytestRunnerApp:
             "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
         }
 
+        add_amenity_command = '"test_login or test_add_amenity"'
+        add_sponsored_ads_command = '"test_login or test_add_sponsored_and_ads"'
+        add_news_and_update_command = '"test_login or test_add_news_and_events"'
+        pn_external_link_command = '"test_login or test_add_external_links_notification"'
+        pn_location_command = '"test_login or test_add_location_notification"'
+        pn_category_command = '"test_login or test_add_category_notification"'
+
+        list_of_destibrom_test_commands = {
+            "Add Amenity": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_amenity_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Add Sponsored Ads": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_sponsored_ads_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Add News and Updates": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_news_and_update_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Send External Link Notification": [f"pytest ..//tests_destibrom/test_push_notification.py -k {pn_external_link_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Send Location Notification": [f"pytest ..//tests_destibrom/test_push_notification.py -k {pn_location_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Send Category Notification": [f"pytest ..//tests_destibrom/test_push_notification.py -k {pn_category_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
+        }
+
+        # Get the value of the list of test in desti dropdown
+        additional_dropdown_value_for_destibrom_test = self.desibrom_select_test_dropdown_var.get()
+
+        if additional_dropdown_value_for_destibrom_test in list_of_destibrom_test_commands:
+            pytest_command = list_of_destibrom_test_commands[additional_dropdown_value_for_destibrom_test]
+
         # Get the value of the comms template dropdown
         additional_dropdown_value_for_comms = self.comms_template_dropdown_var.get()
-
         option_values_for_comms_dropdown = {
             "Select All": "--var2=all",
             "Vat Return": "--var2=vat",
@@ -470,7 +525,7 @@ class PytestRunnerApp:
             pytest_command.append(option_values_for_comms_dropdown.get(additional_dropdown_value_for_comms, ""))  # Get the corresponding option
             pytest_command.append(option_values_for_email_credentials_dropdown.get(additional_dropdown_value_for_email_credentials, ""))  # Get the corresponding option
         else:
-            print("Please Select a Test")
+            print("")
 
         options = {
             "--demo": self.demo_mode_checkbox_var.get(),

@@ -104,6 +104,11 @@ class Readconfig:
         destibrom_url = config.get("url", "destibrom_v1")
         return destibrom_url
 
+    @staticmethod
+    def get_destibrom_v1_push_notif_url():
+        destibrom_url = config.get("url", "desibrom_v1_notification_link")
+        return destibrom_url
+
     # BSC URL
     @staticmethod
     def get_bsc_uat_url():

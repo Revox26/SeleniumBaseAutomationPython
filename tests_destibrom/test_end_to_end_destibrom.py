@@ -33,12 +33,12 @@ class DestiBromTesting(
         self.navigate_to_amenities_menu()
         self.add_new_amenity()
 
-    # @pytest.mark.run(order=3)
-    # def test_add_sponsored_and_ads(self):
-    #     self.navigate_to_sponsored_ads_menu()
-    #     self.add_new_for_sponsored_ads()
-    #
-    # @pytest.mark.run(order=4)
-    # def test_add_news_and_events(self):
-    #     self.navigate_to_news_and_events_menu()
-    #     self.add_new_for_news_and_events()
+    @pytest.mark.run(order=3)
+    def test_add_sponsored_and_ads(self):
+        self.navigate_to_sponsored_ads_menu()
+        self.add_new_for_sponsored_ads()
+
+    @pytest.mark.run(order=4)
+    def test_add_news_and_events(self):
+        self.navigate_to_news_and_events_menu()
+        self.add_new_for_news_and_events()

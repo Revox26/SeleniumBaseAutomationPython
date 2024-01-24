@@ -28,4 +28,4 @@ class SupplierLandImportPage(BaseCase):
         self.click(self.import_button_for_withdraw_enroll)
         self.click(self.i_agree_that_these_are_all_correct)
         self.click(self.proceed_and_update)
-        #self.assert_element(self.successfully_withdraw_alert)
+        # self.assert_element(self.successfully_withdraw_alert)
