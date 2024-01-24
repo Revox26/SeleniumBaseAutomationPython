@@ -26,16 +26,21 @@ class DestibromPushNotificationPage(BaseCase):
     push_notification_sent_alert = "//h2[.='Push Notification Sent!']"
     push_notification_sent_ok = "//button[.='OK']"
 
+    @staticmethod
+    def generate_random_notification_data():
+        random_category_title = ["New Update Available", "Special Offer", "Event Reminder", "Breaking News"]
+        random_category_text = ["Check out the latest features!", "Limited time offer just for you.", "Don't forget our upcoming event.", "Stay tuned for important updates."]
+        random_title = random.choice(random_category_title)
+        random_text = random.choice(random_category_text)
+        return random_title, random_text
+
     def navigate_to_push_notification_url(self):
         self.open(Readconfig.get_destibrom_v1_push_notif_url())
 
     def add_external_links_notification(self):
         website_generator = RandomWebsiteGenerator()
         website_url = website_generator.generate_random_website()
-        random_category_title = ["New Update Available", "Special Offer", "Event Reminder", "Breaking News"]
-        random_category_text = ["Check out the latest features!", "Limited time offer just for you.", "Don't forget our upcoming event.", "Stay tuned for important updates."]
-        random_title = random.choice(random_category_title)
-        random_text = random.choice(random_category_text)
+        random_title, random_text = self.generate_random_notification_data()
 
         self.click(self.external_link_tab)
         self.type(self.external_link_notification_title, random_title)
@@ -46,10 +51,7 @@ class DestibromPushNotificationPage(BaseCase):
         self.click(self.push_notification_sent_ok)
 
     def add_location_notification(self):
-        random_category_title = ["New Update Available", "Special Offer", "Event Reminder", "Breaking News"]
-        random_category_text = ["Check out the latest features!", "Limited time offer just for you.", "Don't forget our upcoming event.", "Stay tuned for important updates."]
-        random_title = random.choice(random_category_title)
-        random_text = random.choice(random_category_text)
+        random_title, random_text = self.generate_random_notification_data()
 
         self.click(self.location_link_tab)
         options = self.get_select_options(self.location_resource)
@@ -62,10 +64,7 @@ class DestibromPushNotificationPage(BaseCase):
         self.click(self.push_notification_sent_ok)
 
     def add_category_notification(self):
-        random_category_title = ["New Update Available", "Special Offer", "Event Reminder", "Breaking News"]
-        random_category_text = ["Check out the latest features!", "Limited time offer just for you.", "Don't forget our upcoming event.", "Stay tuned for important updates."]
-        random_title = random.choice(random_category_title)
-        random_text = random.choice(random_category_text)
+        random_title, random_text = self.generate_random_notification_data()
 
         self.click(self.category_tab)
         self.click(self.category_resource)
