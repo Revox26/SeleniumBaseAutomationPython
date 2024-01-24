@@ -431,8 +431,8 @@ class PytestRunnerApp:
         test_commands = {
             "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Transfer a Supplier": [f"pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Pass to Due Diligence": [f"pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Transfer a Supplier": [f'pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
+            "Pass to Due Diligence": [f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
             "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],

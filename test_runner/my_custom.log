@@ -1,9 +1,14 @@
-[32m2024-01-24 05:16:06 PM - INFO - Starting the Compass Star login test as admin...[0m
-[32m2024-01-24 05:16:40 PM - INFO - Compass Star login as admin completed successfully.[0m
-[32m2024-01-24 05:16:40 PM - INFO - Navigating to the invite director page...[0m
-[32m2024-01-24 05:16:45 PM - INFO - Invitation link has been generated successfully[0m
-[32m2024-01-24 05:16:45 PM - INFO - Opening the invitation link...[0m
-[32m2024-01-24 05:16:55 PM - INFO - Invitation link opened and video skipped successfully.[0m
-[32m2024-01-24 05:16:57 PM - INFO - Registering as director...[0m
-[32m2024-01-24 05:17:17 PM - INFO - Director registration completed successfully.[0m
-[32m2024-01-24 05:17:31 PM - INFO - Starting to accept the ID and set the status to accepted...[0m
+[32m2024-01-24 08:15:20 PM - INFO - Starting the login test...[0m
+[32m2024-01-24 08:15:38 PM - INFO - Login test as Simon completed successfully.[0m
+[32m2024-01-24 08:15:38 PM - INFO - Navigating to the initial check page...[0m
+[32m2024-01-24 08:15:41 PM - INFO - Navigated to initial check page successfully.[0m
+[32m2024-01-24 08:15:41 PM - INFO - Starting the pass to IDD test...[0m
+[32m2024-01-24 08:16:46 PM - INFO - Pass to IDD test completed successfully.[0m
+[32m2024-01-24 08:16:46 PM - INFO - Navigating to the suppliers tab...[0m
+[32m2024-01-24 08:16:51 PM - INFO - Navigated to suppliers tab successfully.[0m
+[32m2024-01-24 08:16:51 PM - INFO - Getting the intermediary name...[0m
+[32m2024-01-24 08:16:55 PM - INFO - Got the intermediary name successfully.[0m
+[32m2024-01-24 08:16:55 PM - INFO - Navigating to the regular check page...[0m
+[32m2024-01-24 08:16:57 PM - INFO - Navigated to regular check page successfully.[0m
+[32m2024-01-24 08:16:57 PM - INFO - Starting the pass to RDD test...[0m
+[32m2024-01-24 08:17:40 PM - INFO - Pass to RDD test completed successfully.[0m
