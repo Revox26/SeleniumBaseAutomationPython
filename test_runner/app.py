@@ -241,6 +241,7 @@ class PytestRunnerApp:
             event.widget.master.focus_set()
 
         list_of_destibrom_test = {
+            "Add Categories": "",
             "Add Amenity": "",
             "Add Sponsored Ads": "",
             "Add News and Updates": "",
@@ -440,7 +441,7 @@ class PytestRunnerApp:
             "Withdraw IDD": [f"pytest ..//tests_supplier_land/test_withdraw_idd.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
         }
-
+        add_categories_command = '"test_login or test_add_categories"'
         add_amenity_command = '"test_login or test_add_amenity"'
         add_sponsored_ads_command = '"test_login or test_add_sponsored_and_ads"'
         add_news_and_update_command = '"test_login or test_add_news_and_events"'
@@ -449,6 +450,7 @@ class PytestRunnerApp:
         pn_category_command = '"test_login or test_add_category_notification"'
 
         list_of_destibrom_test_commands = {
+            "Add Categories": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_categories_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add Amenity": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_amenity_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add Sponsored Ads": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_sponsored_ads_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add News and Updates": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_news_and_update_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
