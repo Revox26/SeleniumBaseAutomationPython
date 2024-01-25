@@ -1,14 +1,10 @@
-[32m2024-01-24 08:15:20 PM - INFO - Starting the login test...[0m
-[32m2024-01-24 08:15:38 PM - INFO - Login test as Simon completed successfully.[0m
-[32m2024-01-24 08:15:38 PM - INFO - Navigating to the initial check page...[0m
-[32m2024-01-24 08:15:41 PM - INFO - Navigated to initial check page successfully.[0m
-[32m2024-01-24 08:15:41 PM - INFO - Starting the pass to IDD test...[0m
-[32m2024-01-24 08:16:46 PM - INFO - Pass to IDD test completed successfully.[0m
-[32m2024-01-24 08:16:46 PM - INFO - Navigating to the suppliers tab...[0m
-[32m2024-01-24 08:16:51 PM - INFO - Navigated to suppliers tab successfully.[0m
-[32m2024-01-24 08:16:51 PM - INFO - Getting the intermediary name...[0m
-[32m2024-01-24 08:16:55 PM - INFO - Got the intermediary name successfully.[0m
-[32m2024-01-24 08:16:55 PM - INFO - Navigating to the regular check page...[0m
-[32m2024-01-24 08:16:57 PM - INFO - Navigated to regular check page successfully.[0m
-[32m2024-01-24 08:16:57 PM - INFO - Starting the pass to RDD test...[0m
-[32m2024-01-24 08:17:40 PM - INFO - Pass to RDD test completed successfully.[0m
+[32m2024-01-24 08:23:19 PM - INFO - Starting the login test...[0m
+[32m2024-01-24 08:23:44 PM - INFO - Login test completed successfully.[0m
+[32m2024-01-24 08:23:45 PM - INFO - Navigating to the suppliers tab...[0m
+[32m2024-01-24 08:23:59 PM - INFO - Navigated to suppliers tab successfully.[0m
+[32m2024-01-24 08:23:59 PM - INFO - Getting the intermediary name...[0m
+[32m2024-01-24 08:24:08 PM - INFO - Got the intermediary name successfully.[0m
+[32m2024-01-24 08:24:08 PM - INFO - Navigating to the withdraw idd page...[0m
+[32m2024-01-24 08:24:10 PM - INFO - Navigated to withdraw idd page successfully.[0m
+[32m2024-01-24 08:24:10 PM - INFO - Proceeding to the withdraw idd...[0m
+[32m2024-01-24 08:24:15 PM - INFO - Withdraw idd successfully.[0m
