@@ -13,7 +13,7 @@ class CompassStarSuppliersTabPage(BaseCase):
     growl_successfully_set_to_ready = "//div[@class='col-sm-12  text-center']//div//strong"
     _company_details = "//a[contains(.,'Ltd')]"
     _intermediary_name_text = "//th[.='Intermediary']//following::td[position()=2]"
-    _company_name_text = "//th[.='Intermediary']//following::td[position()=1]"
+    _company_name_text = "//a[contains(text(),'Ltd') or contains(text(),'limited')]"
 
     def navigate_to_suppliers_tab(self):
         self.click(self.suppliers_tab)
