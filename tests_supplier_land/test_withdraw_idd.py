@@ -52,3 +52,4 @@ class WithdrawInitialDueDiligence(
         logger.info("Proceeding to the withdraw idd...")
         self.proceed_to_withdraw_idd()
         logger.info("Withdraw idd successfully.")
+

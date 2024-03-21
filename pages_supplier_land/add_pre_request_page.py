@@ -55,6 +55,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
             "business2_ltd": "Business2 Ltd",
             "cerberus_staffing_ltd": "Cerberus Staffing Ltd",
             "charon_solutions_ltd": "Charon Solutions Ltd",
+            "hand_technology_ltd": "Hand Technology ltd",
             "deliverex_ltd": "Deliverex Ltd",
         }
         selected_client = list_of_client_in_dropdown.get(client_selected_dropdown)

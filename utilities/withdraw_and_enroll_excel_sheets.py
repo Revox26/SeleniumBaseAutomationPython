@@ -17,6 +17,7 @@ class WithdrawAndEnrollIddExcelSheet(BaseCase):
         # Update Company Number
         column_name = 'Company Number'
         new_value = int(csv_company_number)  # Explicitly cast to str
+        # new_string_value, new_int_value = str(existing_value) + " " + str(csv_company_number), int(existing_value)
         df.at[company_number_row_index, column_name] = new_value
 
         # Update Intermediary Name

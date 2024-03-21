@@ -1,4 +1,5 @@
 from seleniumbase import BaseCase
+from datetime import datetime
 
 
 class CompassStarCommunicationsTabPage(BaseCase):
@@ -16,9 +17,10 @@ class CompassStarCommunicationsTabPage(BaseCase):
         self.click(self.communications_tab)
 
     def __upload_template__(self, template_name, template_path, note, ):
+        timestamp = datetime.now().strftime("%Y/%m/%d/%H%M%S")
         self.select_option_by_text(self.select_template, template_name)
         self.choose_file(self._upload_csv_file, template_path)
-        self.type(self.input_comms_note, note)
+        self.type(self.input_comms_note, note + " " + timestamp)
         self.click(self.scheduled)
         self.click(self.send_sms)
         self.click(self.send_to_communications_queue)

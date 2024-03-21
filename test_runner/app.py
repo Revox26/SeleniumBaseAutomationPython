@@ -173,6 +173,7 @@ class PytestRunnerApp:
             "Business2 Ltd": "--var3=business2_ltd",
             "Cerberus Staffing Ltd": "--var3=cerberus_staffing_ltd",
             "Charon Solutions Ltd": "--var3=charon_solutions_ltd",
+            "Hand Technology ltd": "--var3=hand_technology_ltd",
             "Deliverex Ltd": "--var3=deliverex_ltd"
 
         }

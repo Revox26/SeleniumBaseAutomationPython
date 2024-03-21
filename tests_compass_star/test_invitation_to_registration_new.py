@@ -73,6 +73,7 @@ class InvitationToReadyNew(
         self.skip_the_video()
         logger.info("Invitation link opened and video skipped successfully.")
 
+
     @pytest.mark.run(order=4)
     def test_registering_as_director(self):
         updt(7, 4)

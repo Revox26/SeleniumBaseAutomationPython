@@ -1,10 +1,6 @@
-[32m2024-01-24 08:23:19 PM - INFO - Starting the login test...[0m
-[32m2024-01-24 08:23:44 PM - INFO - Login test completed successfully.[0m
-[32m2024-01-24 08:23:45 PM - INFO - Navigating to the suppliers tab...[0m
-[32m2024-01-24 08:23:59 PM - INFO - Navigated to suppliers tab successfully.[0m
-[32m2024-01-24 08:23:59 PM - INFO - Getting the intermediary name...[0m
-[32m2024-01-24 08:24:08 PM - INFO - Got the intermediary name successfully.[0m
-[32m2024-01-24 08:24:08 PM - INFO - Navigating to the withdraw idd page...[0m
-[32m2024-01-24 08:24:10 PM - INFO - Navigated to withdraw idd page successfully.[0m
-[32m2024-01-24 08:24:10 PM - INFO - Proceeding to the withdraw idd...[0m
-[32m2024-01-24 08:24:15 PM - INFO - Withdraw idd successfully.[0m
+[32m2024-03-21 12:27:44 AM - INFO - Starting the Compass Star login test as admin...[0m
+[32m2024-03-21 12:27:54 AM - INFO - Compass Star login as admin completed successfully.[0m
+[32m2024-03-21 12:27:54 AM - INFO - Checking if vat reg and auth code already exist...[0m
+[32m2024-03-21 12:28:06 AM - INFO - VAT reg and auth code already checked.[0m
+[32m2024-03-21 12:28:06 AM - INFO - Proceeding to transfer the supplier to confirmed pre-request...[0m
+[32m2024-03-21 12:28:46 AM - INFO - Supplier transfer to confirmed pre-request completed.[0m
