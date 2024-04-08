@@ -3,7 +3,7 @@ from faker import Faker
 from AppiumPython.actions.mobile_actions import MobileCustomActionClass
 
 
-class CslMobilePersonalDetailsPage:
+class CslMobilePersonalDetailsScreen:
     select_title_xpath = '//android.widget.EditText[@resource-id="text_input" and @text="Select a title"]'
     select_mr_title = '//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="Mr."]'
     select_birth_date_xpath = '//android.widget.EditText[@resource-id="RNE__Input__text-input" and @text="Birth Date"]'

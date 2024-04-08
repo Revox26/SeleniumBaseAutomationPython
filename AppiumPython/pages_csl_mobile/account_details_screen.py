@@ -5,7 +5,7 @@ from AppiumPython.device_capabilities.android_capabilities import AndroidCapabil
 from configuration_files.config_reader import Readconfig
 
 
-class CslMobileAccountDetailsPage(AndroidCapabilities):
+class CslMobileAccountDetailsScreen(AndroidCapabilities):
     csl_mobile_personal_details_label = '//android.widget.TextView[@text="Account Details"]'
     csl_mobile_email_xpath = '//android.widget.EditText[@resource-id="RNE__Input__text-input" and @text="Email"]'
     csl_mobile_password_xpath = '(//android.widget.EditText[@resource-id="RNE__Input__text-input" and @text="Password"])[1]'

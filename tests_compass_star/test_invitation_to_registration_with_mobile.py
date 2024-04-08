@@ -1,8 +1,8 @@
 import pytest
 
-from AppiumPython.pages_csl_mobile.account_details_screen import CslMobileAccountDetailsPage
-from AppiumPython.pages_csl_mobile.login_screen import CslMobileLoginPage
-from AppiumPython.pages_csl_mobile.personal_details_screen import CslMobilePersonalDetailsPage
+from AppiumPython.pages_csl_mobile.account_details_screen import CslMobileAccountDetailsScreen
+from AppiumPython.pages_csl_mobile.login_screen import CslMobileLoginScreen
+from AppiumPython.pages_csl_mobile.personal_details_screen import CslMobilePersonalDetailsScreen
 from AppiumPython.pages_csl_mobile.welcome_video_screen import CslMobileWelcomeVideoPage
 from pages_bsc.bsc_create_your_account_page import BscCreateYOurAccountPage
 from pages_bsc.bsc_payment_details_page import BscPaymentDetailsPage
@@ -48,10 +48,10 @@ class InvitationToReadyWithMobile(
     DirectorMyApplicationTabPage,
     SupplierLandFindCustomerPage,
     SupplierLandLoginPage,
-    CslMobileLoginPage,
+    CslMobileLoginScreen,
     CslMobileWelcomeVideoPage,
-    CslMobileAccountDetailsPage,
-    CslMobilePersonalDetailsPage
+    CslMobileAccountDetailsScreen,
+    CslMobilePersonalDetailsScreen
 
 ):
 
