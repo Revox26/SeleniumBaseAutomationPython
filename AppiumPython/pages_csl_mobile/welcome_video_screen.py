@@ -1,11 +1,5 @@
-from appium.webdriver.common.appiumby import AppiumBy
-from appium.options.common import AppiumOptions
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-
 from AppiumPython.actions.mobile_actions import MobileCustomActionClass
-from AppiumPython.pages_csl_mobile.android_capabilities import AndroidCapabilities
-from selenium.webdriver.support import expected_conditions as EC
+from AppiumPython.device_capabilities.android_capabilities import AndroidCapabilities
 
 
 class CslMobileWelcomeVideoPage(AndroidCapabilities):

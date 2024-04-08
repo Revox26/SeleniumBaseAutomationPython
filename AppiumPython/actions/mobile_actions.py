@@ -1,18 +1,7 @@
-import time
-
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.options.common import AppiumOptions
-from selenium.common import TimeoutException, NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from AppiumPython.pages_csl_mobile.android_capabilities import AndroidCapabilities
-from selenium.webdriver.support import expected_conditions as EC
-
-from appium.webdriver.common.appiumby import AppiumBy
-from appium.options.common import AppiumOptions
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from AppiumPython.pages_csl_mobile.android_capabilities import AndroidCapabilities
+from AppiumPython.device_capabilities.android_capabilities import AndroidCapabilities
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -58,3 +47,8 @@ class MobileCustomActionClass(AndroidCapabilities):
                 end_x = start_x
                 end_y = size['height'] // 4
                 driver.swipe(start_x, start_y, end_x, end_y, duration=300)
+
+    def upload_file_to_mobile(self,):
+        driver = self.initialize_driver()
+        driver.push_file()
+

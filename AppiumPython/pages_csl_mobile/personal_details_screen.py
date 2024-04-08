@@ -1,8 +1,6 @@
-from appium.webdriver.common.appiumby import AppiumBy
 from faker import Faker
 
 from AppiumPython.actions.mobile_actions import MobileCustomActionClass
-from AppiumPython.pages_csl_mobile.android_capabilities import AndroidCapabilities
 
 
 class CslMobilePersonalDetailsPage:

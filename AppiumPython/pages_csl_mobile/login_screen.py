@@ -1,7 +1,5 @@
-from appium.webdriver.common.appiumby import AppiumBy
-
 from AppiumPython.actions.mobile_actions import MobileCustomActionClass
-from AppiumPython.pages_csl_mobile.android_capabilities import AndroidCapabilities
+from AppiumPython.device_capabilities.android_capabilities import AndroidCapabilities
 
 
 class CslMobileLoginPage(AndroidCapabilities):

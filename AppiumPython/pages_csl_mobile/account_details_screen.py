@@ -1,10 +1,7 @@
-from appium.webdriver.common.appiumby import AppiumBy
 import random
 
-from selenium.webdriver.support.wait import WebDriverWait
-
 from AppiumPython.actions.mobile_actions import MobileCustomActionClass
-from AppiumPython.pages_csl_mobile.android_capabilities import AndroidCapabilities
+from AppiumPython.device_capabilities.android_capabilities import AndroidCapabilities
 from configuration_files.config_reader import Readconfig
 
 
