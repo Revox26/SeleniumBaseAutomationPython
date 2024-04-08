@@ -48,7 +48,6 @@ class InvitationToReadyWithMobile(
     DirectorMyApplicationTabPage,
     SupplierLandFindCustomerPage,
     SupplierLandLoginPage,
-    AppiumTest,
     CslMobileLoginPage,
     CslMobileWelcomeVideoPage,
     CslMobileAccountDetailsPage,
