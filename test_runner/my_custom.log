@@ -1,6 +1,14 @@
-[32m2024-03-21 12:27:44 AM - INFO - Starting the Compass Star login test as admin...[0m
-[32m2024-03-21 12:27:54 AM - INFO - Compass Star login as admin completed successfully.[0m
-[32m2024-03-21 12:27:54 AM - INFO - Checking if vat reg and auth code already exist...[0m
-[32m2024-03-21 12:28:06 AM - INFO - VAT reg and auth code already checked.[0m
-[32m2024-03-21 12:28:06 AM - INFO - Proceeding to transfer the supplier to confirmed pre-request...[0m
-[32m2024-03-21 12:28:46 AM - INFO - Supplier transfer to confirmed pre-request completed.[0m
+[32m2024-04-07 10:23:01 PM - INFO - Starting the login test...[0m
+[32m2024-04-07 10:23:10 PM - INFO - Login test as Simon completed successfully.[0m
+[32m2024-04-07 10:23:10 PM - INFO - Navigating to the initial check page...[0m
+[32m2024-04-07 10:23:13 PM - INFO - Navigated to initial check page successfully.[0m
+[32m2024-04-07 10:23:13 PM - INFO - Starting the pass to IDD test...[0m
+[32m2024-04-07 10:23:42 PM - INFO - Pass to IDD test completed successfully.[0m
+[32m2024-04-07 10:23:42 PM - INFO - Navigating to the suppliers tab...[0m
+[32m2024-04-07 10:23:46 PM - INFO - Navigated to suppliers tab successfully.[0m
+[32m2024-04-07 10:23:46 PM - INFO - Getting the intermediary name...[0m
+[32m2024-04-07 10:23:50 PM - INFO - Got the intermediary name successfully.[0m
+[32m2024-04-07 10:23:50 PM - INFO - Navigating to the regular check page...[0m
+[32m2024-04-07 10:23:52 PM - INFO - Navigated to regular check page successfully.[0m
+[32m2024-04-07 10:23:52 PM - INFO - Starting the pass to RDD test...[0m
+[32m2024-04-07 10:24:24 PM - INFO - Pass to RDD test completed successfully.[0m

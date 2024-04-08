@@ -1,0 +1,29 @@
+appium_first_test.py::TestCaseAppium::test_appium_second_test
+--------------------------------------------------------------------
+Last Page: data:,
+ Duration: 10.27s
+  Browser: Chrome 123.0.6312.86
+   Driver: chromedriver 123.0.6312.86
+Timestamp: 1712046045  (Unix Timestamp)
+     Date: Tuesday, 2 April 2024
+     Time: 4:20:45 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_appium\appium_first_test.py", line 18, in test_appium_second_test
+    self.open_web_browser_again()
+  File "C:\SeleniumPython\AppiumPython\selenium_and_appium_object.py", line 69, in open_web_browser_again
+    self.type(self.youtube_search, " SELENIUM + APPIUM ONCE AGAIN")
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 1125, in type
+    self.update_text(selector, text, by=by, timeout=timeout, retry=retry)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 916, in update_text
+    element = self.wait_for_element_clickable(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 8639, in wait_for_element_clickable
+    return page_actions.wait_for_element_clickable(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 886, in wait_for_element_clickable
+    timeout_exception(NoSuchElementException, message)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 252, in timeout_exception
+    raise exc(msg)
+Exception: Message: 
+ Element {//input[@placeholder='Search']} was not present after 10 seconds!

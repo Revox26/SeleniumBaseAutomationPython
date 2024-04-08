@@ -1,0 +1,20 @@
+from appium import webdriver
+from typing import Any, Dict
+from appium.options.common import AppiumOptions
+
+
+class AndroidCapabilities:
+    url = 'http://localhost:4724'
+
+    def get_android_emulator_capabilities(self) -> Dict[str, Any]:
+        return {
+            'platformName': 'Android',
+            'platformVersion': '14.0',
+            'deviceName': 'Pixel_3a_API_34_extension_level_7_x86_64',
+            'language': 'en',
+            'locale': 'US',
+            'automationName': 'UiAutomator2'  # Specify the automationName
+        }
+
+    def get_android_emulator_driver(self):
+        return webdriver.Remote(self.url, options=AppiumOptions().load_capabilities(self.get_android_emulator_capabilities()))

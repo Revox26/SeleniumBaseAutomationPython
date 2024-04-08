@@ -10,6 +10,7 @@ class CompassStarInviteDirectorPage(BaseCase):
     last_name = "//input[@name='last_name']"
     generate_invitation_link = "//button[@id='generate-invitation-link']"
     invitation_link = "//span[@id='inviteUrlLink']"
+    referral_code = "//td[starts-with(text(),'CSL')]"
 
     def navigate_to_invite_director_page(self):
         self.click(self.invite_director_button)
@@ -38,6 +39,11 @@ class CompassStarInviteDirectorPage(BaseCase):
     def get_invitation_link(self):
         director_invitation_link = self.get_text_content(self.invitation_link)
         return director_invitation_link
+
+    def get_referral_code(self):
+        director_referral_code = self.get_text_content(self.referral_code)
+        with open("..//data//referral_code.txt", "w") as file:
+            file.write(director_referral_code)
 
     def open_invitation_link(self, invitation_link):
         self.get_new_driver()

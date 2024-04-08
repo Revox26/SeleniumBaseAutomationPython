@@ -26,7 +26,7 @@ class PytestRunnerApp:
 
         master.configure(bg="light gray")  # Set background color
 
-        self.create_label("Select a test:")
+        self.create_label("Process:")
         self.select_a_test_dropdown_var = self.create_dropdown(
             ["New Registration To Ready",
              "T3 Allocation To Ready",
@@ -42,7 +42,7 @@ class PytestRunnerApp:
 
         )
 
-        self.create_label("Select a staging environment:")
+        self.create_label("Staging environment:")
         self.staging_dropdown_var = self.create_dropdown(
             ["QA Instance",
              "V1 Instance",
@@ -53,7 +53,7 @@ class PytestRunnerApp:
              "Testing Instance",
              "Replica Instance"])
 
-        self.create_label("Select a browser:")
+        self.create_label("Browser:")
         self.select_browser_dropdown_var = self.create_dropdown(["Chrome", "Edge", "Firefox"])
 
         style = ttk.Style()

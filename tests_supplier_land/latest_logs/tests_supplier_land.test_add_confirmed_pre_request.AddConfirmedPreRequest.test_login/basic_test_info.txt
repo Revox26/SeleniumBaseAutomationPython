@@ -1,0 +1,26 @@
+test_add_confirmed_pre_request.py::AddConfirmedPreRequest::test_login
+--------------------------------------------------------------------
+Last Page: [WARNING! Browser Not Open!]
+ Duration: 4.92s
+  Browser: Chrome 123.0.6312.86
+   Driver: chromedriver 123.0.6312.86
+Timestamp: 1711960252  (Unix Timestamp)
+     Date: Monday, 1 April 2024
+     Time: 4:30:52 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_supplier_land\test_add_confirmed_pre_request.py", line 23, in test_login
+    self.supplier_land_login_as_intermediary()
+  File "C:\SeleniumPython\pages_supplier_land\sl_login_page.py", line 49, in supplier_land_login_as_intermediary
+    self.login(Readconfig.get_intermediary_username(), Readconfig.get_password())
+  File "C:\SeleniumPython\pages_supplier_land\sl_login_page.py", line 27, in login
+    self.type(self.__username, username)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 1125, in type
+    self.update_text(selector, text, by=by, timeout=timeout, retry=retry)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 974, in update_text
+    self.wait_for_ready_state_complete()
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 4370, in wait_for_ready_state_complete
+    self._check_browser()
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 8742, in _check_browser
+    raise NoSuchWindowException("Active window was already closed!")
+Exception: Message: Active window was already closed!

@@ -173,6 +173,7 @@ class PytestRunnerApp:
             "Business2 Ltd": "--var3=business2_ltd",
             "Cerberus Staffing Ltd": "--var3=cerberus_staffing_ltd",
             "Charon Solutions Ltd": "--var3=charon_solutions_ltd",
+            "Hand Technology ltd": "--var3=hand_technology_ltd",
             "Deliverex Ltd": "--var3=deliverex_ltd"
 
         }
@@ -241,6 +242,7 @@ class PytestRunnerApp:
             event.widget.master.focus_set()
 
         list_of_destibrom_test = {
+            "Add Categories": "",
             "Add Amenity": "",
             "Add Sponsored Ads": "",
             "Add News and Updates": "",
@@ -431,8 +433,8 @@ class PytestRunnerApp:
         test_commands = {
             "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Transfer a Supplier": [f"pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Pass to Due Diligence": [f"pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Transfer a Supplier": [f'pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
+            "Pass to Due Diligence": [f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
             "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
@@ -440,7 +442,7 @@ class PytestRunnerApp:
             "Withdraw IDD": [f"pytest ..//tests_supplier_land/test_withdraw_idd.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
         }
-
+        add_categories_command = '"test_login or test_add_categories"'
         add_amenity_command = '"test_login or test_add_amenity"'
         add_sponsored_ads_command = '"test_login or test_add_sponsored_and_ads"'
         add_news_and_update_command = '"test_login or test_add_news_and_events"'
@@ -449,6 +451,7 @@ class PytestRunnerApp:
         pn_category_command = '"test_login or test_add_category_notification"'
 
         list_of_destibrom_test_commands = {
+            "Add Categories": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_categories_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add Amenity": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_amenity_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add Sponsored Ads": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_sponsored_ads_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Add News and Updates": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_news_and_update_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],

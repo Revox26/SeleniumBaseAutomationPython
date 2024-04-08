@@ -2,7 +2,6 @@ from pages_supplier_land.add_pre_request_page import SupplierLandAddNewPreReques
 from pages_supplier_land.offerings_page import SupplierLandOfferingsPage
 from pages_supplier_land.sl_login_page import SupplierLandLoginPage
 import pytest
-
 from utilities.custom_logging import get_custom_logger
 from utilities.loading_bar import updt
 
