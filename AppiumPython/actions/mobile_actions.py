@@ -1,3 +1,6 @@
+import base64
+import subprocess
+import sys
 import time
 
 from appium.webdriver.common.appiumby import AppiumBy
@@ -52,6 +55,15 @@ class MobileCustomActionClass(AndroidCapabilities):
                 continue
             time.sleep(1)
 
-    def upload_file_to_mobile(self, ):
+    def push_id_to_upload_in_android(self):
         driver = self.initialize_driver()
-        driver.push_file()
+        file_paths = [
+            ("..//director_id's/Philhealth-ID.jpg", "/storage/emulated/0/Download/Philhealth-ID.jpg"),
+            ("..//director_id's/Pag-ibig.png", "/storage/emulated/0/Download/Pag-ibig.png")
+        ]
+
+        for local_path, android_path in file_paths:
+            with open(local_path, 'rb') as file:
+                data = file.read()
+                encoded_data = base64.b64encode(data).decode('utf-8')
+                driver.push_file(android_path, encoded_data)
