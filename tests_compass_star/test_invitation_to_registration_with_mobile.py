@@ -1,6 +1,7 @@
 import pytest
 
 from AppiumPython.pages_csl_mobile.account_details_screen import CslMobileAccountDetailsScreen
+from AppiumPython.pages_csl_mobile.id_documents_screen import CslMobileIdDocumentsScreen
 from AppiumPython.pages_csl_mobile.login_screen import CslMobileLoginScreen
 from AppiumPython.pages_csl_mobile.personal_details_screen import CslMobilePersonalDetailsScreen
 from AppiumPython.pages_csl_mobile.welcome_video_screen import CslMobileWelcomeVideoPage
@@ -51,7 +52,8 @@ class InvitationToReadyWithMobile(
     CslMobileLoginScreen,
     CslMobileWelcomeVideoPage,
     CslMobileAccountDetailsScreen,
-    CslMobilePersonalDetailsScreen
+    CslMobilePersonalDetailsScreen,
+    CslMobileIdDocumentsScreen
 
 ):
 
@@ -78,3 +80,12 @@ class InvitationToReadyWithMobile(
         self.skip_csl_app_video()
         self.csl_mobile_account_details()
         self.csl_mobile_personal_details()
+        self.csl_mobile_upload_id()
+
+    @pytest.mark.run(order=4)
+    def test_set_director_to_accepted(self):
+        self.navigate_to_directors_page()
+        logger.info("Starting to accept the ID and set the status to accepted...")
+        self.view_documents()
+        self.accept_id_and_set_to_accepted()
+        logger.info("Director status successfully set to accepted")
