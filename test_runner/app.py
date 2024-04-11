@@ -30,6 +30,7 @@ class PytestRunnerApp:
         self.select_a_test_dropdown_var = self.create_dropdown(
             ["New Registration To Ready",
              "T3 Allocation To Ready",
+             "Registration to ready with mobile",
              "Transfer a Supplier",
              "Pass to Due Diligence",
              "Add Provisional Pre Request",
@@ -286,6 +287,7 @@ class PytestRunnerApp:
         selected_test = self.select_a_test_dropdown_var.get()
         # Define a dictionary that maps test names to label text
         label_texts = {
+            "Registration to ready with mobile": "Director Preferred Yearly Contract Value",
             "New Registration To Ready": "Director Preferred Yearly Contract Value",
             "Upload Communications Template": "Company number",
             "Transfer a Supplier": "Company Name",
@@ -302,7 +304,7 @@ class PytestRunnerApp:
         self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
 
         if selected_test in ["New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "BSC Order Package",
-                             "Upload Communications Template", "T3 Allocation To Ready", "Add Provisional Pre Request", "Withdraw IDD"]:
+                             "Upload Communications Template", "T3 Allocation To Ready", "Add Provisional Pre Request", "Withdraw IDD", "Registration to ready with mobile"]:
             self.additional_text_label.pack(fill="both", padx=6, pady=6)
             self.text_box_widget.pack(fill="both", padx=6, pady=6)
 
@@ -432,6 +434,7 @@ class PytestRunnerApp:
 
         test_commands = {
             "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Registration to ready with mobile": [f"pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Transfer a Supplier": [f'pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
             "Pass to Due Diligence": [f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],

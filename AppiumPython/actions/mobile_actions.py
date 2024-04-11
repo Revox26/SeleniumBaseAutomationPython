@@ -1,3 +1,5 @@
+import time
+
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -47,8 +49,9 @@ class MobileCustomActionClass(AndroidCapabilities):
                 end_x = start_x
                 end_y = size['height'] // 4
                 driver.swipe(start_x, start_y, end_x, end_y, duration=300)
+                continue
+            time.sleep(1)
 
-    def upload_file_to_mobile(self,):
+    def upload_file_to_mobile(self, ):
         driver = self.initialize_driver()
         driver.push_file()
-
