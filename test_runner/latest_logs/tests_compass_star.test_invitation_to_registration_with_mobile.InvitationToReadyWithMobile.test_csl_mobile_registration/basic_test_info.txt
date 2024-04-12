@@ -1,29 +1,24 @@
 tests_compass_star/test_invitation_to_registration_with_mobile.py::InvitationToReadyWithMobile::test_csl_mobile_registration
 --------------------------------------------------------------------
-Last Page: https://aws-staging.compassstarltd.com/director/invite/link/3UwqPL0rOIIrHlY47HOB
- Duration: 81.38s
-  Browser: Chrome 123.0.6312.106
-   Driver: chromedriver 123.0.6312.86
-Timestamp: 1712589598  (Unix Timestamp)
-     Date: Monday, 8 April 2024
-     Time: 11:19:58 PM  (Malay Peninsula Standard Time, UTC+08:00)
+Last Page: https://e-compassstar.itdev.app/director/invite/link/oT5ERBmOplEXriuZhBBW
+ Duration: 185.11s
+  Browser: Edge 123.0.2420.81
+   Driver: msedgedriver 123.0.2420.81
+Timestamp: 1712922244  (Unix Timestamp)
+     Date: Friday, 12 April 2024
+     Time: 7:44:04 PM  (Malay Peninsula Standard Time, UTC+08:00)
 --------------------------------------------------------------------
 Traceback:
-  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration_with_mobile.py", line 80, in test_csl_mobile_registration
-    self.csl_mobile_personal_details()
-  File "C:\SeleniumPython\AppiumPython\pages_csl_mobile\personal_details_screen.py", line 37, in csl_mobile_personal_details
-    mobile_action.type(self.mobile_number_xpath, '9' + fake.random_int(min=100000000, max=999999999).__str__())
-  File "C:\SeleniumPython\AppiumPython\actions\mobile_actions.py", line 30, in type
-    text_box = driver.find_element(by=AppiumBy.XPATH, value=value)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\SeleniumPython\venv\Lib\site-packages\appium\webdriver\webdriver.py", line 383, in find_element
-    return self.execute(RemoteCommand.FIND_ELEMENT, {'using': by, 'value': value})['value']
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\SeleniumPython\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 347, in execute
-    self.error_handler.check_response(response)
-  File "C:\SeleniumPython\venv\Lib\site-packages\appium\webdriver\errorhandler.py", line 125, in check_response
-    raise exception_class(msg=message, stacktrace=format_stacktrace(stacktrace))
-Exception: Message: An element could not be located on the page using the given search parameters.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration_with_mobile.py", line 85, in test_csl_mobile_registration
+    self.csl_mobile_upload_id()
+  File "C:\SeleniumPython\AppiumPython\pages_csl_mobile\id_documents_screen.py", line 38, in csl_mobile_upload_id
+    mobile_action.tap(self.view_account)
+  File "C:\SeleniumPython\AppiumPython\actions\mobile_actions.py", line 26, in tap
+    button = WebDriverWait(driver, timeOut).until(EC.visibility_of_element_located((By.XPATH, value)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+Exception: Message: 
 Stacktrace:
 NoSuchElementError: An element could not be located on the page using the given search parameters.
     at AndroidUiautomator2Driver.findElOrEls (C:\Users\Jeremy Marco\node_modules\appium-uiautomator2-driver\node_modules\appium-android-driver\lib\commands\find.ts:86:11)

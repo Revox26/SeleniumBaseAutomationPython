@@ -16,5 +16,18 @@ class AndroidCapabilities:
             'automationName': 'UiAutomator2'  # Specify the automationName
         }
 
+    def get_oppo_test_phone_capabilities(self) -> Dict[str, Any]:
+        return {
+            'platformName': 'Android',
+            'platformVersion': '13.0',
+            'deviceName': 'OPPO CPH2473',
+            'language': 'en',
+            'locale': 'US',
+            'automationName': 'UiAutomator2'  # Specify the automationName
+        }
+
     def get_android_emulator_driver(self):
         return webdriver.Remote(self.url, options=AppiumOptions().load_capabilities(self.get_android_emulator_capabilities()))
+
+    def get_oppo_test_phone_driver(self):
+        return webdriver.Remote(self.url, options=AppiumOptions().load_capabilities(self.get_oppo_test_phone_capabilities()))

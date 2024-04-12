@@ -18,7 +18,7 @@ class MobileCustomActionClass(AndroidCapabilities):
 
     def initialize_driver(self):
         if not MobileCustomActionClass._driver:
-            MobileCustomActionClass._driver = self.get_android_emulator_driver()
+            MobileCustomActionClass._driver = self.get_oppo_test_phone_driver()
         return MobileCustomActionClass._driver
 
     def tap(self, value, timeOut=7):
