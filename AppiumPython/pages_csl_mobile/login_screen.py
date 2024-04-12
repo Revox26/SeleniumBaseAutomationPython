@@ -11,7 +11,7 @@ class CslMobileLoginScreen(AndroidCapabilities):
     def input_referral_code(self):
         mobile_action = MobileCustomActionClass()
 
-        mobile_action.tap(self.csl_mobile_app, 60)
+        #mobile_action.tap(self.csl_mobile_app, 60)
         mobile_action.tap(self.new_user_verify_referral_code, 60)
 
         with open("..//data//referral_code.txt", "r") as file:

@@ -34,8 +34,9 @@ class MobileCustomActionClass(AndroidCapabilities):
         text_box.send_keys(text)
         return text_box
 
-    def swipe_down_until_element_is_visible(self, element_locator, max_swipe=5):
+    def swipe_down_until_element_is_visible(self, element_locator, max_swipe=15):
         driver = self.initialize_driver()
+        time.sleep(1)
         for _ in range(max_swipe):
             try:
                 # Check if the element is visible
@@ -51,7 +52,7 @@ class MobileCustomActionClass(AndroidCapabilities):
                 start_y = size['height'] // 2
                 end_x = start_x
                 end_y = size['height'] // 4
-                driver.swipe(start_x, start_y, end_x, end_y, duration=300)
+                driver.swipe(start_x, start_y, end_x, end_y, duration=200)
                 continue
             time.sleep(1)
 

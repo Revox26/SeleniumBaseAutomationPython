@@ -76,16 +76,58 @@ class InvitationToReadyWithMobile(
 
     @pytest.mark.run(order=3)
     def test_csl_mobile_registration(self):
+        updt(7, 3)
+        logger.info("Registering in mobile as director...")
         self.input_referral_code()
         self.skip_csl_app_video()
         self.csl_mobile_account_details()
         self.csl_mobile_personal_details()
         self.csl_mobile_upload_id()
+        logger.info("Director registration in mobile completed successfully.")
 
     @pytest.mark.run(order=4)
     def test_set_director_to_accepted(self):
+        updt(7, 4)
         self.navigate_to_directors_page()
         logger.info("Starting to accept the ID and set the status to accepted...")
         self.view_documents()
         self.accept_id_and_set_to_accepted()
         logger.info("Director status successfully set to accepted")
+
+    @pytest.mark.run(order=5)
+    def test_allocating_a_company_to_the_director(self):
+        updt(7, 5)
+        self.csl_log_out()
+        self.open_compass_star_page()
+        self.compass_star_login_director()
+        self.assign_a_company_in_director_account()
+        logger.info("Completing the process with BSC...")
+
+        try:
+            self.navigate_to_complete_with_bsc()
+            self.input_bsc_personal_information()
+            self.create_your_bsc_account()
+            self.bsc_payment_details()
+            logger.info("BSC process completed successfully.")
+
+        except Exception as e:  # catch if error in BSC occur.
+            logger.error("BSC Process not completed")
+
+    @pytest.mark.run(order=6)
+    def test_proceed_to_complete_with_supplier_land(self):
+        updt(7, 6)
+        logger.info("Completing the process with Supplier Land...")
+        self.complete_with_supplier_land()
+        self.i_want_to_be_a_supplier_and_interested()
+        logger.info("Supplier Land process completed successfully.")
+
+    @pytest.mark.run(order=7)
+    def test_set_director_to_ready(self):
+        updt(7, 7)
+        logger.info("Setting company status to ready...")
+        self.csl_log_out()
+        self.compass_star_login_admin()
+        self.view_documents()
+        self.set_status_to_offered()
+        self.set_supplier_status_to_ready()
+        logger.info("Company status set to ready.")
