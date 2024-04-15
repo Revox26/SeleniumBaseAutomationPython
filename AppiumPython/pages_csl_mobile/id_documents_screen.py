@@ -17,7 +17,7 @@ class CslMobileIdDocumentsScreen(AndroidCapabilities):
         mobile_action = MobileCustomActionClass()
         mobile_action.push_id_to_upload_in_android()
 
-        mobile_action.tap(self.select_an_id)
+        mobile_action.tap(self.select_an_id, 120)
         mobile_action.tap(self.select_pag_ibig_id_mobile)
         mobile_action.tap(self.upload_id_button_mobile)
         mobile_action.tap(self.browse_id)
