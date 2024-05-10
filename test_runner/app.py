@@ -56,6 +56,7 @@ class PytestRunnerApp:
 
         self.create_label("Browser:")
         self.select_browser_dropdown_var = self.create_dropdown(["Chrome", "Edge", "Firefox"])
+        self.select_browser_dropdown_var.set("Chrome")
 
         style = ttk.Style()
         style.configure('Custom.TLabelframe', background='Light gray')
@@ -266,7 +267,6 @@ class PytestRunnerApp:
         self.desibrom_select_test_dropdown_var.set("")
         self.select_a_test_dropdown_var.set("")
         self.staging_dropdown_var.set("")
-        self.select_browser_dropdown_var.set("")
         self.additional_text_var.set("")
         self.demo_mode_checkbox_var.set(0)
         self.slow_mode_checkbox_var.set(0)
@@ -429,6 +429,7 @@ class PytestRunnerApp:
             print("\n Selected Browser:", selected_browser)
 
         additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
+        priority_parameter = "--priority=" + self.additional_text_var2_entry.get()
         additional_text_var1 = "--var1=" + self.additional_text_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
@@ -438,8 +439,8 @@ class PytestRunnerApp:
             "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Transfer a Supplier": [f'pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
             "Pass to Due Diligence": [f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
-            "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {priority_parameter} {additional_text_var1} --rs -x -q -s"],
+            "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {priority_parameter} {additional_text_var1} --rs -x -q -s"],
             "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Upload Communications Template": [f"pytest ..//tests_compass_star/test_upload_comms_template.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Withdraw IDD": [f"pytest ..//tests_supplier_land/test_withdraw_idd.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
