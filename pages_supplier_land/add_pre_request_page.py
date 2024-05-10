@@ -29,6 +29,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
     _submit_button = "//button[contains(.,'Submit')]"
     _t3_tick_box = "//label[@for='t3']"
     _add_pre_request_modal = "//div[@class='modal-header no-border']"
+    _data_not_found = "//td[contains(.,'Data not found')]"
 
     def navigate_to_pre_request(self):
         self.click(self._new_suppliers)
@@ -158,5 +159,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
             try:
                 self.click(self._pre_request_checkbox)
                 self.click(self._submit_button)
+                if self.is_element_visible(self._data_not_found):
+                    break
             except Exception as e:
                 break
