@@ -14,7 +14,7 @@ class QAApp:
         colored_ascii_art = colored_text(ascii_art, "35;1")
         print(colored_ascii_art)
         self.app = customtkinter.CTk()
-        self.app.geometry("600x800")
+        self.app.geometry("600x900")
         self.app.title("QA Team Automation")
         customtkinter.set_appearance_mode("dark")
         customtkinter.set_default_color_theme("blue")
