@@ -450,9 +450,9 @@ class QAApp:
             threading.Thread(target=run_test, args=(withdraw_idd_command,)).start()
 
         elif process_selection == "Upload communications template":
-            communcation_company_number = "--var1=" + self.communication_company_number_entry.get()
+            communication_company_number = "--var1=" + self.communication_company_number_entry.get()
             template_option = next(key for key, value in communication_template_values_parameters.items() if value == self.select_communication_template_dropdown.get())
-            upload_communications_command = f"pytest ..//tests_compass_star/test_upload_comms_template.py {communcation_company_number} {template_option} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            upload_communications_command = f"pytest ..//tests_compass_star/test_upload_comms_template.py {communication_company_number} {template_option} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(upload_communications_command,)).start()
 
         # Disable the 'Run' button during test execution
