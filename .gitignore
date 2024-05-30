@@ -9,3 +9,4 @@ data/referral_code.txt
 random_images/original_image.png
 random_images/resized_image.png!/data/intermediary.txt
 
+!/AppiumPython/device_capabilities/android_capabilities.py

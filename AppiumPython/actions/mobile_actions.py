@@ -19,7 +19,7 @@ class MobileCustomActionClass(AndroidCapabilities):
 
     def initialize_driver(self):
         if not MobileCustomActionClass._driver:
-            MobileCustomActionClass._driver = self.get_vivo_test_phone_driver()
+            MobileCustomActionClass._driver = self.get_android_emulator_driver()
         return MobileCustomActionClass._driver
 
     def tap(self, value, timeOut=7):
@@ -27,13 +27,17 @@ class MobileCustomActionClass(AndroidCapabilities):
         button.click()
         return button
 
+    def double_tap(self, value, timeOut=7):
+        for _ in range(2):
+            button = self.tap(value, timeOut)
+            return button
+
     def type(self, value, text, timeOut=7):
         text_box = WebDriverWait(self.driver, timeOut).until(EC.visibility_of_element_located((By.XPATH, value)))
         text_box.send_keys(text)
         return text_box
 
     def swipe_down_until_element_is_visible(self, element_locator, max_swipe=5):
-        time.sleep(.5)
         for _ in range(max_swipe):
             try:
                 # Check if the element is visible
@@ -51,7 +55,24 @@ class MobileCustomActionClass(AndroidCapabilities):
                 end_y = size['height'] // 4
                 self.driver.swipe(start_x, start_y, end_x, end_y, duration=250)
                 continue
-            time.sleep(.5)
+
+    def swipe_element_right(self, element_locator):
+        # Find the slider element by its ID or XPath
+        slider = self.driver.find_element(by=AppiumBy.XPATH, value=element_locator)
+
+        # Get the location and size of the slider
+        slider_location = slider.location
+        slider_size = slider.size
+
+        # Calculate start and end points for swipe
+        start_x = slider_location["x"] + slider_size["width"] * 0.2  # starting point
+        end_x = slider_location["x"] + slider_size["width"] * 0.8  # ending point
+
+        # Calculate the duration of the swipe
+        duration_ms = 1000  # 1000 milliseconds = 1 second
+
+        # Perform the swipe action by setting the value of the slider
+        self.driver.swipe(start_x, slider_location["y"], end_x, slider_location["y"], duration_ms)
 
     def push_id_to_upload_in_android(self):
         file_paths = [

@@ -1,4 +1,5 @@
 import random
+import time
 
 from AppiumPython.actions.mobile_actions import MobileCustomActionClass
 from AppiumPython.device_capabilities.android_capabilities import AndroidCapabilities
@@ -12,15 +13,15 @@ class CslMobileAccountDetailsScreen(AndroidCapabilities):
     csl_mobile_confirm_password_xpath = '//android.widget.EditText[@resource-id="RNE__Input__text-input" and @text="Password"]'
 
     csl_mobile_authentication_question_1_xpath = '//android.widget.EditText[@text="Choose a question"]'
-    last_characters_of_telephone_number_xpath = '//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="Last 3 characters of telephone number"]'
+    last_characters_of_telephone_number_xpath = '//android.widget.CheckedTextView[@text="Last 3 characters of telephone number"]'
     authentication_1_textbox_xpath = '//android.widget.EditText[contains(@resource-id, "RNE__Input__text-input") and @text=""]'
 
     csl_mobile_authentication_question_2_xpath = '//android.widget.EditText[@text="Choose a question"]'
-    last_3_characters_of_passport_number_xpath = '//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="Last 3 characters of Passport number"]'
+    last_3_characters_of_passport_number_xpath = '//android.widget.CheckedTextView[@text="Last 3 characters of Passport number"]'
     authentication_2_textbox_xpath = '//android.widget.EditText[contains(@resource-id, "RNE__Input__text-input") and @text=""]'
 
     csl_mobile_authentication_question_3_xpath = '//android.widget.EditText[@text="Choose a question"]'
-    first_3_characters_of_eye_colour_xpath = '//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="1st 3 characters of Eye Colour"]'
+    first_3_characters_of_eye_colour_xpath = '//android.widget.CheckedTextView[@text="1st 3 characters of Eye Colour"]'
     authentication_3_textbox_xpath = '//android.widget.EditText[contains(@resource-id, "RNE__Input__text-input") and @text=""]'
 
     create_account_button_xpath = '//android.widget.TextView[@text="Create Account"]'
@@ -44,18 +45,21 @@ class CslMobileAccountDetailsScreen(AndroidCapabilities):
         mobile_action.swipe_down_until_element_is_visible(self.authentication_1_textbox_xpath)
         mobile_action.tap(self.csl_mobile_authentication_question_1_xpath)
         mobile_action.tap(self.last_characters_of_telephone_number_xpath)
+        time.sleep(2)
         mobile_action.type(self.authentication_1_textbox_xpath, "123")
 
         # AUTHENTICATION 2
         mobile_action.swipe_down_until_element_is_visible(self.authentication_2_textbox_xpath)
         mobile_action.tap(self.csl_mobile_authentication_question_2_xpath)
         mobile_action.tap(self.last_3_characters_of_passport_number_xpath)
+        time.sleep(2)
         mobile_action.type(self.authentication_2_textbox_xpath, "123")
 
         # AUTHENTICATION 3
         mobile_action.swipe_down_until_element_is_visible(self.authentication_3_textbox_xpath)
         mobile_action.tap(self.csl_mobile_authentication_question_3_xpath)
         mobile_action.tap(self.first_3_characters_of_eye_colour_xpath)
+        time.sleep(2)
         mobile_action.type(self.authentication_3_textbox_xpath, "abc")
 
         mobile_action.swipe_down_until_element_is_visible(self.create_account_button_xpath)

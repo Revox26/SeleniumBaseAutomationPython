@@ -105,13 +105,13 @@ class PytestRunnerApp:
         self.label_for_radio_var.pack_forget()
         # Create the radio button and assign it to a variable
         self.radio_var = tk.StringVar()
-        self.radio_button_1_6 = ttk.Radiobutton(self.additional_text_frame, text="1.7", variable=self.radio_var, value="option1")
-        self.radio_button_1_6.pack()
-        self.radio_button_1_6.pack_forget()
-        # Create another radio button if needed
-        self.radio_button_1_7 = ttk.Radiobutton(self.additional_text_frame, text="1.6", variable=self.radio_var, value="option2")
+        self.radio_button_1_7 = ttk.Radiobutton(self.additional_text_frame, text="1.7", variable=self.radio_var, value="optionFor1_7")
         self.radio_button_1_7.pack()
         self.radio_button_1_7.pack_forget()
+        # Create another radio button if needed
+        self.radio_button_1_8 = ttk.Radiobutton(self.additional_text_frame, text="1.8", variable=self.radio_var, value="optionFor1_8")
+        self.radio_button_1_8.pack()
+        self.radio_button_1_8.pack_forget()
 
         # Inside the LabelFrame, add checkboxes with tooltips
         self.tooltip = None
@@ -233,12 +233,12 @@ class PytestRunnerApp:
         if selected_test == "New Registration To Ready":
             # Show the radio button when this test is selected
             self.label_for_radio_var.pack(anchor="w", padx=8, pady=2)
-            self.radio_button_1_6.pack(anchor="e", padx=10, side="left")
+            self.radio_button_1_8.pack(anchor="e", padx=10, side="left")
             self.radio_button_1_7.pack(anchor="e", side="left")
         else:
             # Hide the radio button for other tests
             self.label_for_radio_var.pack_forget()
-            self.radio_button_1_6.pack_forget()
+            self.radio_button_1_8.pack_forget()
             self.radio_button_1_7.pack_forget()
 
     def create_text_box(self, frame, label_text):
@@ -317,10 +317,11 @@ class PytestRunnerApp:
 
         additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
         additional_text_var1 = "--var1=" + self.additional_text_var.get()
+        radio_button_parameter = "--var3=" + self.radio_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
         test_commands = {
-            "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} {radio_button_parameter} --rs -x -q -s"],
             "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Transfer a Supplier": [f"pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Pass to Due Diligence": [f"pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
@@ -355,11 +356,10 @@ class PytestRunnerApp:
             # Get the selected radio button value
             radio_button_value = self.radio_var.get()
             # Include the radio button value in the command
-            if radio_button_value == "option1":
-                pytest_command.append("--var2=1_6")
-            elif radio_button_value == "option2":
-
-                pytest_command.append("--var2=1_7")
+            if radio_button_value == "optionFor1_7":
+                pytest_command.append("--var3=1_7")
+            elif radio_button_value == "optionFor1_8":
+                pytest_command.append("--var3=1_8")
         else:
             print("Please Select a Test")
 

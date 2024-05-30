@@ -119,6 +119,20 @@ class PytestRunnerApp:
         # Create the additional text box (second text box) and assign it to a variable
         self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
 
+        # Create a Label for radio button
+        self.label_for_radio_var = ttk.Label(self.additional_text_frame, text="Route Type", font=("Roboto", 12, "bold"))
+        self.label_for_radio_var.pack()
+        self.label_for_radio_var.pack_forget()
+        # Create the radio button and assign it to a variable
+        self.radio_var = tk.StringVar()
+        self.radio_button_1_7 = ttk.Radiobutton(self.additional_text_frame, text="1.7", variable=self.radio_var, value="optionFor1_7")
+        self.radio_button_1_7.pack()
+        self.radio_button_1_7.pack_forget()
+        # Create another radio button if needed
+        self.radio_button_1_8 = ttk.Radiobutton(self.additional_text_frame, text="1.8", variable=self.radio_var, value="optionFor1_8")
+        self.radio_button_1_8.pack()
+        self.radio_button_1_8.pack_forget()
+
         # Inside the LabelFrame, add checkboxes with tooltips
         self.tooltip = None
         self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode", "Slow down and visually see test actions as they occur.", 0, 0)
@@ -264,6 +278,7 @@ class PytestRunnerApp:
 
     def clear_fields(self):
         # Clear all the fields
+        self.radio_var.set("")
         self.desibrom_select_test_dropdown_var.set("")
         self.select_a_test_dropdown_var.set("")
         self.staging_dropdown_var.set("")
@@ -336,6 +351,7 @@ class PytestRunnerApp:
             self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
             self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
 
+
         elif selected_test == "Add Confirmed Pre Request":
             self.label_for_select_client.pack(anchor="w", padx=8, pady=2)
             self.pre_request_client_value.pack()
@@ -353,6 +369,17 @@ class PytestRunnerApp:
             self.pre_request_industry_value.pack_forget()
             self.label_for_priority_var.pack_forget()
             self.additional_text_var2_entry.pack_forget()
+
+        if selected_test in ["New Registration To Ready", "Registration to ready with mobile"]:
+            # Show the radio button when this test is selected
+            self.label_for_radio_var.pack(anchor="w", padx=8, pady=2)
+            self.radio_button_1_8.pack(anchor="e", padx=10, side="left")
+            self.radio_button_1_7.pack(anchor="e", side="left")
+        else:
+            # Hide the radio button for other tests
+            self.label_for_radio_var.pack_forget()
+            self.radio_button_1_8.pack_forget()
+            self.radio_button_1_7.pack_forget()
 
     def create_text_box(self, frame, label_text):
         label = ttk.Label(frame, text=label_text, font=("Roboto", 12, "bold"))
@@ -429,18 +456,18 @@ class PytestRunnerApp:
             print("\n Selected Browser:", selected_browser)
 
         additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
-        priority_parameter = "--priority=" + self.additional_text_var2_entry.get()
         additional_text_var1 = "--var1=" + self.additional_text_var.get()
+        radio_button_parameter = "--var3=" + self.radio_var.get()
         selected_test = self.select_a_test_dropdown_var.get()
 
         test_commands = {
-            "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
+            "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} {radio_button_parameter} --rs -x -q -s"],
             "Registration to ready with mobile": [f"pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Transfer a Supplier": [f'pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
             "Pass to Due Diligence": [f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
-            "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {priority_parameter} {additional_text_var1} --rs -x -q -s"],
-            "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {priority_parameter} {additional_text_var1} --rs -x -q -s"],
+            "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {additional_text_var1} {additional_text_var2} --rs -x -q -s"],
+            "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var1} {additional_text_var2} --rs -x -q -s"],
             "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Upload Communications Template": [f"pytest ..//tests_compass_star/test_upload_comms_template.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
             "Withdraw IDD": [f"pytest ..//tests_supplier_land/test_withdraw_idd.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
@@ -531,6 +558,13 @@ class PytestRunnerApp:
             pytest_command.append(industry_values.get(additional_dropdown_value_for_industry, ""))  # Get the corresponding option
             pytest_command.append(option_values_for_comms_dropdown.get(additional_dropdown_value_for_comms, ""))  # Get the corresponding option
             pytest_command.append(option_values_for_email_credentials_dropdown.get(additional_dropdown_value_for_email_credentials, ""))  # Get the corresponding option
+            # Get the selected radio button value
+            radio_button_value = self.radio_var.get()
+            # Include the radio button value in the command
+            if radio_button_value == "optionFor1_7":
+                pytest_command.append("--var3=1_7")
+            elif radio_button_value == "optionFor1_8":
+                pytest_command.append("--var3=1_8")
         else:
             print("")
 

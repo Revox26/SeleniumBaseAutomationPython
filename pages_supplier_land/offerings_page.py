@@ -32,9 +32,9 @@ class SupplierLandOfferingsPage(BaseCase):
         time.sleep(1)
         self.wait_for_element_clickable(self._cancel_all, timeout=60)
         try:
-            self.type(self.offerings_priority, self.priority)
+            self.type(self.offerings_priority, self.var2)
             self.click(self.pencil)
         except Exception as e:
-            self.type(self.offerings_priority1, self.priority)
+            self.type(self.offerings_priority1, self.var2)
             self.click(self.pencil1)
         time.sleep(10)
