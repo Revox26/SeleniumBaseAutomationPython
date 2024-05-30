@@ -18,12 +18,8 @@ class QAApp:
         self.create_buttons()
         self.registration_to_ready_additional_data_options()
         self.transfer_a_supplier_additional_data()
-        self.app.bind("<Configure>", self.handle_drag_to_other_monitor)
-
-    def handle_drag_to_other_monitor(self, event):
-        # Show or hide frames based on dropdown selection
-        process_selection = self.process_dropdown.get()
-        self.show_additional_data_for_process(process_selection)
+        self.pre_request_and_confirmed_additional_data()
+        self.pass_to_due_diligence_additional_data()
 
     def create_frame(self):
         frame = customtkinter.CTkFrame(master=self.app)
@@ -56,6 +52,18 @@ class QAApp:
 
         self.yearly_contract_frame.grid_remove()  # hide by default
 
+    def pass_to_due_diligence_additional_data(self):
+        self.pass_to_due_diligence_frame = customtkinter.CTkFrame(master=self.frame)
+        self.pass_to_due_diligence_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        # Add a text entry for 'Director Preferred Value'
+        self.company_name_label = customtkinter.CTkLabel(master=self.pass_to_due_diligence_frame, justify=customtkinter.LEFT, text="Company Name", font=("Arial", 15))
+        self.company_name_label.grid(row=0, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        self.pass_to_due_diligence_company_name_entry = customtkinter.CTkEntry(master=self.pass_to_due_diligence_frame, width=300)
+        self.pass_to_due_diligence_company_name_entry.grid(row=1, column=0, pady=(5, 5), padx=10, sticky="nsew")
+
+        self.pass_to_due_diligence_frame.grid_remove()
+
     def transfer_a_supplier_additional_data(self):
         self.transfer_a_supplier_frame = customtkinter.CTkFrame(master=self.frame)
         self.transfer_a_supplier_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
@@ -80,6 +88,34 @@ class QAApp:
             self.transfer_a_supplier_frame.grid()
         else:
             self.transfer_a_supplier_frame.grid_remove()
+            self.transfer_company_name_entry.delete(0, 'end')
+
+        if process_selection in ["Add provisional pre-request", "Add confirmed pre-request"]:
+            self.pre_request_and_confirmed_frame.grid()
+        else:
+            self.pre_request_and_confirmed_frame.grid_remove()
+            self.select_industry_dropdown.set("Select Industry")
+            self.select_client_dropdown.set("Select Client")
+            self.priority_entry.delete(0, 'end')
+
+        if process_selection == "Pass to due diligence":
+            self.pass_to_due_diligence_frame.grid()
+        else:
+            self.pass_to_due_diligence_frame.grid_remove()
+            self.pass_to_due_diligence_company_name_entry.delete(0, 'end')
+
+    def show_additional_data_pre_request_and_confirmed(self, process_selection):
+        if process_selection in ["Registration to ready", "Mobile registration to Ready"]:
+            self.yearly_contract_frame.grid()
+        else:
+            self.yearly_contract_frame.grid_remove()
+            self.route_type_var.set(0)
+            self.director_preferred_value_entry.delete(0, 'end')
+
+        if process_selection == "Transfer a supplier":
+            self.transfer_a_supplier_frame.grid()
+        else:
+            self.transfer_a_supplier_frame.grid_remove()
 
     def create_module_selection(self):
         module_options = ["CSL PROCESS", "SL PROCESS", "BSC PROCESS", "BROMSGROVE PROCESS"]
@@ -88,6 +124,69 @@ class QAApp:
 
         self.module_label = customtkinter.CTkLabel(master=self.frame, justify=customtkinter.LEFT, text="Select a module", font=("Arial", 30))
         self.module_label.grid(row=0, column=0, columnspan=2, pady=5, padx=10)
+
+    def pre_request_and_confirmed_additional_data(self):
+        self.pre_request_and_confirmed_frame = customtkinter.CTkFrame(master=self.frame)
+        self.pre_request_and_confirmed_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        self.pre_request_and_confirmed_frame.grid_remove()
+
+        self.select_client_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Client", font=("Arial", 15))
+        self.select_client_label.grid(row=1, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        client_values = [
+            "Random",
+            "321 Corporate Payroll Ltd",
+            "321 Pay Ltd",
+            "4th Option Ltd",
+            "Adelta Staffing Ltd",
+            "ADO Pay Ltd",
+            "Akin Resources Ltd",
+            "Apollo Staffing Ltd",
+            "Appp Solutions Ltd",
+            "BROOKLANDS PROJECT MANAGEMENT LIMITED",
+            "Business2 Ltd",
+            "Cerberus Staffing Ltd",
+            "Charon Solutions Ltd",
+            "Deliverex Ltd"
+
+        ]
+        self.select_client_dropdown = customtkinter.CTkOptionMenu(self.pre_request_and_confirmed_frame, values=client_values, width=332, height=40, font=("Arial", 12))
+        self.select_client_dropdown.grid(row=2, column=0, columnspan=2, pady=10, padx=10)
+        self.select_client_dropdown.set("Select client")
+
+        self.select_industry_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Industry", font=("Arial", 15))
+        self.select_industry_label.grid(row=3, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        industry_values = [
+            "Random",
+            "Accounts",
+            "Transport",
+            "Administration",
+            "Advertising",
+            "Agricultural services",
+            "Boarding or care of animals",
+            "Call Centre",
+            "Cleaning",
+            "Computer repair services",
+            "Construction",
+            "Engineering",
+            "Healthcare",
+            "Financial services",
+            "Gardening",
+            "Hospitality"
+
+        ]
+
+        self.select_industry_dropdown = customtkinter.CTkOptionMenu(self.pre_request_and_confirmed_frame, values=industry_values, width=332, height=40, font=("Arial", 12))
+        self.select_industry_dropdown.grid(row=4, column=0, columnspan=2, pady=10, padx=10)
+        self.select_industry_dropdown.set("Select industry")
+
+        self.priority_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Priority", font=("Arial", 15))
+        self.priority_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Priority", font=("Arial", 15))
+        self.priority_label.grid(row=5, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        self.priority_entry = customtkinter.CTkEntry(master=self.pre_request_and_confirmed_frame, width=332)
+        self.priority_entry.grid(row=6, column=0, pady=(5, 5), padx=10, sticky="nsew")
 
     def create_dropdowns(self):
         self.instance_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Replica Instance", "Delta Instance", "Echo Instance"], width=442, height=40, font=("Arial", 25))
@@ -184,6 +283,45 @@ class QAApp:
         route_type_list = {1: "--var3=1_6", 2: "--var3=1_7", 3: "--var3=1_8"}
         route = route_type_list.get(self.route_type_var.get(), self.route_type_var.get())
 
+        # Get the client in pre request
+        client_values_parameter = {
+            "--var3=random": "Random",
+            "--var3=321_corporate_payroll_ltd": "321 Corporate Payroll Ltd",
+            "--var3=321_pay_ltd": "321 Pay Ltd",
+            "--var3=4th_option_ltd": "4th Option Ltd",
+            "--var3=adelta_staffing_ltd": "Adelta Staffing Ltd",
+            "--var3=ado_pay_ltd": "ADO Pay Ltd",
+            "--var3=akin_resources_ltd": "Akin Resources Ltd",
+            "--var3=apollo_staffing_ltd": "Apollo Staffing Ltd",
+            "--var3=appp_solutions_ltd": "Appp Solutions Ltd",
+            "--var3=brooklands_project_management_limited": "BROOKLANDS PROJECT MANAGEMENT LIMITED",
+            "--var3=business2_ltd": "Business2 Ltd",
+            "--var3=cerberus_staffing_ltd": "Cerberus Staffing Ltd",
+            "--var3=charon_solutions_ltd": "Charon Solutions Ltd",
+            "--var3=deliverex_ltd": "Deliverex Ltd"
+
+        }
+
+        # Get the industry in pre request
+        industry_values_parameter = {
+            "--var1=random": "Random",
+            "--var1=accounts": "Accounts",
+            "--var1=transport": "Transport",
+            "--var1=administration": "Administration",
+            "--var1=advertising": "Advertising",
+            "--var1=agricultural_services": "Agricultural services",
+            "--var1=boarding_or_care_of_animals": "Boarding or care of animals",
+            "--var1=call_centre": "Call Centre",
+            "--var1=cleaning": "Cleaning",
+            "--var1=computer_repair_services": "Computer repair services",
+            "--var1=construction": "Construction",
+            "--var1=engineering": "Engineering",
+            "--var1=healthcare": "Healthcare",
+            "--var1=financial_services": "Financial services",
+            "--var1=gardening": "Gardening",
+            "--var1=hospitality": "Hospitality"
+        }
+
         def run_test(test_command):
             print("Running subprocess with command:", test_command)
             subprocess.run(test_command, shell=True)
@@ -203,6 +341,25 @@ class QAApp:
             director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
             mobile_registration_to_ready_command = f"pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(mobile_registration_to_ready_command,)).start()
+
+        elif process_selection == "Add provisional pre-request":
+            client_option = next(key for key, value in client_values_parameter.items() if value == self.select_client_dropdown.get())
+            industry_option = next(key for key, value in industry_values_parameter.items() if value == self.select_industry_dropdown.get())
+            priority_number = "--var2=" + self.priority_entry.get()
+            add_provisional_command = f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {client_option} {industry_option} {priority_number} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(add_provisional_command,)).start()
+
+        elif process_selection == "Add confirmed pre-request":
+            client_option = next(key for key, value in client_values_parameter.items() if value == self.select_client_dropdown.get())
+            industry_option = next(key for key, value in industry_values_parameter.items() if value == self.select_industry_dropdown.get())
+            priority_number = "--var2=" + self.priority_entry.get()
+            add_provisional_command = f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {client_option} {industry_option} {priority_number} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(add_provisional_command,)).start()
+
+        elif process_selection == "Pass to due diligence":
+            due_diligence_company_name = "--var1=" + self.pass_to_due_diligence_company_name_entry.get()
+            add_provisional_command = f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py "{due_diligence_company_name}" {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
+            threading.Thread(target=run_test, args=(add_provisional_command,)).start()
 
         # Disable the 'Run' button during test execution
         self.buttons[0].configure(state="disabled")

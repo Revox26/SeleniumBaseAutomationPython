@@ -1,612 +1,487 @@
 import subprocess
-import tkinter as tk
-from tkinter import ttk
-
+import threading
+import tkinter
+import customtkinter
 from art import *
 
 
-class PytestRunnerApp:
-    def __init__(self, master):
+class QAApp:
+    def __init__(self):
         def colored_text(text, color_code):
             return f"\033[{color_code}m{text}\033[0m"
 
         ascii_art = text2art(" Welcome to \n Automation", "slant")
         colored_ascii_art = colored_text(ascii_art, "35;1")
         print(colored_ascii_art)
+        self.app = customtkinter.CTk()
+        self.app.geometry("600x800")
+        self.app.title("QA Team Automation")
+        customtkinter.set_appearance_mode("dark")
+        customtkinter.set_default_color_theme("blue")
+        self.frame = self.create_frame()
+        self.create_module_selection()
+        self.create_dropdowns()
+        self.create_test_options()
+        self.create_buttons()
+        self.registration_to_ready_additional_data_options()
+        self.transfer_a_supplier_additional_data()
+        self.pre_request_and_confirmed_additional_data()
+        self.pass_to_due_diligence_additional_data()
+        self.withdraw_idd_additional_data()
+        self.upload_communications_template_additional_data()
+        self.app.bind("<Configure>", self.handle_drag_to_other_monitor)
 
-        self.master = master
-        master.title("QA-Team Automation Test Runner")
+    def handle_drag_to_other_monitor(self, event):
+        try:
+            process_selection = self.process_dropdown.get()
+            self.show_additional_data_for_process(process_selection)
+        except Exception as e:
+            pass
 
-        def on_resize(event):
-            # Update the size of the window based on the user's resizing
-            new_width = event.width
-            new_height = event.height
-            master.geometry(f"{new_width}x{new_height}")
-            master.bind("<Configure>", on_resize)
+    def create_frame(self):
+        frame = customtkinter.CTkFrame(master=self.app)
+        frame.place(relx=0.5, rely=0.5, anchor="center")
+        return frame
 
-        master.configure(bg="light gray")  # Set background color
+    def registration_to_ready_additional_data_options(self):
+        self.yearly_contract_frame = customtkinter.CTkFrame(master=self.frame)
+        self.yearly_contract_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        # Add a text entry for 'Director Preferred Value'
+        self.director_value_label = customtkinter.CTkLabel(master=self.yearly_contract_frame, justify=customtkinter.LEFT, text="Director Preferred Value", font=("Arial", 15))
+        self.director_value_label.grid(row=0, column=0, pady=(5, 0), padx=10, sticky="w")
 
-        self.create_label("Process:")
-        self.select_a_test_dropdown_var = self.create_dropdown(
-            ["New Registration To Ready",
-             "T3 Allocation To Ready",
-             "Registration to ready with mobile",
-             "Transfer a Supplier",
-             "Pass to Due Diligence",
-             "Add Provisional Pre Request",
-             "Add Confirmed Pre Request",
-             "BSC Order Package",
-             "Upload Communications Template",
-             "Withdraw IDD",
-             "Destination Bromsgrove",
-             "Practice Page"],
+        self.director_preferred_value_entry = customtkinter.CTkEntry(master=self.yearly_contract_frame, width=300)
+        self.director_preferred_value_entry.grid(row=1, column=0, pady=(5, 5), padx=10, sticky="nsew")
 
-        )
+        self.route_type_label = customtkinter.CTkLabel(master=self.yearly_contract_frame, justify=customtkinter.LEFT, text="Route Type", font=("Arial", 15))
+        self.route_type_label.grid(row=2, column=0, pady=(5, 0), padx=10, sticky="w")
 
-        self.create_label("Staging environment:")
-        self.staging_dropdown_var = self.create_dropdown(
-            ["QA Instance",
-             "V1 Instance",
-             "V2 Instance",
-             "V3 Instance",
-             "V4 Instance",
-             "Echo Instance",
-             "Testing Instance",
-             "Replica Instance"])
+        self.route_type_radio_frame = customtkinter.CTkFrame(master=self.yearly_contract_frame)
+        self.route_type_radio_frame.grid(row=3, column=0, columnspan=2, pady=(5, 5), padx=10, sticky="w")
 
-        self.create_label("Browser:")
-        self.select_browser_dropdown_var = self.create_dropdown(["Chrome", "Edge", "Firefox"])
-        self.select_browser_dropdown_var.set("Chrome")
+        # Use tkinter IntVar as the variable
+        self.route_type_var = tkinter.IntVar(value=2)  # Default selection
 
-        style = ttk.Style()
-        style.configure('Custom.TLabelframe', background='Light gray')
+        radio_buttons_info = [("1.6", 1), ("1.7", 2), ("1.8", 3)]
+        for i, (text, value) in enumerate(radio_buttons_info):
+            button = customtkinter.CTkRadioButton(master=self.route_type_radio_frame, text=text, variable=self.route_type_var, value=value)
+            button.grid(row=0, column=i)
 
-        # Create a new frame for the additional text box
-        self.additional_text_frame = ttk.Frame(self.master)
-        self.additional_text_frame.pack(pady=20, padx=10, fill="both")
+        self.yearly_contract_frame.grid_remove()  # hide by default
 
-        # Create a LabelFrame for the checkboxes
-        checkbox_frame = ttk.LabelFrame(self.master, text="Select Test Options:")
-        checkbox_frame.pack(pady=20, padx=10, fill="both")
+    def withdraw_idd_additional_data(self):
+        self.withdraw_idd_frame = customtkinter.CTkFrame(master=self.frame)
+        self.withdraw_idd_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        # Add a text entry for 'Director Preferred Value'
+        self.company_number_label = customtkinter.CTkLabel(master=self.withdraw_idd_frame, justify=customtkinter.LEFT, text="Company Number", font=("Arial", 15))
+        self.company_number_label.grid(row=0, column=0, pady=(5, 0), padx=10, sticky="w")
 
-        # Create a Label for additional options
-        self.additional_text_label = ttk.Label(self.additional_text_frame, text="Additional Options", font=("Roboto", 12, "bold"))
-        self.additional_text_label.pack(anchor="w", padx=8)
+        self.withdraw_idd_company_name_entry = customtkinter.CTkEntry(master=self.withdraw_idd_frame, width=300)
+        self.withdraw_idd_company_name_entry.grid(row=1, column=0, pady=(5, 5), padx=10, sticky="nsew")
 
-        # Create the additional text box and assign it to a variable
-        self.additional_text_var = self.create_text_box(self.additional_text_frame, "")
-        self.text_box_widget.pack_forget()
-        self.select_a_test_dropdown_var.trace_add("write", self.update_additional_text_label)
+        self.withdraw_idd_frame.grid_remove()
 
-        # Create a dropdown for types of template
-        self.comms_template_dropdown_var, self.template_dropdown_value = self.create_comms_template_dropdown()
-        self.template_dropdown_value.pack_forget()  # Initially hide the second dropdown
+    def pass_to_due_diligence_additional_data(self):
+        self.pass_to_due_diligence_frame = customtkinter.CTkFrame(master=self.frame)
+        self.pass_to_due_diligence_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        # Add a text entry for 'Director Preferred Value'
+        self.company_name_label = customtkinter.CTkLabel(master=self.pass_to_due_diligence_frame, justify=customtkinter.LEFT, text="Company Name", font=("Arial", 15))
+        self.company_name_label.grid(row=0, column=0, pady=(5, 0), padx=10, sticky="w")
 
-        # Create a dropdown for types of test in destibrom
-        self.desibrom_select_test_dropdown_var, self.destibrom_dropdown_value = self.create_destibrom_type_of_test_dropdown()
-        self.destibrom_dropdown_value.pack_forget()  # Initially hide the second dropdown
+        self.pass_to_due_diligence_company_name_entry = customtkinter.CTkEntry(master=self.pass_to_due_diligence_frame, width=300)
+        self.pass_to_due_diligence_company_name_entry.grid(row=1, column=0, pady=(5, 5), padx=10, sticky="nsew")
 
-        # Create a dropdown for email credentials
-        self.email_credentials_dropdown_var, self.email_credentials_value = self.create_email_credentials_dropdown()
-        self.email_credentials_value.pack_forget()  # Initially hide the second dropdown
+        self.pass_to_due_diligence_frame.grid_remove()
 
-        # Create a dropdown for client dropdown
-        self.pre_request_client_dropdown_var, self.pre_request_client_value = self.create_client_dropdown()
-        self.pre_request_client_value.pack_forget()  # Initially hide the second dropdown
-        # Create a Label for Select a Client (second text box)
-        self.label_for_select_client = ttk.Label(self.additional_text_frame, text="Select a Client", font=("Roboto", 12, "bold"))
-        self.label_for_select_client.pack_forget()
+    def transfer_a_supplier_additional_data(self):
+        self.transfer_a_supplier_frame = customtkinter.CTkFrame(master=self.frame)
+        self.transfer_a_supplier_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        # Add a text entry for 'Director Preferred Value'
+        self.transfer_company_name_label = customtkinter.CTkLabel(master=self.transfer_a_supplier_frame, justify=customtkinter.LEFT, text="Company Name", font=("Arial", 15))
+        self.transfer_company_name_label.grid(row=0, column=0, pady=(5, 0), padx=10, sticky="w")
 
-        # Create a Label for priority (second text box)
-        self.label_for_priority_var = ttk.Label(self.additional_text_frame, text="Priority", font=("Roboto", 12, "bold"))
-        self.label_for_priority_var.pack_forget()
+        self.transfer_company_name_entry = customtkinter.CTkEntry(master=self.transfer_a_supplier_frame, width=300)
+        self.transfer_company_name_entry.grid(row=1, column=0, pady=(5, 5), padx=10, sticky="nsew")
 
-        # Create a dropdown for Industry dropdown
-        self.pre_request_industry_dropdown_var, self.pre_request_industry_value = self.create_industry_dropdown()
-        self.pre_request_industry_value.pack_forget()  # Initially hide the second dropdown
-        # Create a Label for Select Industry (second text box)
-        self.label_for_select_industry = ttk.Label(self.additional_text_frame, text="Select Industry", font=("Roboto", 12, "bold"))
-        self.label_for_select_industry.pack_forget()
+        self.transfer_a_supplier_frame.grid_remove()
 
-        # Create a Label for upload communications template
-        self.label_for_communications_var = ttk.Label(self.additional_text_frame, text="Type of template", font=("Roboto", 12, "bold"))
-        self.label_for_communications_var.pack_forget()
+    def show_additional_data_for_process(self, process_selection):
+        if process_selection in ["Registration to ready", "Mobile registration to Ready"]:
+            self.yearly_contract_frame.grid()
+        else:
+            self.yearly_contract_frame.grid_remove()
+            self.route_type_var.set(0)
+            self.director_preferred_value_entry.delete(0, 'end')
 
-        # Create a Label for upload communications template
-        self.label_for_email_credentials_var = ttk.Label(self.additional_text_frame, text="Email Credentials", font=("Roboto", 12, "bold"))
-        self.label_for_email_credentials_var.pack_forget()
+        if process_selection == "Transfer a supplier":
+            self.transfer_a_supplier_frame.grid()
+        else:
+            self.transfer_a_supplier_frame.grid_remove()
+            self.transfer_company_name_entry.delete(0, 'end')
 
-        # Create the additional text box (second text box) and assign it to a variable
-        self.additional_text_var2_entry = ttk.Entry(self.additional_text_frame, font=("Roboto", 18))
+        if process_selection in ["Add provisional pre-request", "Add confirmed pre-request"]:
+            self.pre_request_and_confirmed_frame.grid()
+        else:
+            self.pre_request_and_confirmed_frame.grid_remove()
+            self.select_industry_dropdown.set("Select Industry")
+            self.select_client_dropdown.set("Select Client")
+            self.priority_entry.delete(0, 'end')
 
-        # Create a Label for radio button
-        self.label_for_radio_var = ttk.Label(self.additional_text_frame, text="Route Type", font=("Roboto", 12, "bold"))
-        self.label_for_radio_var.pack()
-        self.label_for_radio_var.pack_forget()
-        # Create the radio button and assign it to a variable
-        self.radio_var = tk.StringVar()
-        self.radio_button_1_7 = ttk.Radiobutton(self.additional_text_frame, text="1.7", variable=self.radio_var, value="optionFor1_7")
-        self.radio_button_1_7.pack()
-        self.radio_button_1_7.pack_forget()
-        # Create another radio button if needed
-        self.radio_button_1_8 = ttk.Radiobutton(self.additional_text_frame, text="1.8", variable=self.radio_var, value="optionFor1_8")
-        self.radio_button_1_8.pack()
-        self.radio_button_1_8.pack_forget()
+        if process_selection == "Pass to due diligence":
+            self.pass_to_due_diligence_frame.grid()
+        else:
+            self.pass_to_due_diligence_frame.grid_remove()
+            self.pass_to_due_diligence_company_name_entry.delete(0, 'end')
 
-        # Inside the LabelFrame, add checkboxes with tooltips
-        self.tooltip = None
-        self.demo_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Demo Mode", "Slow down and visually see test actions as they occur.", 0, 0)
-        self.slow_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Slow Mode", "Slow down the automation.", 0, 1)
-        self.report_checkbox_var = self.create_checkbox(checkbox_frame, "Generate Report", "Creates a detailed pytest-html report after tests finish.", 0, 2)
-        self.screenshot_checkbox_var = self.create_checkbox(checkbox_frame, "Save Screenshot", "Save a screenshot at the end of each test.", 1, 0)
-        self.incognito_mode_checkbox_var = self.create_checkbox(checkbox_frame, "Incognito Mode", "Enable Chrome's Incognito mode.", 1, 1)
-        self.start_window_maximize_var = self.create_checkbox(checkbox_frame, "Start Maximized", "Start tests with the browser window maximized.", 1, 2)
-        self.dark_mode_var = self.create_checkbox(checkbox_frame, "Dark Mode", "Enable Chrome's Dark mode.", 2, 0)
-        self.headless_var = self.create_checkbox(checkbox_frame, "Headless", "Run tests in headless mode.", 2, 1)
-        self.final_trace_var = self.create_checkbox(checkbox_frame, "Trace/Debug", "Debug Mode after each test.", 2, 2)
+        if process_selection == "Withdraw IDD":
+            self.withdraw_idd_frame.grid()
+        else:
+            self.withdraw_idd_frame.grid_remove()
+            self.withdraw_idd_company_name_entry.delete(0, 'end')
 
-        self.run_button = self.create_button("Run", lambda: self.run_pytest(), bg="green", fg="white", padx=20)
-        self.clear_button = self.create_button("Clear", self.clear_fields, bg="blue", fg="white", padx=20)
-        self.quit_button = self.create_button("Exit", master.quit, bg="red", fg="white", padx=20)
+        if process_selection == "Upload communications template":
+            self.upload_communications_template_frame.grid()
+        else:
+            self.upload_communications_template_frame.grid_remove()
+            self.communication_company_number_entry.delete(0, 'end')
+            self.select_communication_template_dropdown.set("Select template")
 
-    def create_comms_template_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
+    def show_additional_data_pre_request_and_confirmed(self, process_selection):
+        if process_selection in ["Registration to ready", "Mobile registration to Ready"]:
+            self.yearly_contract_frame.grid()
+        else:
+            self.yearly_contract_frame.grid_remove()
+            self.route_type_var.set(0)
+            self.director_preferred_value_entry.delete(0, 'end')
 
-        template_values = {
-            "Select All": "--var2=all",
-            "Vat Return": "--var2=vat",
-            "Invoice Approval": "--var2=invoice",
-            "Funding Request": "--var2=funding",
-            "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
+        if process_selection == "Transfer a supplier":
+            self.transfer_a_supplier_frame.grid()
+        else:
+            self.transfer_a_supplier_frame.grid_remove()
+
+    def create_module_selection(self):
+        module_options = ["CSL PROCESS", "SL PROCESS", "BSC PROCESS", "BROMSGROVE PROCESS"]
+        self.segmented_button = customtkinter.CTkSegmentedButton(master=self.frame, values=module_options, command=self.update_label)
+        self.segmented_button.grid(row=1, column=0, columnspan=2, pady=30, padx=30)
+
+        self.module_label = customtkinter.CTkLabel(master=self.frame, justify=customtkinter.LEFT, text="Select a module", font=("Arial", 30))
+        self.module_label.grid(row=0, column=0, columnspan=2, pady=5, padx=10)
+
+    def upload_communications_template_additional_data(self):
+        self.upload_communications_template_frame = customtkinter.CTkFrame(master=self.frame)
+        self.upload_communications_template_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        self.upload_communications_template_frame.grid_remove()
+
+        self.communication_company_number_label = customtkinter.CTkLabel(master=self.upload_communications_template_frame, justify=customtkinter.LEFT, text="Company Number", font=("Arial", 15))
+        self.communication_company_number_label.grid(row=0, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        self.communication_company_number_entry = customtkinter.CTkEntry(master=self.upload_communications_template_frame, width=332)
+        self.communication_company_number_entry.grid(row=1, column=0, pady=(5, 5), padx=10, sticky="nsew")
+
+        self.communication_template_label = customtkinter.CTkLabel(master=self.upload_communications_template_frame, justify=customtkinter.LEFT, text="Communcation Template", font=("Arial", 15))
+        self.communication_template_label.grid(row=2, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        communication_template_values = [
+            "Select All",
+            "Vat Return",
+            "Invoice Approval",
+            "Funding Request",
+            "Change Of Flat Rate VAT"
+
+        ]
+
+        self.select_communication_template_dropdown = customtkinter.CTkOptionMenu(self.upload_communications_template_frame, values=communication_template_values, width=332, height=40, font=("Arial", 12))
+        self.select_communication_template_dropdown.grid(row=3, column=0, columnspan=2, pady=10, padx=10)
+        self.select_communication_template_dropdown.set("Select template")
+
+    def pre_request_and_confirmed_additional_data(self):
+        self.pre_request_and_confirmed_frame = customtkinter.CTkFrame(master=self.frame)
+        self.pre_request_and_confirmed_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        self.pre_request_and_confirmed_frame.grid_remove()
+
+        self.select_client_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Client", font=("Arial", 15))
+        self.select_client_label.grid(row=1, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        client_values = [
+            "Random",
+            "321 Corporate Payroll Ltd",
+            "321 Pay Ltd",
+            "4th Option Ltd",
+            "Adelta Staffing Ltd",
+            "ADO Pay Ltd",
+            "Akin Resources Ltd",
+            "Apollo Staffing Ltd",
+            "Appp Solutions Ltd",
+            "BROOKLANDS PROJECT MANAGEMENT LIMITED",
+            "Business2 Ltd",
+            "Cerberus Staffing Ltd",
+            "Charon Solutions Ltd",
+            "Deliverex Ltd"
+
+        ]
+        self.select_client_dropdown = customtkinter.CTkOptionMenu(self.pre_request_and_confirmed_frame, values=client_values, width=332, height=40, font=("Arial", 12))
+        self.select_client_dropdown.grid(row=2, column=0, columnspan=2, pady=10, padx=10)
+        self.select_client_dropdown.set("Select client")
+
+        self.select_industry_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Industry", font=("Arial", 15))
+        self.select_industry_label.grid(row=3, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        industry_values = [
+            "Random",
+            "Accounts",
+            "Transport",
+            "Administration",
+            "Advertising",
+            "Agricultural services",
+            "Boarding or care of animals",
+            "Call Centre",
+            "Cleaning",
+            "Computer repair services",
+            "Construction",
+            "Engineering",
+            "Healthcare",
+            "Financial services",
+            "Gardening",
+            "Hospitality"
+
+        ]
+
+        self.select_industry_dropdown = customtkinter.CTkOptionMenu(self.pre_request_and_confirmed_frame, values=industry_values, width=332, height=40, font=("Arial", 12))
+        self.select_industry_dropdown.grid(row=4, column=0, columnspan=2, pady=10, padx=10)
+        self.select_industry_dropdown.set("Select industry")
+
+        self.priority_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Priority", font=("Arial", 15))
+        self.priority_label = customtkinter.CTkLabel(master=self.pre_request_and_confirmed_frame, justify=customtkinter.LEFT, text="Priority", font=("Arial", 15))
+        self.priority_label.grid(row=5, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        self.priority_entry = customtkinter.CTkEntry(master=self.pre_request_and_confirmed_frame, width=332)
+        self.priority_entry.grid(row=6, column=0, pady=(5, 5), padx=10, sticky="nsew")
+
+    def create_dropdowns(self):
+        self.instance_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Replica Instance", "Delta Instance", "Echo Instance"], width=442, height=40, font=("Arial", 25))
+        self.instance_dropdown.grid(row=3, column=0, columnspan=2, pady=10, padx=10)
+        self.instance_dropdown.set("Select instance")
+
+        self.browser_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["Chrome", "Edge", "Firefox"], width=442, height=40, font=("Arial", 25))
+        self.browser_dropdown.grid(row=4, column=0, columnspan=2, pady=10, padx=10)
+        self.browser_dropdown.set("Chrome")
+
+        self.process_dropdown_options = {
+            "CSL Process": ["Registration to ready", "Mobile registration to Ready", "Transfer a supplier", "T3 allocation to ready", "Upload communications template"],
+            "SL Process": ["Add provisional pre-request", "Add confirmed pre-request", "Pass to due diligence", "Withdraw IDD"],
+            "BSC Process": ["BSC order package"]
+        }
+
+        self.process_dropdown = customtkinter.CTkOptionMenu(self.frame, values=[], width=442, height=40, font=("Arial", 25), command=self.show_additional_data_for_process)
+        self.process_dropdown.set("select a process")
+
+    def create_test_options(self):
+        self.test_options_label = customtkinter.CTkLabel(master=self.frame, justify=customtkinter.LEFT, text="Test Options", font=("Arial", 15))
+        self.test_options_label.grid(row=6, column=0, columnspan=2, pady=(20, 0), padx=10)
+
+        test_options_value = ["Demo Mode", "Slow Mode", "Generate Report", "Save Screenshot", "Incognito Mode", "Start Maximized", "Dark Mode", "Headless Mode", "Trace/Debug Mode"]
+        self.checkbox_frame = customtkinter.CTkFrame(master=self.frame)
+        self.checkbox_frame.grid(row=7, column=0, columnspan=2, pady=10, padx=10)
+
+        self.checkbox_texts = test_options_value
+        self.checkboxes = []
+        for i, text in enumerate(self.checkbox_texts):
+            checkbox = customtkinter.CTkCheckBox(master=self.checkbox_frame, text=text)
+            checkbox.grid(row=i // 3, column=i % 3, padx=10, pady=10, sticky="nsew")
+            self.checkboxes.append(checkbox)
+
+    def create_buttons(self):
+        self.button_frame = customtkinter.CTkFrame(master=self.frame)
+        self.button_frame.grid(row=8, column=0, columnspan=2, pady=10, padx=10)
+
+        self.button_texts = ["Run", "Clear", "Exit"]
+        self.buttons = []  # Store buttons in a list for reference
+        for i, text in enumerate(self.button_texts):
+            button = customtkinter.CTkButton(master=self.button_frame, text=text, width=120, height=50, font=("Arial", 18))
+            button.grid(row=0, column=i, padx=10, pady=10)
+            self.buttons.append(button)  # Append button to list
+
+        # Bind the 'Run' button to the run_the_test() method
+        self.buttons[0].configure(command=lambda: self.run_button_function(self.process_dropdown.get()))
+        self.buttons[1].configure(command=self.clear_fields)
+        self.buttons[2].configure(command=self.exit_application)
+
+    def update_label(self, option):
+        self.module_label.configure(text=option)
+        self.show_process_dropdowns(option)
+        self.yearly_contract_frame.grid_remove()
+        self.transfer_a_supplier_frame.grid_remove()
+        self.route_type_var.set(0)
+        self.director_preferred_value_entry.delete(0, 'end')
+
+    def show_process_dropdowns(self, option):
+        self.process_dropdown.grid_forget()
+
+        # Update and show the relevant process dropdown based on selected option
+        if option == "CSL PROCESS":
+            self.process_dropdown.set("Select CSL process")
+            self.process_dropdown.configure(values=self.process_dropdown_options["CSL Process"])
+            self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+
+        elif option == "SL PROCESS":
+            self.process_dropdown.set("Select SL process")
+            self.process_dropdown.configure(values=self.process_dropdown_options["SL Process"])
+            self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+        elif option == "BSC PROCESS":
+            self.process_dropdown.set("Select BSC process")
+            self.process_dropdown.configure(values=self.process_dropdown_options["BSC Process"])
+            self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+
+    def run_button_function(self, process_selection):
+
+        # Get selected instance from dropdown
+        staging_options = {"--data=qa": "QA Instance", "--data=v1": "V1 Instance", "--data=v2": "V2 Instance", "--data=v3": "V3 Instance", "--data=v4": "V4 Instance", "--data=echo": "Echo Instance", "--data=testing": "Testing Instance", "--data=replica": "Replica Instance"}
+        staging_option = next(key for key, value in staging_options.items() if value == self.instance_dropdown.get())
+
+        # Get selected browser from dropdown
+        browser_options = {"--chrome": "Chrome", "--edge": "Edge", "--firefox": "Firefox"}
+        browser_option = next(key for key, value in browser_options.items() if value == self.browser_dropdown.get())
+
+        # Get selected test options from checkboxes
+        check_box_test_options = {"--demo": "Demo Mode", "--slow": "Slow Mode", "--html=report.html --dashboard": "Generate Report", "--screenshot": "Save Screenshot", "--incognito": "Incognito Mode", "--maximize": "Start Maximized", "--dark": "Dark Mode", "--headless": "Headless Mode", "--trace": "Trace/Debug Mode"}
+        selected_test_options = []
+        for checkbox, (option_key, option_value) in zip(self.checkboxes, check_box_test_options.items()):
+            if checkbox.get() and option_value in self.checkbox_texts:
+                selected_test_options.append(option_key)
+        selected_test_option = " ".join(selected_test_options)
+
+        # Get the route type
+        route_type_list = {1: "--var3=1_6", 2: "--var3=1_7", 3: "--var3=1_8"}
+        route = route_type_list.get(self.route_type_var.get(), self.route_type_var.get())
+
+        # Get the client in pre request
+        client_values_parameter = {
+            "--var3=random": "Random",
+            "--var3=321_corporate_payroll_ltd": "321 Corporate Payroll Ltd",
+            "--var3=321_pay_ltd": "321 Pay Ltd",
+            "--var3=4th_option_ltd": "4th Option Ltd",
+            "--var3=adelta_staffing_ltd": "Adelta Staffing Ltd",
+            "--var3=ado_pay_ltd": "ADO Pay Ltd",
+            "--var3=akin_resources_ltd": "Akin Resources Ltd",
+            "--var3=apollo_staffing_ltd": "Apollo Staffing Ltd",
+            "--var3=appp_solutions_ltd": "Appp Solutions Ltd",
+            "--var3=brooklands_project_management_limited": "BROOKLANDS PROJECT MANAGEMENT LIMITED",
+            "--var3=business2_ltd": "Business2 Ltd",
+            "--var3=cerberus_staffing_ltd": "Cerberus Staffing Ltd",
+            "--var3=charon_solutions_ltd": "Charon Solutions Ltd",
+            "--var3=deliverex_ltd": "Deliverex Ltd"
 
         }
 
-        values = list(template_values.keys())
-
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
-
-    def create_client_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
-
-        client_values = {
-            "Random": "--var3=random",
-            "321 Corporate Payroll Ltd": "--var3=321_corporate_payroll_ltd",
-            "321 Pay Ltd": "--var3=321_pay_ltd",
-            "4th Option Ltd": "--var3=4th_option_ltd",
-            "Adelta Staffing Ltd": "--var3=adelta_staffing_ltd",
-            "ADO Pay Ltd": "--var3=ado_pay_ltd",
-            "Akin Resources Ltd": "--var3=akin_resources_ltd",
-            "Apollo Staffing Ltd": "--var3=apollo_staffing_ltd",
-            "Appp Solutions Ltd": "--var3=appp_solutions_ltd",
-            "BROOKLANDS PROJECT MANAGEMENT LIMITED": "--var3=brooklands_project_management_limited",
-            "Business2 Ltd": "--var3=business2_ltd",
-            "Cerberus Staffing Ltd": "--var3=cerberus_staffing_ltd",
-            "Charon Solutions Ltd": "--var3=charon_solutions_ltd",
-            "Hand Technology ltd": "--var3=hand_technology_ltd",
-            "Deliverex Ltd": "--var3=deliverex_ltd"
-
+        # Get the industry in pre request
+        industry_values_parameter = {
+            "--var1=random": "Random",
+            "--var1=accounts": "Accounts",
+            "--var1=transport": "Transport",
+            "--var1=administration": "Administration",
+            "--var1=advertising": "Advertising",
+            "--var1=agricultural_services": "Agricultural services",
+            "--var1=boarding_or_care_of_animals": "Boarding or care of animals",
+            "--var1=call_centre": "Call Centre",
+            "--var1=cleaning": "Cleaning",
+            "--var1=computer_repair_services": "Computer repair services",
+            "--var1=construction": "Construction",
+            "--var1=engineering": "Engineering",
+            "--var1=healthcare": "Healthcare",
+            "--var1=financial_services": "Financial services",
+            "--var1=gardening": "Gardening",
+            "--var1=hospitality": "Hospitality"
         }
 
-        values = list(client_values.keys())
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
-
-    def create_industry_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
-
-        industry_values = {
-            "Random": "--var1=random",
-            "Accounts": "--var1=accounts",
-            "Transport": "--var1=transport",
-            "Administration": "--var1=administration",
-            "Advertising ": "--var1=advertising",
-            "Agricultural services": "--var1=agricultural_services",
-            "Boarding or care of animals": "--var1=boarding_or_care_of_animals",
-            "Call Centre": "--var1=call_centre",
-            "Cleaning": "--var1=cleaning",
-            "Computer repair services": "--var1=computer_repair_services",
-            "Construction": "--var1=construction",
-            "Engineering": "--var1=engineering",
-            "Healthcare": "--var1=healthcare",
-            "Financial services": "--var1=financial_services",
-            "Gardening": "--var1=gardening",
-            "Hospitality": "--var1=hospitality"
-
+        communication_template_values_parameters = {
+            "--var2=all": "Select All",
+            "--var2=vat": "Vat Return",
+            "--var2=invoice": "Invoice Approval",
+            "--var2=funding": "Funding Request",
+            "--var2=change_of_flat_rate": "Change Of Flat Rate VAT"
         }
 
-        values = list(industry_values.keys())
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
+        def run_test(test_command):
+            # print("Running subprocess with command:", test_command)
+            print("Selected Test: ", self.process_dropdown.get())
+            print("Selected Instance: ", self.instance_dropdown.get())
+            print("Selected Browser: ", self.browser_dropdown.get())
+            subprocess.run(test_command, shell=True)
 
-    def create_email_credentials_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
+        # Execute the selected test based on the selection
+        if process_selection == "Registration to ready":
+            director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
+            registration_to_ready_command = f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(registration_to_ready_command,)).start()
 
-        list_of_email_credentials = {
-            "Gmail": "--var2=gmail",
-            "Outlook": "--var2=outlook",
 
-        }
+        elif process_selection == "Transfer a supplier":
+            transfer_company_name = "--var1=" + self.transfer_company_name_entry.get()
+            transfer_a_supplier_command = f'pytest ..//tests_compass_star/test_transfer_a_supplier.py "{transfer_company_name}" {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
+            threading.Thread(target=run_test, args=(transfer_a_supplier_command,)).start()
 
-        values = list(list_of_email_credentials.keys())
+        elif process_selection == "Mobile registration to Ready":
+            director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
+            mobile_registration_to_ready_command = f"pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(mobile_registration_to_ready_command,)).start()
 
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
+        elif process_selection == "Add provisional pre-request":
+            client_option = next(key for key, value in client_values_parameter.items() if value == self.select_client_dropdown.get())
+            industry_option = next(key for key, value in industry_values_parameter.items() if value == self.select_industry_dropdown.get())
+            priority_number = "--var2=" + self.priority_entry.get()
+            add_provisional_command = f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {client_option} {industry_option} {priority_number} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(add_provisional_command,)).start()
 
-    def create_destibrom_type_of_test_dropdown(self):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
+        elif process_selection == "Add confirmed pre-request":
+            client_option = next(key for key, value in client_values_parameter.items() if value == self.select_client_dropdown.get())
+            industry_option = next(key for key, value in industry_values_parameter.items() if value == self.select_industry_dropdown.get())
+            priority_number = "--var2=" + self.priority_entry.get()
+            add_provisional_command = f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {client_option} {industry_option} {priority_number} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(add_provisional_command,)).start()
 
-        list_of_destibrom_test = {
-            "Add Categories": "",
-            "Add Amenity": "",
-            "Add Sponsored Ads": "",
-            "Add News and Updates": "",
-            "Send External Link Notification": "",
-            "Send Location Notification": "",
-            "Send Category Notification": ""
-        }
+        elif process_selection == "Pass to due diligence":
+            due_diligence_company_name = "--var1=" + self.pass_to_due_diligence_company_name_entry.get()
+            add_provisional_command = f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py "{due_diligence_company_name}" {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
+            threading.Thread(target=run_test, args=(add_provisional_command,)).start()
 
-        values = list(list_of_destibrom_test.keys())
+        elif process_selection == "Withdraw IDD":
+            withdraw_idd_company_name = "--var1=" + self.withdraw_idd_company_name_entry.get()
+            withdraw_idd_command = f'pytest ..//tests_supplier_land/test_withdraw_idd.py "{withdraw_idd_company_name}" {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
+            threading.Thread(target=run_test, args=(withdraw_idd_command,)).start()
 
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.additional_text_frame, textvariable=dropdown_var, values=values, font=("Roboto", 18), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-        dropdown.config(width=26)
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var, dropdown
+        elif process_selection == "Upload communications template":
+            communcation_company_number = "--var1=" + self.communication_company_number_entry.get()
+            template_option = next(key for key, value in communication_template_values_parameters.items() if value == self.select_communication_template_dropdown.get())
+            upload_communications_command = f"pytest ..//tests_compass_star/test_upload_comms_template.py {communcation_company_number} {template_option} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(upload_communications_command,)).start()
+
+        # Disable the 'Run' button during test execution
+        self.buttons[0].configure(state="disabled")
+
+        # Enable the 'Run' button after test execution
+        self.buttons[0].configure(state="normal")
 
     def clear_fields(self):
-        # Clear all the fields
-        self.radio_var.set("")
-        self.desibrom_select_test_dropdown_var.set("")
-        self.select_a_test_dropdown_var.set("")
-        self.staging_dropdown_var.set("")
-        self.additional_text_var.set("")
-        self.demo_mode_checkbox_var.set(0)
-        self.slow_mode_checkbox_var.set(0)
-        self.report_checkbox_var.set(0)
-        self.screenshot_checkbox_var.set(0)
-        self.incognito_mode_checkbox_var.set(0)
-        self.start_window_maximize_var.set(0)
-        self.dark_mode_var.set(0)
-        self.headless_var.set(0)
-        self.final_trace_var.set(0)
-        self.comms_template_dropdown_var.set("")
-        self.email_credentials_dropdown_var.set("")
-        self.pre_request_client_dropdown_var.set("")
-        self.pre_request_industry_dropdown_var.set("")
-        self.additional_text_var2_entry.delete(0, 'end')
+        print("Clearing fields...")
+        self.route_type_var.set(0)
+        self.director_preferred_value_entry.delete(0, 'end')
+        self.transfer_company_name_entry.delete(0, 'end')
+        self.pass_to_due_diligence_company_name_entry.delete(0, 'end')
+        self.select_industry_dropdown.set("Select Industry")
+        self.select_client_dropdown.set("Select Client")
+        self.priority_entry.delete(0, 'end')
+        self.withdraw_idd_company_name_entry.delete(0, 'end')
+        self.communication_company_number_entry.delete(0, 'end')
+        self.select_communication_template_dropdown.set("Select template")
+        # Uncheck the test options checkboxes
+        for checkbox in self.checkboxes:
+            checkbox.deselect()
+        print("Clear fields successfully")
 
-    def update_additional_text_label(self, *args):
-        selected_test = self.select_a_test_dropdown_var.get()
-        # Define a dictionary that maps test names to label text
-        label_texts = {
-            "Registration to ready with mobile": "Director Preferred Yearly Contract Value",
-            "New Registration To Ready": "Director Preferred Yearly Contract Value",
-            "Upload Communications Template": "Company number",
-            "Transfer a Supplier": "Company Name",
-            "Pass to Due Diligence": "Company Name",
-            "BSC Order Package": "Company Number from CH",
-            "Practice Page": "This is practice page",
-            "T3 Allocation To Ready": "Director's Email Address",
-            "Add Provisional Pre Request": "BSC ID",
-            "Withdraw IDD": "Company Number",
-            "Add Confirmed Pre Request": ""
-
-        }
-        # Use the dictionary to set the label text or use a default value
-        self.additional_text_label.config(text=label_texts.get(selected_test, "Additional Options"))
-
-        if selected_test in ["New Registration To Ready", "Transfer a Supplier", "Pass to Due Diligence", "BSC Order Package",
-                             "Upload Communications Template", "T3 Allocation To Ready", "Add Provisional Pre Request", "Withdraw IDD", "Registration to ready with mobile"]:
-            self.additional_text_label.pack(fill="both", padx=6, pady=6)
-            self.text_box_widget.pack(fill="both", padx=6, pady=6)
-
-        if selected_test == "Upload Communications Template":
-            self.label_for_communications_var.pack(anchor="w", padx=8, pady=6)
-            self.template_dropdown_value.pack()  # Show the second dropdown
-        else:
-            self.template_dropdown_value.pack_forget()  # Hide the second dropdown
-            self.label_for_communications_var.pack_forget()
-
-        if selected_test == "Destination Bromsgrove":
-            self.destibrom_dropdown_value.pack()  # Show the second dropdown
-            self.text_box_widget.pack_forget()
-        else:
-            self.destibrom_dropdown_value.pack_forget()  # Hide the second dropdown
-
-        if selected_test == "BSC Order Package":
-            self.label_for_email_credentials_var.pack(anchor="w", padx=8, pady=6)
-            self.email_credentials_value.pack()  # Show the second dropdown
-        else:
-            self.label_for_email_credentials_var.pack_forget()  # Hide the second dropdown
-            self.email_credentials_value.pack_forget()
-
-        if selected_test == "Add Provisional Pre Request":
-            self.label_for_select_client.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_client_value.pack()
-            self.label_for_select_industry.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_industry_value.pack()
-            self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
-
-
-        elif selected_test == "Add Confirmed Pre Request":
-            self.label_for_select_client.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_client_value.pack()
-            self.label_for_select_industry.pack(anchor="w", padx=8, pady=2)
-            self.pre_request_industry_value.pack()
-            self.label_for_priority_var.pack(anchor="w", padx=8, pady=2)
-            self.additional_text_var2_entry.pack(fill="both", padx=6, pady=6)
-            self.additional_text_label.pack_forget()
-            self.text_box_widget.pack_forget()
-
-        else:
-            self.pre_request_client_value.pack_forget()
-            self.label_for_select_client.pack_forget()
-            self.label_for_select_industry.pack_forget()
-            self.pre_request_industry_value.pack_forget()
-            self.label_for_priority_var.pack_forget()
-            self.additional_text_var2_entry.pack_forget()
-
-        if selected_test in ["New Registration To Ready", "Registration to ready with mobile"]:
-            # Show the radio button when this test is selected
-            self.label_for_radio_var.pack(anchor="w", padx=8, pady=2)
-            self.radio_button_1_8.pack(anchor="e", padx=10, side="left")
-            self.radio_button_1_7.pack(anchor="e", side="left")
-        else:
-            # Hide the radio button for other tests
-            self.label_for_radio_var.pack_forget()
-            self.radio_button_1_8.pack_forget()
-            self.radio_button_1_7.pack_forget()
-
-    def create_text_box(self, frame, label_text):
-        label = ttk.Label(frame, text=label_text, font=("Roboto", 12, "bold"))
-        label.pack()
-        label.place(anchor="center")
-        text_var = tk.StringVar()
-        text_box = ttk.Entry(frame, textvariable=text_var, font=("Roboto", 18))
-        text_box.pack(fill="both", padx=6, pady=5)
-        self.text_box_widget = text_box
-        return text_var
-
-    def create_label(self, text):
-        label = tk.Label(self.master, text=text, font=("Roboto", 14, "bold"), bg="lightgray")
-        label.pack(anchor="w", pady=(25, 0), padx=8)
-        return label
-
-    def create_label1(self, text):
-        label = tk.Label(self.master, text=text, font=("Roboto", 12, "bold"), bg="lightgray")
-        label.pack(pady=(20, 10))
-        return label
-
-    def create_dropdown(self, values):
-        def remove_highlight(event):
-            event.widget.master.focus_set()
-
-        dropdown_var = tk.StringVar()
-        dropdown = ttk.Combobox(self.master, textvariable=dropdown_var, values=values, font=("Roboto", 17), state="readonly")
-        dropdown.pack(fill="both", padx=10, pady=5)
-
-        # Calculate the width based on the longest item
-        max_item_width = max(len(item) for item in values)
-        dropdown.config(width=max_item_width)
-        dropdown.config(width=27)
-
-        dropdown.bind("<FocusIn>", remove_highlight)
-        return dropdown_var
-
-    def create_checkbox(self, parent, text, tooltip_text, row, column):
-        checkbox_var = tk.IntVar()
-        checkbox = ttk.Checkbutton(parent, text=text, variable=checkbox_var)
-        checkbox.grid(row=row, column=column, padx=5, pady=5, sticky="w")
-        checkbox.bind("<Enter>", lambda event, text=tooltip_text: self.show_tooltip(event, text))
-        checkbox.bind("<Leave>", self.hide_tooltip)
-        return checkbox_var
-
-    def show_tooltip(self, event, text):
-        x, y, _, _ = event.widget.bbox("insert")
-        x += event.widget.winfo_rootx() + 25
-        y += event.widget.winfo_rooty() + 25
-        self.tooltip = tk.Toplevel(event.widget)
-        self.tooltip.wm_overrideredirect(True)
-        self.tooltip.wm_geometry(f"+{x}+{y}")
-        label = tk.Label(self.tooltip, text=text, background="light yellow", relief="solid", borderwidth=1)
-        label.pack()
-
-    def hide_tooltip(self, _):
-        if hasattr(self, "tooltip"):
-            self.tooltip.destroy()
-
-    def create_button(self, text, command, **kwargs):
-        button = tk.Button(self.master, text=text, command=command, **kwargs, font=("Roboto", 12, "bold"))
-        button.pack(side="left", padx=(10, 10), pady=(0, 10), expand=True, fill="both")
-        return button
-
-    def run_pytest(self):
-        selected_test = self.select_a_test_dropdown_var.get()
-        selected_staging = self.staging_dropdown_var.get()
-        selected_browser = self.select_browser_dropdown_var.get()
-        if selected_test:
-            print("\n Selected Test: ", selected_test)
-        if selected_staging:
-            print("\n Selected Staging: ", selected_staging)
-        if selected_browser:
-            print("\n Selected Browser:", selected_browser)
-
-        additional_text_var2 = "--var2=" + self.additional_text_var2_entry.get()
-        additional_text_var1 = "--var1=" + self.additional_text_var.get()
-        radio_button_parameter = "--var3=" + self.radio_var.get()
-        selected_test = self.select_a_test_dropdown_var.get()
-
-        test_commands = {
-            "New Registration To Ready": [f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {additional_text_var2} {additional_text_var1} {radio_button_parameter} --rs -x -q -s"],
-            "Registration to ready with mobile": [f"pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "T3 Allocation To Ready": [f"pytest ..//tests_compass_star/test_t3_allocation_to_ready.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Transfer a Supplier": [f'pytest ..//tests_compass_star/test_transfer_a_supplier.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
-            "Pass to Due Diligence": [f'pytest ..//tests_supplier_land/test_pass_to_due_diligence.py {additional_text_var2} "{additional_text_var1}" --rs -x -q -s'],
-            "Add Provisional Pre Request": [f"pytest ..//tests_supplier_land/test_add_provisional_pre_request.py {additional_text_var1} {additional_text_var2} --rs -x -q -s"],
-            "Add Confirmed Pre Request": [f"pytest ..//tests_supplier_land/test_add_confirmed_pre_request.py {additional_text_var1} {additional_text_var2} --rs -x -q -s"],
-            "BSC Order Package": [f"pytest ..//tests_bsc/test_bsc_redeem_package.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Upload Communications Template": [f"pytest ..//tests_compass_star/test_upload_comms_template.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Withdraw IDD": [f"pytest ..//tests_supplier_land/test_withdraw_idd.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Practice Page": [f"pytest ..//test_runner/practice.py {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
-        }
-        add_categories_command = '"test_login or test_add_categories"'
-        add_amenity_command = '"test_login or test_add_amenity"'
-        add_sponsored_ads_command = '"test_login or test_add_sponsored_and_ads"'
-        add_news_and_update_command = '"test_login or test_add_news_and_events"'
-        pn_external_link_command = '"test_login or test_add_external_links_notification"'
-        pn_location_command = '"test_login or test_add_location_notification"'
-        pn_category_command = '"test_login or test_add_category_notification"'
-
-        list_of_destibrom_test_commands = {
-            "Add Categories": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_categories_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Add Amenity": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_amenity_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Add Sponsored Ads": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_sponsored_ads_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Add News and Updates": [f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k {add_news_and_update_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Send External Link Notification": [f"pytest ..//tests_destibrom/test_push_notification.py -k {pn_external_link_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Send Location Notification": [f"pytest ..//tests_destibrom/test_push_notification.py -k {pn_location_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"],
-            "Send Category Notification": [f"pytest ..//tests_destibrom/test_push_notification.py -k {pn_category_command} {additional_text_var2} {additional_text_var1} --rs -x -q -s"]
-        }
-
-        # Get the value of the list of test in desti dropdown
-        additional_dropdown_value_for_destibrom_test = self.desibrom_select_test_dropdown_var.get()
-
-        if additional_dropdown_value_for_destibrom_test in list_of_destibrom_test_commands:
-            pytest_command = list_of_destibrom_test_commands[additional_dropdown_value_for_destibrom_test]
-
-        # Get the value of the comms template dropdown
-        additional_dropdown_value_for_comms = self.comms_template_dropdown_var.get()
-        option_values_for_comms_dropdown = {
-            "Select All": "--var2=all",
-            "Vat Return": "--var2=vat",
-            "Invoice Approval": "--var2=invoice",
-            "Funding Request": "--var2=funding",
-            "Change Of Flat Rate VAT": "--var2=change_of_flat_rate"
-        }
-        # Get the value of the comms template dropdown
-        option_values_for_email_credentials_dropdown = {
-            "Gmail": "--var2=gmail",
-            "Outlook": "--var2=outlook",
-        }
-        additional_dropdown_value_for_email_credentials = self.email_credentials_dropdown_var.get()
-
-        client_values = {
-            "Random": "--var3=random",
-            "321 Corporate Payroll Ltd": "--var3=321_corporate_payroll_ltd",
-            "321 Pay Ltd": "--var3=321_pay_ltd",
-            "4th Option Ltd": "--var3=4th_option_ltd",
-            "Adelta Staffing Ltd": "--var3=adelta_staffing_ltd",
-            "ADO Pay Ltd": "--var3=ado_pay_ltd",
-            "Akin Resources Ltd": "--var3=akin_resources_ltd",
-            "Apollo Staffing Ltd": "--var3=apollo_staffing_ltd",
-            "Appp Solutions Ltd": "--var3=appp_solutions_ltd",
-            "BROOKLANDS PROJECT MANAGEMENT LIMITED": "--var3=brooklands_project_management_limited",
-            "Business2 Ltd": "--var3=business2_ltd",
-            "Cerberus Staffing Ltd": "--var3=cerberus_staffing_ltd",
-            "Charon Solutions Ltd": "--var3=charon_solutions_ltd",
-            "Deliverex Ltd": "--var3=deliverex_ltd"
-
-        }
-        industry_values = {
-            "Random": "--var1=random",
-            "Accounts": "--var1=accounts",
-            "Transport": "--var1=transport",
-            "Administration": "--var1=administration",
-            "Advertising ": "--var1=advertising",
-            "Agricultural services": "--var1=agricultural_services",
-            "Boarding or care of animals": "--var1=boarding_or_care_of_animals",
-            "Call Centre": "--var1=call_centre",
-            "Cleaning": "--var1=cleaning",
-            "Computer repair services": "--var1=computer_repair_services",
-            "Construction": "--var1=construction",
-            "Engineering": "--var1=engineering",
-            "Healthcare": "--var1=healthcare",
-            "Financial services": "--var1=financial_services",
-            "Gardening": "--var1=gardening",
-            "Hospitality": "--var1=hospitality"
-
-        }
-        additional_dropdown_value_for_client = self.pre_request_client_dropdown_var.get()
-        additional_dropdown_value_for_industry = self.pre_request_industry_dropdown_var.get()
-
-        if selected_test in test_commands:
-            pytest_command = test_commands[selected_test]
-            pytest_command.append(client_values.get(additional_dropdown_value_for_client, ""))  # Get the corresponding option
-            pytest_command.append(industry_values.get(additional_dropdown_value_for_industry, ""))  # Get the corresponding option
-            pytest_command.append(option_values_for_comms_dropdown.get(additional_dropdown_value_for_comms, ""))  # Get the corresponding option
-            pytest_command.append(option_values_for_email_credentials_dropdown.get(additional_dropdown_value_for_email_credentials, ""))  # Get the corresponding option
-            # Get the selected radio button value
-            radio_button_value = self.radio_var.get()
-            # Include the radio button value in the command
-            if radio_button_value == "optionFor1_7":
-                pytest_command.append("--var3=1_7")
-            elif radio_button_value == "optionFor1_8":
-                pytest_command.append("--var3=1_8")
-        else:
-            print("")
-
-        options = {
-            "--demo": self.demo_mode_checkbox_var.get(),
-            "--html=report.html --dashboard": self.report_checkbox_var.get(),
-            "--screenshot": self.screenshot_checkbox_var.get(),
-            "--slow": self.slow_mode_checkbox_var.get(),
-            "--incognito": self.incognito_mode_checkbox_var.get(),
-            "--maximize": self.start_window_maximize_var.get(),
-            "--dark": self.dark_mode_var.get(),
-            "--headless": self.headless_var.get(),
-            "--trace": self.final_trace_var.get()
-
-        }
-
-        additional_args = self.staging_dropdown_var.get()
-
-        staging_options = {
-            "--data=qa": "QA Instance",
-            "--data=v1": "V1 Instance",
-            "--data=v2": "V2 Instance",
-            "--data=v3": "V3 Instance",
-            "--data=v4": "V4 Instance",
-            "--data=echo": "Echo Instance",
-            "--data=testing": "Testing Instance",
-            "--data=replica": "Replica Instance"
-
-        }
-        pytest_command.extend([key for key, value in staging_options.items() if value == additional_args])
-        browser_arguments = self.select_browser_dropdown_var.get()
-        browser_options = {
-            "--chrome": "Chrome",
-            "--edge": "Edge",
-            "--firefox": "Firefox"
-        }
-        pytest_command.extend([key for key, value in browser_options.items() if value == browser_arguments])
-        pytest_command.extend([option for option, value in options.items() if value])
-        subprocess.Popen(" ".join(pytest_command), shell=True)
+    def exit_application(self):
+        self.app.destroy()
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = PytestRunnerApp(root)
-    root.mainloop()
+    app = QAApp()
+    app.app.mainloop()

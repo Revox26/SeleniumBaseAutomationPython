@@ -1,5 +1,17 @@
-[32m2024-05-29 11:41:04 PM - INFO - Starting the Compass Star login test as admin...[0m
-[32m2024-05-29 11:41:22 PM - INFO - Compass Star login as admin completed successfully.[0m
-[32m2024-05-29 11:41:24 PM - INFO - Navigating to the invite director page...[0m
-[32m2024-05-29 11:42:01 PM - INFO - Referral Code has been generated successfully[0m
-[32m2024-05-29 11:42:02 PM - INFO - Registering in mobile as director...[0m
+[32m2024-05-30 10:53:09 PM - INFO - Starting the Compass Star login test as admin...[0m
+[32m2024-05-30 10:53:19 PM - INFO - Compass Star login as admin completed successfully.[0m
+[32m2024-05-30 10:53:19 PM - INFO - Navigating to the invite director page...[0m
+[32m2024-05-30 10:53:27 PM - INFO - Invitation link has been generated successfully[0m
+[32m2024-05-30 10:53:27 PM - INFO - Opening the invitation link...[0m
+[32m2024-05-30 10:53:38 PM - INFO - Invitation link opened and video skipped successfully.[0m
+[32m2024-05-30 10:53:41 PM - INFO - Registering as director...[0m
+[32m2024-05-30 10:54:09 PM - INFO - Director registration completed successfully.[0m
+[32m2024-05-30 10:54:22 PM - INFO - Starting to accept the ID and set the status to accepted...[0m
+[32m2024-05-30 10:54:36 PM - INFO - Director status successfully set to accepted[0m
+[32m2024-05-30 10:54:39 PM - INFO - Allocating company using director account...[0m
+[32m2024-05-30 10:54:59 PM - INFO - Allocation of the company using the director's account was successful.[0m
+[32m2024-05-30 10:54:59 PM - INFO - Completing the process with BSC...[0m
+[32m2024-05-30 10:55:36 PM - INFO - BSC process completed successfully.[0m
+[32m2024-05-30 10:55:36 PM - INFO - Completing the process with Supplier Land...[0m
+[32m2024-05-30 10:55:51 PM - INFO - Supplier Land process completed successfully.[0m
+[32m2024-05-30 10:55:51 PM - INFO - Setting company status to ready...[0m
