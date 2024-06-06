@@ -34,7 +34,8 @@ class AndroidCapabilities:
             'skipServerInstallation': True,
             'waitForIdleTimeout': 0,
             'networkSpeed': 'full',
-            'automationName': 'UiAutomator2'
+            'automationName': 'UiAutomator2',
+            'autoGrantPermissions': True
         }
 
     def get_oppo_test_phone_capabilities(self) -> Dict[str, Any]:

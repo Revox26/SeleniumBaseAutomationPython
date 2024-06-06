@@ -6,11 +6,16 @@ import time
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from seleniumbase import BaseCase
+
+from test_runner.app import QAApp
+
+BaseCase.main(__name__, __file__)
 from AppiumPython.device_capabilities.android_capabilities import AndroidCapabilities
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class MobileCustomActionClass(AndroidCapabilities):
+class MobileCustomActionClass(AndroidCapabilities, QAApp):
     _driver = None
 
     def __init__(self):
@@ -18,8 +23,20 @@ class MobileCustomActionClass(AndroidCapabilities):
         self.driver = self.initialize_driver()
 
     def initialize_driver(self):
+
+        with open("..//data//mobile_device_type.txt", "r") as file:
+            selected_device = file.read().strip()
+
         if not MobileCustomActionClass._driver:
-            MobileCustomActionClass._driver = self.get_android_emulator_driver()
+            if selected_device == "--emulator":
+                MobileCustomActionClass._driver = self.get_android_emulator_driver()
+            elif selected_device == "--oppo":
+                MobileCustomActionClass._driver = self.get_oppo_test_phone_driver()
+            elif selected_device == "--vivo":
+                MobileCustomActionClass._driver = self.get_vivo_test_phone_driver()
+            else:
+                print("Device argument not provided or not recognized.")
+
         return MobileCustomActionClass._driver
 
     def tap(self, value, timeOut=7):
@@ -32,7 +49,7 @@ class MobileCustomActionClass(AndroidCapabilities):
             button = self.tap(value, timeOut)
             return button
 
-    def type(self, value, text, timeOut=7):
+    def type_text(self, value, text, timeOut=7):
         text_box = WebDriverWait(self.driver, timeOut).until(EC.visibility_of_element_located((By.XPATH, value)))
         text_box.send_keys(text)
         return text_box

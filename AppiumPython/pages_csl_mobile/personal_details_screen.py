@@ -35,10 +35,10 @@ class CslMobilePersonalDetailsScreen(AndroidCapabilities):
         mobile_action.tap(self.date_ok)
 
         mobile_action.swipe_down_until_element_is_visible(self.mobile_number_xpath)
-        mobile_action.type(self.mobile_number_xpath, '9' + fake.random_int(min=100000000, max=999999999).__str__())
+        mobile_action.type_text(self.mobile_number_xpath, '9' + fake.random_int(min=100000000, max=999999999).__str__())
 
         mobile_action.swipe_down_until_element_is_visible(self.occupation_xpath)
-        mobile_action.type(self.occupation_xpath, fake.job())
+        mobile_action.type_text(self.occupation_xpath, fake.job())
 
         mobile_action.swipe_down_until_element_is_visible(self.professional_interest_xpath)
         mobile_action.tap(self.professional_interest_xpath)
@@ -46,16 +46,16 @@ class CslMobilePersonalDetailsScreen(AndroidCapabilities):
         mobile_action.tap(self.close_professional_interest_xpath)
 
         mobile_action.swipe_down_until_element_is_visible(self.address_xpath)
-        mobile_action.type(self.address_xpath, fake.address())
+        mobile_action.type_text(self.address_xpath, fake.address())
 
         mobile_action.swipe_down_until_element_is_visible(self.town_or_city_xpath)
-        mobile_action.type(self.town_or_city_xpath, fake.city())
+        mobile_action.type_text(self.town_or_city_xpath, fake.city())
 
         mobile_action.swipe_down_until_element_is_visible(self.province_xpath)
-        mobile_action.type(self.province_xpath, fake.state())
+        mobile_action.type_text(self.province_xpath, fake.state())
 
         mobile_action.swipe_down_until_element_is_visible(self.postal_code_xpath)
-        mobile_action.type(self.postal_code_xpath, "4120")
+        mobile_action.type_text(self.postal_code_xpath, "4120")
 
         mobile_action.swipe_down_until_element_is_visible(self.same_as_present_address)
         mobile_action.tap(self.same_as_present_address)

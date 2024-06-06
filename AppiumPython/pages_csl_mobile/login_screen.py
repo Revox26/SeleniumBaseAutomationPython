@@ -17,5 +17,5 @@ class CslMobileLoginScreen(AndroidCapabilities):
         with open("..//data//referral_code.txt", "r") as file:
             mobile_referral_code = file.read().strip()
 
-        mobile_action.type(self.referral_code_textbox, mobile_referral_code)
+        mobile_action.type_text(self.referral_code_textbox, mobile_referral_code)
         mobile_action.tap(self.csl_verify_button)

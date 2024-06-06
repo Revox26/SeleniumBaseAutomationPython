@@ -29,6 +29,7 @@ class QAApp:
         self.pass_to_due_diligence_additional_data()
         self.withdraw_idd_additional_data()
         self.upload_communications_template_additional_data()
+        self.mobile_registration_to_ready_additional_data_options()
         self.app.bind("<Configure>", self.handle_drag_to_other_monitor)
 
     def handle_drag_to_other_monitor(self, event):
@@ -42,6 +43,17 @@ class QAApp:
         frame = customtkinter.CTkFrame(master=self.app)
         frame.place(relx=0.5, rely=0.5, anchor="center")
         return frame
+
+    def mobile_registration_to_ready_additional_data_options(self):
+        # Add a text entry for 'Director Preferred Value'
+        self.mobile_device_selection_label = customtkinter.CTkLabel(master=self.yearly_contract_frame, justify=customtkinter.LEFT, text="Device", font=("Arial", 15))
+        self.mobile_device_selection_label.grid(row=4, column=0, pady=(5, 0), padx=10, sticky="w")
+        self.mobile_device_selection_label.grid_remove()
+
+        self.mobile_device_selection_dropdown = customtkinter.CTkOptionMenu(self.yearly_contract_frame, values=["Emulator", "Oppo", "Vivo"], width=300, height=40, font=("Arial", 12))
+        self.mobile_device_selection_dropdown.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
+        self.mobile_device_selection_dropdown.set("Select Device")
+        self.mobile_device_selection_dropdown.grid_remove()
 
     def registration_to_ready_additional_data_options(self):
         self.yearly_contract_frame = customtkinter.CTkFrame(master=self.frame)
@@ -67,7 +79,7 @@ class QAApp:
             button = customtkinter.CTkRadioButton(master=self.route_type_radio_frame, text=text, variable=self.route_type_var, value=value)
             button.grid(row=0, column=i)
 
-        self.yearly_contract_frame.grid_remove()  # hide by default
+        # self.yearly_contract_frame.grid_remove()  # hide by default
 
     def withdraw_idd_additional_data(self):
         self.withdraw_idd_frame = customtkinter.CTkFrame(master=self.frame)
@@ -112,6 +124,14 @@ class QAApp:
             self.yearly_contract_frame.grid_remove()
             self.route_type_var.set(0)
             self.director_preferred_value_entry.delete(0, 'end')
+
+        if process_selection == "Mobile registration to Ready":
+            self.mobile_device_selection_label.grid()
+            self.mobile_device_selection_dropdown.grid()
+        else:
+            self.mobile_device_selection_label.grid_remove()
+            self.mobile_device_selection_dropdown.grid_remove()
+            self.mobile_device_selection_dropdown.set("Select Device")
 
         if process_selection == "Transfer a supplier":
             self.transfer_a_supplier_frame.grid()
@@ -414,15 +434,35 @@ class QAApp:
             registration_to_ready_command = f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(registration_to_ready_command,)).start()
 
-
         elif process_selection == "Transfer a supplier":
             transfer_company_name = "--var1=" + self.transfer_company_name_entry.get()
             transfer_a_supplier_command = f'pytest ..//tests_compass_star/test_transfer_a_supplier.py "{transfer_company_name}" {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
             threading.Thread(target=run_test, args=(transfer_a_supplier_command,)).start()
 
         elif process_selection == "Mobile registration to Ready":
+            device_selected = self.mobile_device_selection_dropdown.get()
+
+            if device_selected == "Emulator":
+                with open("..//data//mobile_device_type.txt", "w") as file:
+                    file.write("--emulator")
+            elif device_selected == "Vivo":
+                with open("..//data//mobile_device_type.txt", "w") as file:
+                    file.write("--vivo")
+            elif device_selected == "Oppo":
+                with open("..//data//mobile_device_type.txt", "w") as file:
+                    file.write("--oppo")
+
+            # mobile_device_selection_parameters = {
+            #     "--emulator": "Emulator",
+            #     "--oppo": "Oppo",
+            #     "--vivo": "Vivo",
+            #
+            # }
+            # mobile_selection_option = next(key for key, value in mobile_device_selection_parameters.items() if value == self.mobile_device_selection_dropdown.get())
             director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
-            mobile_registration_to_ready_command = f"pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            device_list = self.mobile_device_selection_dropdown.get()
+            mobile_registration_to_ready_command = f'pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py  {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
+            print(mobile_registration_to_ready_command)
             threading.Thread(target=run_test, args=(mobile_registration_to_ready_command,)).start()
 
         elif process_selection == "Add provisional pre-request":
@@ -464,6 +504,7 @@ class QAApp:
     def clear_fields(self):
         print("Clearing fields...")
         self.route_type_var.set(0)
+        self.mobile_device_selection_dropdown.set("Select Device")
         self.director_preferred_value_entry.delete(0, 'end')
         self.transfer_company_name_entry.delete(0, 'end')
         self.pass_to_due_diligence_company_name_entry.delete(0, 'end')
