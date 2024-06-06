@@ -46,9 +46,10 @@ class CompassStarLoginPage(BaseCase):
         self.maximize_window()
 
     def csl_log_out(self):
-        self.click(self.profile_button, timeout=15)
-        self.click(self.log_out)
-        self.sleep(5)
+        while not self.is_element_visible(self.username) or not self.is_element_visible(self.password):
+            self.click(self.profile_button, timeout=15)
+            self.click(self.log_out)
+            self.sleep(5)
 
     def compass_star_login_director(self):
         with open("..//data//email.txt", "r") as file:
