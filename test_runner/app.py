@@ -452,17 +452,9 @@ class QAApp:
                 with open("..//data//mobile_device_type.txt", "w") as file:
                     file.write("--oppo")
 
-            # mobile_device_selection_parameters = {
-            #     "--emulator": "Emulator",
-            #     "--oppo": "Oppo",
-            #     "--vivo": "Vivo",
-            #
-            # }
-            # mobile_selection_option = next(key for key, value in mobile_device_selection_parameters.items() if value == self.mobile_device_selection_dropdown.get())
             director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
             device_list = self.mobile_device_selection_dropdown.get()
             mobile_registration_to_ready_command = f'pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py  {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
-            print(mobile_registration_to_ready_command)
             threading.Thread(target=run_test, args=(mobile_registration_to_ready_command,)).start()
 
         elif process_selection == "Add provisional pre-request":
