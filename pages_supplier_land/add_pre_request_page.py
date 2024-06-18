@@ -1,4 +1,6 @@
 import random
+import time
+
 from seleniumbase import BaseCase
 from configuration_files.config_reader import Readconfig
 
@@ -57,6 +59,7 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
             "cerberus_staffing_ltd": "Cerberus Staffing Ltd",
             "charon_solutions_ltd": "Charon Solutions Ltd",
             "hand_technology_ltd": "Hand Technology ltd",
+            "wageHub_outsourcing_limited": "WageHub Outsourcing Limited",
             "deliverex_ltd": "Deliverex Ltd",
         }
         selected_client = list_of_client_in_dropdown.get(client_selected_dropdown)
@@ -155,6 +158,12 @@ class SupplierLandAddNewPreRequestPage(BaseCase):
 
     def submit_pre_request(self):
         self.wait_for_element_visible(self._pre_request_checkbox, timeout=60)
+        time.sleep(1)
+        # while True:
+        #     self.click(self._pre_request_checkbox)
+        #     self.click(self._submit_button)
+        #     if self.is_element_present(self._data_not_found):
+        #         break
         while True:
             try:
                 self.click(self._pre_request_checkbox)

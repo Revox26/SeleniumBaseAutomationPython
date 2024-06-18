@@ -236,6 +236,7 @@ class QAApp:
             "Business2 Ltd",
             "Cerberus Staffing Ltd",
             "Charon Solutions Ltd",
+            "WageHub Outsourcing Limited",
             "Deliverex Ltd"
 
         ]
@@ -389,11 +390,12 @@ class QAApp:
             "--var3=business2_ltd": "Business2 Ltd",
             "--var3=cerberus_staffing_ltd": "Cerberus Staffing Ltd",
             "--var3=charon_solutions_ltd": "Charon Solutions Ltd",
+            "--var3=wageHub_outsourcing_limited": "WageHub Outsourcing Limited",
             "--var3=deliverex_ltd": "Deliverex Ltd"
 
         }
 
-        # Get the industry in pre request
+        # Get the industry in pre requestope
         industry_values_parameter = {
             "--var1=random": "Random",
             "--var1=accounts": "Accounts",
@@ -423,9 +425,10 @@ class QAApp:
 
         def run_test(test_command):
             # print("Running subprocess with command:", test_command)
+            print("")
             print("Selected Test: ", self.process_dropdown.get())
             print("Selected Instance: ", self.instance_dropdown.get())
-            print("Selected Browser: ", self.browser_dropdown.get())
+            print("Selected Browser: ", self.browser_dropdown.get(), "\n")
             subprocess.run(test_command, shell=True)
 
         # Execute the selected test based on the selection
@@ -509,7 +512,7 @@ class QAApp:
         # Uncheck the test options checkboxes
         for checkbox in self.checkboxes:
             checkbox.deselect()
-        print("Clear fields successfully")
+        print("Clear fields successfully\n ")
 
     def exit_application(self):
         self.app.destroy()
