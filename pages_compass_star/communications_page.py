@@ -36,3 +36,6 @@ class CompassStarCommunicationsTabPage(BaseCase):
 
     def upload_change_of_flat_rate_template(self):
         self.__upload_template__("Change Of Flat Rate VAT Business Type ( Requires CSV )", "..//comms_templates/Change_Of_Flat_Rate_VAT_Business_Type.csv", "Upload Change of Flat Rate")
+
+    def upload_confirmation_of_duties_template(self):
+        self.__upload_template__("Confirmation Of Duties ( Requires CSV )", "..//comms_templates/Confirmation_Of_Duties.csv", "Upload Change of Confirmation Of Duties")

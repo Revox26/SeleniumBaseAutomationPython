@@ -28,3 +28,7 @@ class ReadCommsTemplate:
     def input_company_number_in_change_of_flat_rate_csv(self, csv_company_number):
         template_path = "..//comms_templates//Change_Of_Flat_Rate_VAT_Business_Type.csv"
         self.input_company_number_in_template(template_path, csv_company_number)
+
+    def input_company_number_in_confirmation_of_duties_csv(self, csv_company_number):
+        template_path = "..//comms_templates//Confirmation_Of_Duties.csv"
+        self.input_company_number_in_template(template_path, csv_company_number)

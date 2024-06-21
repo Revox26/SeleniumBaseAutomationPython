@@ -206,7 +206,8 @@ class QAApp:
             "Vat Return",
             "Invoice Approval",
             "Funding Request",
-            "Change Of Flat Rate VAT"
+            "Change Of Flat Rate VAT",
+            "Confirmation of Duties"
 
         ]
 
@@ -420,7 +421,8 @@ class QAApp:
             "--var2=vat": "Vat Return",
             "--var2=invoice": "Invoice Approval",
             "--var2=funding": "Funding Request",
-            "--var2=change_of_flat_rate": "Change Of Flat Rate VAT"
+            "--var2=change_of_flat_rate": "Change Of Flat Rate VAT",
+            "--var2=confirmation_of_duties": "Confirmation of Duties"
         }
 
         def run_test(test_command):

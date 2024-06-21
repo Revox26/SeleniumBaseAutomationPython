@@ -37,6 +37,7 @@ class UploadCommunicationsTemplate(
             'invoice': (self.input_company_number_in_invoice_approval_csv, self.upload_invoice_approval_template),
             'funding': (self.input_company_number_in_funding_request_csv, self.upload_funding_request_template),
             'change_of_flat_rate': (self.input_company_number_in_change_of_flat_rate_csv, self.upload_change_of_flat_rate_template),
+            'confirmation_of_duties': (self.input_company_number_in_confirmation_of_duties_csv, self.upload_confirmation_of_duties_template)
         }
 
         # Handle the selected template
