@@ -6,7 +6,7 @@ class DestiBromLoginPage(BaseCase):
     login_menu = "//a[contains(.,'Log in')]"
     email_address_destibrom = "//input[@id='email']"
     password_destibrom = "//input[@id='inputPassword']"
-    login_button_destibrom = "//button[contains(.,'Login')]"
+    login_button_destibrom = "//button[contains(.,'LOGIN')]"
 
     def login(self, username, password):
         self.type(self.email_address_destibrom, username)

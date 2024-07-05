@@ -6,7 +6,7 @@ from utilities_destibrom.random_icons_lists import generate_random_icon_list
 
 class DestibromAmenitiesPage(BaseCase):
     amenities_menu = "//a[contains(.,'Amenities')]"
-    add_amenity_button = "//a[@class='btn btn-destibrom']"
+    add_amenity_button = "//a[.='Add Amenity']"
     amenity_name = "//input[@id='name']"
     amenity_icon = "//input[@id='icon']"
     amenity_save_button = "//button[@type='submit']"

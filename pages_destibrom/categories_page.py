@@ -6,7 +6,7 @@ from utilities_destibrom.random_image_generator import ImageHandler
 
 
 class DestibromCategoriesPage(BaseCase):
-    categories_menu = "//a[.='Categories']"
+    categories_menu = "//a[contains(.,'Categories')]"
     add_category_button = "//a[.='Add Category']"
     edit_category = "//a[contains(.,'Edit')]"
     category_name = "//input[contains(@name,'name')]"

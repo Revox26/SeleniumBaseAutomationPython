@@ -26,7 +26,8 @@ class DestiBromTesting(
     def test_login(self):
         self.open_destibrom_page()
         self.destibrom_login_as_super_admin()
-        self.assert_element(DestibromDashboardPage.dashboard_label)
+        self.choose_a_destination()
+        self.click_the_content_burger_menu()
 
     @pytest.mark.run(order=2)
     def test_add_categories(self):

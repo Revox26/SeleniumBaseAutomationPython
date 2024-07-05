@@ -3,7 +3,7 @@ from configuration_files.config_reader import Readconfig
 
 
 class DestibromContentBurger(BaseCase):
-    content_burger_menu = "//a[@aria-controls='contentDropdown']"
+    contents_menu = "//a[contains(.,'Contents')]"
 
     def click_the_content_burger_menu(self):
-        self.click(self.content_burger_menu)
+        self.click(self.contents_menu)

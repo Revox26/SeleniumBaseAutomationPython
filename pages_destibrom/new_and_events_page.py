@@ -4,7 +4,7 @@ from utilities_destibrom.random_website_generator import RandomWebsiteGenerator
 
 
 class DestibromNewsAndEventsPage(BaseCase):
-    news_and_events_menu = "//a[contains(.,'News and Events')]"
+    news_and_events_menu = "//a[contains(.,'News & Events')]"
     add_news_and_events_button = "//a[contains(.,'Add News and Event')]"
     news_and_events_content_link = "//input[@id='content_link']"
     news_and_events_content_image = "//input[@class='filepond--browser']"
