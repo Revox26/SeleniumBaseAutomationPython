@@ -33,3 +33,15 @@ class RandomWebsiteGenerator:
             #
             # if response.status_code == 200:
             return website_url
+
+    @staticmethod
+    def generate_random_notification_title():
+        random_category_title = ["New Update Available", "Special Offer", "Event Reminder", "Breaking News"]
+        random_title = random.choice(random_category_title)
+        return random_title
+
+    @staticmethod
+    def generate_random_notification_text():
+        random_category_text = ["Check out the latest features!", "Limited time offer just for you.", "Don't forget our upcoming event.", "Stay tuned for important updates."]
+        random_text = random.choice(random_category_text)
+        return random_text

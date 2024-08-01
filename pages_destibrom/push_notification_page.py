@@ -8,7 +8,7 @@ class DestibromPushNotificationPage(BaseCase):
     external_link_tab = "//button[.='External Links']"
     external_link_notification_title = "(//input[@name='title'])[1]"
     external_link_notification_text = "(//input[@name='text'])[1]"
-    external_link = "(//input[@name='link'])[1]"
+    external_link = "//label[.='External Link']/..//input[@id='link']"  # (//input[@name='link'])[1]"
     external_link_send_push_notification_button = "(//button[.='Send Push Notification'])[1]"
 
     location_link_tab = "//button[.='Location']"
@@ -43,8 +43,8 @@ class DestibromPushNotificationPage(BaseCase):
         random_title, random_text = self.generate_random_notification_data()
 
         self.click(self.external_link_tab)
-        self.type(self.external_link_notification_title, random_title)
-        self.type(self.external_link_notification_text, random_text)
+        # self.type(self.external_link_notification_title, random_title)
+        # self.type(self.external_link_notification_text, random_text)
         self.type(self.external_link, website_url)
         self.click(self.external_link_send_push_notification_button)
         self.assert_element(self.push_notification_sent_alert)
