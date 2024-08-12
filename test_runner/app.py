@@ -24,6 +24,7 @@ class QAApp:
         self.create_test_options()
         self.create_buttons()
         self.registration_to_ready_additional_data_options()
+        self.accepted_to_ready_additional_data_options()
         self.transfer_a_supplier_additional_data()
         self.pre_request_and_confirmed_additional_data()
         self.pass_to_due_diligence_additional_data()
@@ -81,6 +82,13 @@ class QAApp:
 
         # self.yearly_contract_frame.grid_remove()  # hide by default
 
+    def accepted_to_ready_additional_data_options(self):
+        self.director_email_label = customtkinter.CTkLabel(master=self.yearly_contract_frame, justify=customtkinter.LEFT, text="Director Email", font=("Arial", 15))
+        self.director_email_label.grid(row=5, column=0, pady=(5, 0), padx=10, sticky="w")
+
+        self.director_email_entry = customtkinter.CTkEntry(master=self.yearly_contract_frame, width=300)
+        self.director_email_entry.grid(row=6, column=0, pady=(5, 5), padx=10, sticky="nsew")
+
     def withdraw_idd_additional_data(self):
         self.withdraw_idd_frame = customtkinter.CTkFrame(master=self.frame)
         self.withdraw_idd_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
@@ -118,12 +126,20 @@ class QAApp:
         self.transfer_a_supplier_frame.grid_remove()
 
     def show_additional_data_for_process(self, process_selection):
-        if process_selection in ["Registration to ready", "Mobile registration to Ready"]:
+        if process_selection in ["Registration to ready", "Mobile registration to Ready", "Accepted to ready"]:
             self.yearly_contract_frame.grid()
         else:
             self.yearly_contract_frame.grid_remove()
             self.route_type_var.set(0)
             self.director_preferred_value_entry.delete(0, 'end')
+
+        if process_selection == "Accepted to ready":
+            self.director_email_label.grid()
+            self.director_email_entry.grid()
+        else:
+            self.director_email_label.grid_remove()
+            self.director_email_entry.delete(0, 'end')
+            self.director_email_entry.grid_remove()
 
         if process_selection == "Mobile registration to Ready":
             self.mobile_device_selection_label.grid()
@@ -180,7 +196,7 @@ class QAApp:
             self.transfer_a_supplier_frame.grid_remove()
 
     def create_module_selection(self):
-        module_options = ["CSL PROCESS", "SL PROCESS", "BSC PROCESS", "BROMSGROVE PROCESS"]
+        module_options = ["CSL PROCESS", "SL PROCESS", "BSC PROCESS", "DESTINATION X PROCESS"]
         self.segmented_button = customtkinter.CTkSegmentedButton(master=self.frame, values=module_options, command=self.update_label)
         self.segmented_button.grid(row=1, column=0, columnspan=2, pady=30, padx=30)
 
@@ -289,9 +305,10 @@ class QAApp:
         self.browser_dropdown.set("Chrome")
 
         self.process_dropdown_options = {
-            "CSL Process": ["Registration to ready", "Mobile registration to Ready", "Transfer a supplier", "T3 allocation to ready", "Upload communications template"],
+            "CSL Process": ["Registration to ready", "Accepted to ready", "Mobile registration to Ready", "Transfer a supplier", "T3 allocation to ready", "Upload communications template"],
             "SL Process": ["Add provisional pre-request", "Add confirmed pre-request", "Pass to due diligence", "Withdraw IDD"],
-            "BSC Process": ["BSC order package"]
+            "BSC Process": ["BSC order package"],
+            "DestinationX Process": ["Add Categories", "Add Amenity", "Add Sponsored Ads", "Add News and Events", "Send External Link Notification", "Send Location Notification", "Send Category Notification"]
         }
 
         self.process_dropdown = customtkinter.CTkOptionMenu(self.frame, values=[], width=442, height=40, font=("Arial", 25), command=self.show_additional_data_for_process)
@@ -344,15 +361,25 @@ class QAApp:
             self.process_dropdown.set("Select CSL process")
             self.process_dropdown.configure(values=self.process_dropdown_options["CSL Process"])
             self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+            self.instance_dropdown.grid()
 
         elif option == "SL PROCESS":
             self.process_dropdown.set("Select SL process")
             self.process_dropdown.configure(values=self.process_dropdown_options["SL Process"])
             self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+            self.instance_dropdown.grid()
+
         elif option == "BSC PROCESS":
             self.process_dropdown.set("Select BSC process")
             self.process_dropdown.configure(values=self.process_dropdown_options["BSC Process"])
             self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+            self.instance_dropdown.grid_remove()
+
+        elif option == "DESTINATION X PROCESS":
+            self.process_dropdown.set("Select DestinationX Process")
+            self.process_dropdown.configure(values=self.process_dropdown_options["DestinationX Process"])
+            self.process_dropdown.grid(row=2, column=0, columnspan=2, pady=(0, 10), padx=10)
+            self.instance_dropdown.set("V1 Instance")
 
     def run_button_function(self, process_selection):
 
@@ -439,6 +466,14 @@ class QAApp:
             registration_to_ready_command = f"pytest ..//tests_compass_star/test_invitation_to_registration_new.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(registration_to_ready_command,)).start()
 
+        if process_selection == "Accepted to ready":
+            director_email = self.director_email_entry.get()
+            with open("..//data//email.txt", "w") as file:
+                file.write(director_email)
+            director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
+            registration_to_ready_command = f"pytest ..//tests_compass_star/test_accepted_to_ready.py {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(registration_to_ready_command,)).start()
+
         elif process_selection == "Transfer a supplier":
             transfer_company_name = "--var1=" + self.transfer_company_name_entry.get()
             transfer_a_supplier_command = f'pytest ..//tests_compass_star/test_transfer_a_supplier.py "{transfer_company_name}" {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
@@ -492,6 +527,33 @@ class QAApp:
             upload_communications_command = f"pytest ..//tests_compass_star/test_upload_comms_template.py {communication_company_number} {template_option} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(upload_communications_command,)).start()
 
+        # DESTINATION X
+        #  "DestinationX Process": ["", "", "", "", "", "Send Location Notification", "Send Category Notification"]
+        elif process_selection == "Add Categories":
+            add_categories_command = '"test_login or test_add_categories"'
+            destination_x_add_categories_command = f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k  {add_categories_command} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(destination_x_add_categories_command,)).start()
+
+        elif process_selection == "Add Amenity":
+            add_amenity_command = '"test_login or test_add_amenity"'
+            destination_x_add_amenity_command = f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k  {add_amenity_command} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(destination_x_add_amenity_command,)).start()
+
+        elif process_selection == "Add Sponsored Ads":
+            add_sponsored_ads_command = '"test_login or test_add_sponsored_and_ads"'
+            destination_x_add_sponsored_ads_command = f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k  {add_sponsored_ads_command} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(destination_x_add_sponsored_ads_command,)).start()
+
+        elif process_selection == "Add News and Events":
+            add_news_and_events_command = '"test_login or test_add_news_and_events"'
+            destination_x_add_news_and_events_command = f"pytest ..//tests_destibrom/test_end_to_end_destibrom.py -k  {add_news_and_events_command} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(destination_x_add_news_and_events_command,)).start()
+
+        elif process_selection == "Send External Link Notification":
+            pn_external_link_command = '"test_login or test_add_external_links_notification"'
+            destination_x_pn_external_link_command_command = f"pytest ..//tests_destibrom/test_push_notification.py -k  {pn_external_link_command} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
+            threading.Thread(target=run_test, args=(destination_x_pn_external_link_command_command,)).start()
+
         # Disable the 'Run' button during test execution
         self.buttons[0].configure(state="disabled")
 
@@ -509,6 +571,7 @@ class QAApp:
         self.select_client_dropdown.set("Select Client")
         self.priority_entry.delete(0, 'end')
         self.withdraw_idd_company_name_entry.delete(0, 'end')
+        self.director_email_entry.delete(0, 'end')
         self.communication_company_number_entry.delete(0, 'end')
         self.select_communication_template_dropdown.set("Select template")
         # Uncheck the test options checkboxes

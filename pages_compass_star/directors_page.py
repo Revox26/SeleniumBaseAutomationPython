@@ -16,6 +16,7 @@ class CompassStarDirectorPage(BaseCase):
 
         if self.data == "v2":
             self.type(self.search_textbox, self.var1)
+
         else:
             self.type(self.search_textbox, email)
 
