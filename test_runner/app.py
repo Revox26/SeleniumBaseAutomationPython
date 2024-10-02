@@ -12,10 +12,10 @@ class QAApp:
 
         ascii_art = text2art(" Welcome to \n Automation", "slant")
         colored_ascii_art = colored_text(ascii_art, "35;1")
-        print(colored_ascii_art)
         self.app = customtkinter.CTk()
         self.app.geometry("600x900")
         self.app.title("QA Team Automation")
+        print(colored_ascii_art)
         customtkinter.set_appearance_mode("dark")
         customtkinter.set_default_color_theme("blue")
         self.frame = self.create_frame()
@@ -30,7 +30,6 @@ class QAApp:
         self.pass_to_due_diligence_additional_data()
         self.withdraw_idd_additional_data()
         self.upload_communications_template_additional_data()
-        self.mobile_registration_to_ready_additional_data_options()
         self.app.bind("<Configure>", self.handle_drag_to_other_monitor)
 
     def handle_drag_to_other_monitor(self, event):
@@ -44,17 +43,6 @@ class QAApp:
         frame = customtkinter.CTkFrame(master=self.app)
         frame.place(relx=0.5, rely=0.5, anchor="center")
         return frame
-
-    def mobile_registration_to_ready_additional_data_options(self):
-        # Add a text entry for 'Director Preferred Value'
-        self.mobile_device_selection_label = customtkinter.CTkLabel(master=self.yearly_contract_frame, justify=customtkinter.LEFT, text="Device", font=("Arial", 15))
-        self.mobile_device_selection_label.grid(row=4, column=0, pady=(5, 0), padx=10, sticky="w")
-        self.mobile_device_selection_label.grid_remove()
-
-        self.mobile_device_selection_dropdown = customtkinter.CTkOptionMenu(self.yearly_contract_frame, values=["Emulator", "Oppo", "Vivo"], width=300, height=40, font=("Arial", 12))
-        self.mobile_device_selection_dropdown.grid(row=5, column=0, columnspan=2, pady=10, padx=10)
-        self.mobile_device_selection_dropdown.set("Select Device")
-        self.mobile_device_selection_dropdown.grid_remove()
 
     def registration_to_ready_additional_data_options(self):
         self.yearly_contract_frame = customtkinter.CTkFrame(master=self.frame)
@@ -140,14 +128,6 @@ class QAApp:
             self.director_email_label.grid_remove()
             self.director_email_entry.delete(0, 'end')
             self.director_email_entry.grid_remove()
-
-        if process_selection == "Mobile registration to Ready":
-            self.mobile_device_selection_label.grid()
-            self.mobile_device_selection_dropdown.grid()
-        else:
-            self.mobile_device_selection_label.grid_remove()
-            self.mobile_device_selection_dropdown.grid_remove()
-            self.mobile_device_selection_dropdown.set("Select Device")
 
         if process_selection == "Transfer a supplier":
             self.transfer_a_supplier_frame.grid()
@@ -308,7 +288,8 @@ class QAApp:
             "CSL Process": ["Registration to ready", "Accepted to ready", "Mobile registration to Ready", "Transfer a supplier", "T3 allocation to ready", "Upload communications template"],
             "SL Process": ["Add provisional pre-request", "Add confirmed pre-request", "Pass to due diligence", "Withdraw IDD"],
             "BSC Process": ["BSC order package"],
-            "DestinationX Process": ["Add Categories", "Add Amenity", "Add Sponsored Ads", "Add News and Events", "Send External Link Notification", "Send Location Notification", "Send Category Notification"]
+            "DestinationX Process": ["Add Categories", "Add Amenity", "Add Sponsored Ads", "Add News and Events", "Send External Link Notification", "Send Location Notification", "Send Category Notification",
+                                     "Create New Account (Mobile)", "Forgot Password Non-Existing(Mobile)"]
         }
 
         self.process_dropdown = customtkinter.CTkOptionMenu(self.frame, values=[], width=442, height=40, font=("Arial", 25), command=self.show_additional_data_for_process)
@@ -527,6 +508,7 @@ class QAApp:
             upload_communications_command = f"pytest ..//tests_compass_star/test_upload_comms_template.py {communication_company_number} {template_option} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(upload_communications_command,)).start()
 
+
         # DESTINATION X
         #  "DestinationX Process": ["", "", "", "", "", "Send Location Notification", "Send Category Notification"]
         elif process_selection == "Add Categories":
@@ -553,6 +535,14 @@ class QAApp:
             pn_external_link_command = '"test_login or test_add_external_links_notification"'
             destination_x_pn_external_link_command_command = f"pytest ..//tests_destibrom/test_push_notification.py -k  {pn_external_link_command} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s"
             threading.Thread(target=run_test, args=(destination_x_pn_external_link_command_command,)).start()
+
+        elif process_selection == "Forgot Password Non-Existing(Mobile)":
+            destination_x_forgot_password_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
+            threading.Thread(target=run_test, args=(destination_x_forgot_password_mobile_command,)).start()
+
+        elif process_selection == "Create New Account (Mobile)":
+            destination_x_create_new_account_mobile_command = f"pytest ..//tests_destibrom/test_create_an_account_mobile.py {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
+            threading.Thread(target=run_test, args=(destination_x_create_new_account_mobile_command,)).start()
 
         # Disable the 'Run' button during test execution
         self.buttons[0].configure(state="disabled")
