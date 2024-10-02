@@ -3,11 +3,13 @@ import subprocess
 import sys
 import time
 
+from selenium.common.exceptions import TimeoutException
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import BaseCase
 
+from AppiumPython.device_capabilities.adb_devices import save_devices_to_file, start_appium_server
 from test_runner.app import QAApp
 
 BaseCase.main(__name__, __file__)
@@ -23,12 +25,15 @@ class MobileCustomActionClass(AndroidCapabilities, QAApp):
         self.driver = self.initialize_driver()
 
     def initialize_driver(self):
-
-        with open("..//data//mobile_device_type.txt", "r") as file:
+        start_appium_server()
+        time.sleep(5)
+        save_devices_to_file("adb_devices.txt")
+        with open("..//data//adb_devices.txt", "r") as file:
             selected_device = file.read().strip()
+            print(selected_device)
 
         if not MobileCustomActionClass._driver:
-            if selected_device == "--emulator":
+            if selected_device.startswith("emulator-5554"):
                 MobileCustomActionClass._driver = self.get_android_emulator_driver()
             elif selected_device == "--oppo":
                 MobileCustomActionClass._driver = self.get_oppo_test_phone_driver()
@@ -39,10 +44,35 @@ class MobileCustomActionClass(AndroidCapabilities, QAApp):
 
         return MobileCustomActionClass._driver
 
+        # with open("..//data//mobile_device_type.txt", "r") as file:
+        #     selected_device = file.read().strip()
+        #
+        # if not MobileCustomActionClass._driver:
+        #     if selected_device == "--emulator":
+        #         MobileCustomActionClass._driver = self.get_android_emulator_driver()
+        #     elif selected_device == "--oppo":
+        #         MobileCustomActionClass._driver = self.get_oppo_test_phone_driver()
+        #     elif selected_device == "--vivo":
+        #         MobileCustomActionClass._driver = self.get_vivo_test_phone_driver()
+        #     else:
+        #         print("Device argument not provided or not recognized.")
+        #
+        # return MobileCustomActionClass._driver
+
     def tap(self, value, timeOut=7):
         button = WebDriverWait(self.driver, timeOut).until(EC.visibility_of_element_located((By.XPATH, value)))
         button.click()
         return button
+
+    def assert_element(self, value, timeOut=7):
+        try:
+            element = WebDriverWait(self.driver, timeOut).until(
+                EC.visibility_of_element_located((By.XPATH, value))
+            )
+            return element
+        except TimeoutException:
+            print(f"Element located by {value} not found within {timeOut} seconds.")
+            return None  # or raise an exception, depending on your needs
 
     def double_tap(self, value, timeOut=7):
         for _ in range(2):
