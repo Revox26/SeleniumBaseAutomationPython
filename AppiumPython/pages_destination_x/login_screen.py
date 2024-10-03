@@ -31,7 +31,7 @@ class DestinationxLoginPage(AndroidCapabilities):
 
     def navigate_to_login(self):
         mobile_action = MobileCustomActionClass()
-        if mobile_action.assert_element(self.email):
+        if mobile_action.assert_element(self.email, timeOut=2):
             pass
         else:
             mobile_action.tap(self.destix_login)
