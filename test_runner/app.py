@@ -553,7 +553,6 @@ class QAApp:
     def clear_fields(self):
         print("Clearing fields...")
         self.route_type_var.set(0)
-        self.mobile_device_selection_dropdown.set("Select Device")
         self.director_preferred_value_entry.delete(0, 'end')
         self.transfer_company_name_entry.delete(0, 'end')
         self.pass_to_due_diligence_company_name_entry.delete(0, 'end')
