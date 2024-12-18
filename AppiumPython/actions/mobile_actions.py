@@ -35,10 +35,8 @@ class MobileCustomActionClass(AndroidCapabilities, QAApp):
         if not MobileCustomActionClass._driver:
             if selected_device.startswith("emulator-5554"):
                 MobileCustomActionClass._driver = self.get_android_emulator_driver()
-            elif selected_device == "--oppo":
+            elif selected_device.startswith("b07db607"):
                 MobileCustomActionClass._driver = self.get_oppo_test_phone_driver()
-            elif selected_device == "--vivo":
-                MobileCustomActionClass._driver = self.get_vivo_test_phone_driver()
             else:
                 print("Device argument not provided or not recognized.")
 

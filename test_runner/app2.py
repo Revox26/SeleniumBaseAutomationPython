@@ -12,10 +12,10 @@ class QAApp:
 
         ascii_art = text2art(" Welcome to \n Automation", "slant")
         colored_ascii_art = colored_text(ascii_art, "35;1")
-        print(colored_ascii_art)
         self.app = customtkinter.CTk()
         self.app.geometry("600x900")
         self.app.title("QA Team Automation")
+        print(colored_ascii_art)
         customtkinter.set_appearance_mode("dark")
         customtkinter.set_default_color_theme("blue")
         self.frame = self.create_frame()
@@ -276,11 +276,11 @@ class QAApp:
         self.priority_entry.grid(row=6, column=0, pady=(5, 5), padx=10, sticky="nsew")
 
     def create_dropdowns(self):
-        self.instance_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Replica Instance", "Delta Instance", "Echo Instance"], width=442, height=40, font=("Arial", 25))
+        self.instance_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["QA Instance", "V1 Instance", "V2 Instance", "V3 Instance", "V4 Instance", "Replica Instance", "Delta Instance", "Echo Instance"], width=500, height=40, font=("Arial", 25))
         self.instance_dropdown.grid(row=3, column=0, columnspan=2, pady=10, padx=10)
         self.instance_dropdown.set("Select instance")
 
-        self.browser_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["Chrome", "Edge", "Firefox"], width=442, height=40, font=("Arial", 25))
+        self.browser_dropdown = customtkinter.CTkOptionMenu(self.frame, values=["Chrome", "Edge", "Firefox"], width=500, height=40, font=("Arial", 25))
         self.browser_dropdown.grid(row=4, column=0, columnspan=2, pady=10, padx=10)
         self.browser_dropdown.set("Chrome")
 
@@ -289,10 +289,10 @@ class QAApp:
             "SL Process": ["Add provisional pre-request", "Add confirmed pre-request", "Pass to due diligence", "Withdraw IDD"],
             "BSC Process": ["BSC order package"],
             "DestinationX Process": ["Add Categories", "Add Amenity", "Add Sponsored Ads", "Add News and Events", "Send External Link Notification", "Send Location Notification", "Send Category Notification",
-                                     "Create New Account (Mobile)", "Forgot Password Non-Existing(Mobile)"]
+                                     "Create New Account (Mobile)", "Forgot Password Existing(Mobile)", "Forgot Password Non-Existing(Mobile)"]
         }
 
-        self.process_dropdown = customtkinter.CTkOptionMenu(self.frame, values=[], width=442, height=40, font=("Arial", 25), command=self.show_additional_data_for_process)
+        self.process_dropdown = customtkinter.CTkOptionMenu(self.frame, values=[], width=500, height=40, font=("Arial", 25), command=self.show_additional_data_for_process)
         self.process_dropdown.set("select a process")
 
     def create_test_options(self):
@@ -461,7 +461,20 @@ class QAApp:
             threading.Thread(target=run_test, args=(transfer_a_supplier_command,)).start()
 
         elif process_selection == "Mobile registration to Ready":
+            device_selected = self.mobile_device_selection_dropdown.get()
+
+            if device_selected == "Emulator":
+                with open("..//data//mobile_device_type.txt", "w") as file:
+                    file.write("--emulator")
+            elif device_selected == "Vivo":
+                with open("..//data//mobile_device_type.txt", "w") as file:
+                    file.write("--vivo")
+            elif device_selected == "Oppo":
+                with open("..//data//mobile_device_type.txt", "w") as file:
+                    file.write("--oppo")
+
             director_pref_value = "--var1=" + self.director_preferred_value_entry.get()
+            device_list = self.mobile_device_selection_dropdown.get()
             mobile_registration_to_ready_command = f'pytest ..//tests_compass_star/test_invitation_to_registration_with_mobile.py  {route} {director_pref_value} {selected_test_option} {staging_option} {browser_option} --rs -x -q -s'
             threading.Thread(target=run_test, args=(mobile_registration_to_ready_command,)).start()
 
@@ -524,8 +537,12 @@ class QAApp:
             threading.Thread(target=run_test, args=(destination_x_pn_external_link_command_command,)).start()
 
         elif process_selection == "Forgot Password Non-Existing(Mobile)":
-            destination_x_forgot_password_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
-            threading.Thread(target=run_test, args=(destination_x_forgot_password_mobile_command,)).start()
+            destination_x_forgot_password_non_existing_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py -k test_forgot_password_non_existing_mobile {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
+            threading.Thread(target=run_test, args=(destination_x_forgot_password_non_existing_mobile_command,)).start()
+
+        elif process_selection == "Forgot Password Existing(Mobile)":  # Forgot Password Existing(Mobile)
+            destination_x_forgot_password_existing_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py -k test_forgot_password_existing_mobile {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
+            threading.Thread(target=run_test, args=(destination_x_forgot_password_existing_mobile_command,)).start()
 
         elif process_selection == "Create New Account (Mobile)":
             destination_x_create_new_account_mobile_command = f"pytest ..//tests_destibrom/test_create_an_account_mobile.py {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
@@ -540,7 +557,6 @@ class QAApp:
     def clear_fields(self):
         print("Clearing fields...")
         self.route_type_var.set(0)
-        self.mobile_device_selection_dropdown.set("Select Device")
         self.director_preferred_value_entry.delete(0, 'end')
         self.transfer_company_name_entry.delete(0, 'end')
         self.pass_to_due_diligence_company_name_entry.delete(0, 'end')

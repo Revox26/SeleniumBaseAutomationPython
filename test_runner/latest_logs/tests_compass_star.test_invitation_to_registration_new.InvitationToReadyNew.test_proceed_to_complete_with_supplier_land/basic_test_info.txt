@@ -1,0 +1,24 @@
+tests_compass_star/test_invitation_to_registration_new.py::InvitationToReadyNew::test_proceed_to_complete_with_supplier_land
+--------------------------------------------------------------------
+Last Page: [WARNING! Browser Not Open!]
+ Duration: 7.31s
+  Browser: Chrome 131.0.6778.86
+   Driver: chromedriver 131.0.6778.85
+Timestamp: 1732790585  (Unix Timestamp)
+     Date: Thursday, 28 November 2024
+     Time: 6:43:05 PM  (Malay Peninsula Standard Time, UTC+08:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\SeleniumPython\tests_compass_star\test_invitation_to_registration_new.py", line 133, in test_proceed_to_complete_with_supplier_land
+    self.complete_with_supplier_land()
+  File "C:\SeleniumPython\pages_supplier_land\sl_login_page.py", line 64, in complete_with_supplier_land
+    self.click("a[type='button']")
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 417, in click
+    element = page_actions.wait_for_element_visible(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 514, in wait_for_element_visible
+    timeout_exception(NoSuchElementException, message)
+  File "C:\SeleniumPython\venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 267, in timeout_exception
+    raise exc(msg)
+Exception: Message: 
+ Element {a[type='button']} was not present after 7 seconds!

@@ -36,7 +36,7 @@ class DestinationxLoginPage(AndroidCapabilities):
         else:
             mobile_action.tap(self.destix_login)
 
-    def navigate_to_forgot_password(self):
+    def navigate_to_forgot_password_non_existing_account(self):
         mobile_action = MobileCustomActionClass()
 
         fake = Faker()
@@ -48,4 +48,13 @@ class DestinationxLoginPage(AndroidCapabilities):
         mobile_action.tap(self.forgot_password)
         mobile_action.assert_element(self.reset_password)
         mobile_action.type_text(self.forgot_password_email, random_email)
+        mobile_action.tap(self.reset_password)
+
+
+    def navigate_to_forgot_password_existing_account(self):
+        mobile_action = MobileCustomActionClass()
+
+        mobile_action.tap(self.forgot_password)
+        mobile_action.assert_element(self.reset_password)
+        mobile_action.type_text(self.forgot_password_email, "josemanalo@testing.com")
         mobile_action.tap(self.reset_password)

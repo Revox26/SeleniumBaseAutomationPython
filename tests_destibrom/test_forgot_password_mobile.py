@@ -13,6 +13,11 @@ class DestinationxForgotPasswordMobile(
 ):
 
     @pytest.mark.run(order=1)
-    def test_forgot_password_mobile(self):
+    def test_forgot_password_non_existing_mobile(self):
         self.navigate_to_login()
-        self.navigate_to_forgot_password()
+        self.navigate_to_forgot_password_non_existing_account()
+
+    @pytest.mark.run(order=2)
+    def test_forgot_password_existing_mobile(self):
+        self.navigate_to_login()
+        self.navigate_to_forgot_password_existing_account()

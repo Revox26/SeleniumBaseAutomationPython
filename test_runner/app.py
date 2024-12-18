@@ -289,7 +289,7 @@ class QAApp:
             "SL Process": ["Add provisional pre-request", "Add confirmed pre-request", "Pass to due diligence", "Withdraw IDD"],
             "BSC Process": ["BSC order package"],
             "DestinationX Process": ["Add Categories", "Add Amenity", "Add Sponsored Ads", "Add News and Events", "Send External Link Notification", "Send Location Notification", "Send Category Notification",
-                                     "Create New Account (Mobile)", "Forgot Password Non-Existing(Mobile)"]
+                                     "Create New Account (Mobile)", "Forgot Password Existing(Mobile)", "Forgot Password Non-Existing(Mobile)"]
         }
 
         self.process_dropdown = customtkinter.CTkOptionMenu(self.frame, values=[], width=442, height=40, font=("Arial", 25), command=self.show_additional_data_for_process)
@@ -537,8 +537,12 @@ class QAApp:
             threading.Thread(target=run_test, args=(destination_x_pn_external_link_command_command,)).start()
 
         elif process_selection == "Forgot Password Non-Existing(Mobile)":
-            destination_x_forgot_password_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
-            threading.Thread(target=run_test, args=(destination_x_forgot_password_mobile_command,)).start()
+            destination_x_forgot_password_non_existing_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py -k test_forgot_password_non_existing_mobile {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
+            threading.Thread(target=run_test, args=(destination_x_forgot_password_non_existing_mobile_command,)).start()
+
+        elif process_selection == "Forgot Password Existing(Mobile)":  # Forgot Password Existing(Mobile)
+            destination_x_forgot_password_existing_mobile_command = f"pytest ..//tests_destibrom/test_forgot_password_mobile.py -k test_forgot_password_existing_mobile {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
+            threading.Thread(target=run_test, args=(destination_x_forgot_password_existing_mobile_command,)).start()
 
         elif process_selection == "Create New Account (Mobile)":
             destination_x_create_new_account_mobile_command = f"pytest ..//tests_destibrom/test_create_an_account_mobile.py {selected_test_option} {staging_option} {browser_option} --rs -x -q -s --headless"
